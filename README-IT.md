@@ -13,6 +13,16 @@ Differenze rispetto all'originale (modifiche nostre, come richiesto dalla licenz
 - testi tradotti, con il nome dell'autore nella schermata Informazioni e nell'avviso iniziale;
 - APK firmato con una chiave propria (segreti `WM_KEYSTORE` e `WM_PASSWORD` del repository).
 
+## Primo collegamento
+
+1. Togli l'abbinamento dello smartwatch dal menu Bluetooth del telefono.
+2. Trova il tuo ID Huawei: nell'app c'è un'apposita funzione.
+3. Abbina lo smartwatch dall'app, inserendo il tuo ID Huawei.
+
+⚠️ **Importante:** senza ID Huawei (o con uno sbagliato) lo smartwatch viene riportato alle impostazioni di fabbrica. Se lo smartwatch chiede di cancellare i dati, non confermare.
+
+Gli stessi passi sono nell'avviso che l'app mostra al primo avvio, in tutte le lingue.
+
 ## Dove si scarica
 
 - Ultima versione: [Release](https://github.com/Kkaoss969/wristmirror-it/releases/latest) (`WristMirror-it.apk`).

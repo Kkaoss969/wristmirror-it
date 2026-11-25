@@ -6257,15 +6257,15 @@
    "de": "- Ein Werkzeug zum Verwalten von Huawei-Zifferblättern und zum Installieren von HWT-Zifferblättern von Drittanbietern, für die meisten Geräte der Serien WATCH, GT, FIT usw. mit dem kompatiblen Zifferblattprotokoll; auf neueren HarmonyOS-Versionen, auf denen die Direktinstallation nicht funktioniert, werden Zifferblätter von Drittanbietern durch Ersetzen installiert. Autor: Escosis (github.com/Escosis/WristMirror, Apache-2.0-Lizenz). Dies ist eine inoffizielle Übersetzung, verteilt von Kkaoss969 mit Gateway Assistant."
   },
   "### 使用建议": {
-   "it": "### Consigli d'uso",
-   "en": "### Usage tips",
-   "es": "### Consejos de uso",
-   "fr": "### Conseils d'utilisation",
-   "pt": "### Conselhos de utilização",
-   "br": "### Dicas de uso",
-   "bg": "### Съвети за употреба",
-   "tr": "### Kullanım önerileri",
-   "de": "### Nutzungstipps"
+   "it": "### Consigli d'uso\n- Primo collegamento: 1) togli l'abbinamento dello smartwatch dal menu Bluetooth del telefono; 2) trova il tuo ID Huawei con l'apposita funzione dell'app; 3) abbina lo smartwatch dall'app, inserendo il tuo ID Huawei.\n- ⚠️ Importante: senza ID Huawei (o con uno sbagliato) lo smartwatch viene riportato alle impostazioni di fabbrica. Se lo smartwatch chiede di cancellare i dati, non confermare.",
+   "en": "### Usage tips\n- First connection: 1) unpair the smartwatch from the phone's Bluetooth menu; 2) find your Huawei ID with the app's dedicated feature; 3) pair the smartwatch from the app, entering your Huawei ID.\n- ⚠️ Important: without a Huawei ID (or with a wrong one) the smartwatch is reset to factory settings. If the smartwatch asks to erase its data, don't confirm.",
+   "es": "### Consejos de uso\n- Primera conexión: 1) desempareja el reloj desde el menú Bluetooth del teléfono; 2) busca tu ID de Huawei con la función de la app; 3) empareja el reloj desde la app, introduciendo tu ID de Huawei.\n- ⚠️ Importante: sin ID de Huawei (o con uno incorrecto) el reloj se restablece a los ajustes de fábrica. Si el reloj pide borrar sus datos, no confirmes.",
+   "fr": "### Conseils d'utilisation\n- Première connexion : 1) dissociez la montre depuis le menu Bluetooth du téléphone ; 2) trouvez votre ID Huawei avec la fonction prévue dans l'app ; 3) associez la montre depuis l'app en saisissant votre ID Huawei.\n- ⚠️ Important : sans ID Huawei (ou avec un ID erroné), la montre est réinitialisée aux paramètres d'usine. Si la montre demande d'effacer ses données, ne confirmez pas.",
+   "pt": "### Conselhos de utilização\n- Primeira ligação: 1) desemparelhe o relógio no menu Bluetooth do telemóvel; 2) encontre o seu ID Huawei com a função da app; 3) emparelhe o relógio a partir da app, introduzindo o seu ID Huawei.\n- ⚠️ Importante: sem ID Huawei (ou com um errado) o relógio é reposto nas definições de fábrica. Se o relógio pedir para apagar os dados, não confirme.",
+   "br": "### Dicas de uso\n- Primeira conexão: 1) desfaça o pareamento do relógio no menu Bluetooth do celular; 2) encontre seu ID Huawei com a função do app; 3) pareie o relógio pelo app, inserindo seu ID Huawei.\n- ⚠️ Importante: sem ID Huawei (ou com um errado) o relógio volta às configurações de fábrica. Se o relógio pedir para apagar os dados, não confirme.",
+   "bg": "### Съвети за употреба\n- Първо свързване: 1) разкачете часовника от менюто Bluetooth на телефона; 2) намерете своя Huawei ID с функцията на приложението; 3) сдвоете часовника от приложението, като въведете своя Huawei ID.\n- ⚠️ Важно: без Huawei ID (или с грешен) часовникът се връща към фабричните настройки. Ако часовникът поиска да изтрие данните си, не потвърждавайте.",
+   "tr": "### Kullanım önerileri\n- İlk bağlantı: 1) saatin eşleştirmesini telefonun Bluetooth menüsünden kaldırın; 2) Huawei ID'nizi uygulamadaki özellikle bulun; 3) Huawei ID'nizi girerek saati uygulamadan eşleştirin.\n- ⚠️ Önemli: Huawei ID olmadan (veya yanlış bir ID ile) saat fabrika ayarlarına sıfırlanır. Saat verilerini silmeyi sorarsa onaylamayın.",
+   "de": "### Nutzungstipps\n- Erste Verbindung: 1) entkopple die Uhr im Bluetooth-Menü des Handys; 2) finde deine Huawei-ID mit der Funktion der App; 3) kopple die Uhr über die App und gib dabei deine Huawei-ID ein.\n- ⚠️ Wichtig: ohne Huawei-ID (oder mit einer falschen) wird die Uhr auf die Werkseinstellungen zurückgesetzt. Wenn die Uhr fragt, ob ihre Daten gelöscht werden sollen, nicht bestätigen."
   },
   "- 使用前请先退出运动健康并清理其后台，避免同时占用连接通道导致操作失败。": {
    "it": "- Prima dell'uso chiudi Huawei Health e rimuovila anche dalle app in background, per evitare che occupi il canale di connessione e faccia fallire le operazioni.",

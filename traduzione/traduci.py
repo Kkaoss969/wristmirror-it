@@ -183,7 +183,9 @@ def main():
                     if CJK.search(k):
                         if k not in RIGHE or l not in RIGHE[k]:
                             return m.group(0)
-                        r = r[:len(r) - len(r.lstrip())] + RIGHE[k][l]
+                        # una traduzione può aggiungere righe (\n): ognuna con lo stesso rientro, per trimIndent
+                        rientro = r[:len(r) - len(r.lstrip())]
+                        r = '\n'.join(rientro + x for x in RIGHE[k][l].split('\n'))
                     righe.append(r)
                 versioni.append('\n'.join(righe))
             replaced += 1
