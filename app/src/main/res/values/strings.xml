@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WristMirror</string>
-    <string name="connection_channel_name">Connessione al watch</string>
-    <string name="connection_channel_description">Connessione Bluetooth e trasferimento dei quadranti</string>
+    <string name="connection_channel_name">Watch connection</string>
+    <string name="connection_channel_description">Bluetooth connection and watch face transfer</string>
     <string name="connection_notification_title">WristMirror</string>
 </resources>

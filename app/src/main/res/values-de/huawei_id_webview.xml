@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="huawei_id_web_title">Huawei-ID holen</string>
+    <string name="huawei_id_web_close">Schließen</string>
+    <string name="huawei_id_web_instruction">Melde dich selbst an: die Huawei-ID wird automatisch abgerufen, danach wird die Seite geschlossen und die Websitedaten werden gelöscht.</string>
+    <string name="huawei_id_web_no_download">Diese Anmeldeseite lädt keine Dateien herunter. Melde dich an und warte, bis die Huawei-ID eingetragen ist.</string>
+    <string name="huawei_id_web_navigation_blocked">Eine Weiterleitung zu einer nicht offiziellen Huawei-Seite oder einer externen App wurde blockiert. Schließe und versuche es erneut, oder gib die Huawei-ID manuell ein.</string>
+    <string name="huawei_id_web_tls_error">Zertifikatsprüfung der Website fehlgeschlagen, Verbindung blockiert. Versuche es später.</string>
+    <string name="huawei_id_web_load_error">Die Anmeldeseite kann gerade nicht geladen werden. Schließe und versuche es erneut, oder gib die Huawei-ID manuell ein.</string>
+    <string name="huawei_id_web_clearing">Anmeldeseite wird geschlossen und die Websitedaten dieser Sitzung werden gelöscht…</string>
+</resources>

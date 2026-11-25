@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="huawei_id_web_title">Ottieni ID Huawei</string>
-    <string name="huawei_id_web_close">Chiudi</string>
-    <string name="huawei_id_web_instruction">Accedi tu stesso: l\'ID Huawei verrà recuperato automaticamente, poi la pagina verrà chiusa e i dati del sito cancellati.</string>
-    <string name="huawei_id_web_no_download">Questa pagina di accesso non scarica file. Accedi e attendi che l\'ID Huawei venga inserito.</string>
-    <string name="huawei_id_web_navigation_blocked">Bloccato un reindirizzamento verso una pagina non ufficiale Huawei o un\'app esterna. Chiudi e riprova, oppure inserisci manualmente l\'ID Huawei.</string>
-    <string name="huawei_id_web_tls_error">Verifica del certificato del sito non riuscita, connessione bloccata. Riprova più tardi.</string>
-    <string name="huawei_id_web_load_error">Al momento non è possibile caricare la pagina di accesso. Chiudi e riprova, oppure inserisci manualmente l\'ID Huawei.</string>
-    <string name="huawei_id_web_clearing">Chiusura della pagina di accesso e cancellazione dei dati del sito…</string>
+    <string name="huawei_id_web_title">Get Huawei ID</string>
+    <string name="huawei_id_web_close">Close</string>
+    <string name="huawei_id_web_instruction">Sign in yourself: the Huawei ID will be retrieved automatically, then the page will close and the site data will be cleared.</string>
+    <string name="huawei_id_web_no_download">This sign-in page doesn\'t download files. Sign in and wait for the Huawei ID to be filled in.</string>
+    <string name="huawei_id_web_navigation_blocked">Blocked a redirect to a non-official Huawei page or an external app. Close and try again, or enter the Huawei ID manually.</string>
+    <string name="huawei_id_web_tls_error">Site certificate check failed, connection blocked. Try again later.</string>
+    <string name="huawei_id_web_load_error">The sign-in page can\'t be loaded right now. Close and try again, or enter the Huawei ID manually.</string>
+    <string name="huawei_id_web_clearing">Closing the sign-in page and clearing this session\'s site data…</string>
 </resources>

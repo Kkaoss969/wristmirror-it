@@ -1,5 +1,7 @@
 package io.github.escosis.hwtfaceswap.ui
 
+
+import io.github.escosis.hwtfaceswap.Tr
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -417,7 +419,7 @@ internal fun DeviceScreen(
                 onUnpair = {
                     if (canUseTopControl(DeviceControl.UNPAIR, state, topControlsEpoch) && latestState.selectedDeviceAddress == state.selectedDeviceAddress) {
                         state.selectedDeviceAddress?.let { address ->
-                            val target = selectedDevice ?: NearbyWatch(address, state.watchName.ifBlank { "Dispositivo senza nome" }, false)
+                            val target = selectedDevice ?: NearbyWatch(address, state.watchName.ifBlank { Tr.tr("未知名称设备", "Dispositivo senza nome", "Device with unknown name", "Dispositivo de nombre desconocido", "Appareil au nom inconnu", "Dispositivo de nome desconhecido", "Dispositivo de nome desconhecido", "Устройство с неизвестно име", "Adı bilinmeyen cihaz", "Gerät mit unbekanntem Namen") }, false)
                             unpairObservedWatch(target, state.connectionEpoch, state.unpairToken)
                         }
                     }
@@ -451,7 +453,7 @@ internal fun DeviceScreen(
         if (state.unpairMessage.isNotBlank()) {
             item(key = "unpair_status") {
                 SectionCard {
-                    Text("Annulla abbinamento", style = MiuixTheme.textStyles.body1, fontWeight = FontWeight.Medium)
+                    Text(Tr.tr("解除配对", "Annulla abbinamento", "Unpair", "Desemparejar", "Dissocier", "Desemparelhar", "Desfazer pareamento", "Разкачване", "Eşleştirmeyi kaldır", "Entkoppeln"), style = MiuixTheme.textStyles.body1, fontWeight = FontWeight.Medium)
                     Spacer(Modifier.height(8.dp))
                     state.unpairAddress?.let { address ->
                         DeviceAddress(address)
@@ -462,15 +464,15 @@ internal fun DeviceScreen(
                         Spacer(Modifier.height(12.dp))
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                             if (state.unpairNeedsSettings) {
-                                ActionButton("Impostazioni Bluetooth di sistema", onClick = {
+                                ActionButton(Tr.tr("系统蓝牙设置", "Impostazioni Bluetooth di sistema", "System Bluetooth settings", "Ajustes Bluetooth del sistema", "Paramètres Bluetooth du système", "Definições Bluetooth do sistema", "Configurações Bluetooth do sistema", "Системни настройки на Bluetooth", "Sistem Bluetooth ayarları", "Bluetooth-Einstellungen des Systems"), onClick = {
                                     if (callbackOwner.get() && latestState.unpairing && !latestState.unpairWorking && latestState.unpairAddress == state.unpairAddress && latestState.unpairToken == state.unpairToken) latestActions.openUnpairSettings()
                                 }, modifier = Modifier.weight(1f), primary = true, enabled = !state.unpairWorking)
                             }
-                            ActionButton("Ricontrolla", onClick = {
+                            ActionButton(Tr.tr("重新检查", "Ricontrolla", "Check again", "Volver a comprobar", "Vérifier à nouveau", "Verificar de novo", "Verificar de novo", "Проверка пак", "Tekrar kontrol et", "Erneut prüfen"), onClick = {
                                 if (callbackOwner.get() && latestState.unpairing && !latestState.unpairWorking && latestState.unpairAddress == state.unpairAddress && latestState.unpairToken == state.unpairToken) latestActions.retryUnpair()
                             }, modifier = Modifier.weight(1f), enabled = !state.unpairWorking)
                             if (state.unpairCancelable) {
-                                ActionButton("Revoca annullamento abbinamento", onClick = {
+                                ActionButton(Tr.tr("取消解除配对", "Revoca annullamento abbinamento", "Undo unpairing", "Deshacer desemparejamiento", "Annuler la dissociation", "Anular desemparelhamento", "Cancelar despareamento", "Отмяна на разкачването", "Eşleştirme kaldırmayı geri al", "Entkopplung rückgängig machen"), onClick = {
                                     if (callbackOwner.get() && latestState.unpairing && !latestState.unpairWorking && latestState.unpairCancelable && latestState.unpairToken == state.unpairToken) latestActions.cancelUnpair()
                                 }, modifier = Modifier.weight(1f), enabled = !state.unpairWorking)
                             }
@@ -482,19 +484,19 @@ internal fun DeviceScreen(
         if (state.savedDevices.isNotEmpty()) {
             item(key = "saved_watches") {
                 Column {
-                    SectionHeading("Dispositivi recenti")
+                    SectionHeading(Tr.tr("历史设备", "Dispositivi recenti", "Recent devices", "Dispositivos recientes", "Appareils récents", "Dispositivos recentes", "Dispositivos recentes", "Последни устройства", "Son cihazlar", "Letzte Geräte"))
                     Card(Modifier.fillMaxWidth()) {
                         state.savedDevices.forEachIndexed { index, saved ->
                             val device = saved.nearby()
                             HistoryWatchPreference(
                                 device = device,
                                 summary = when {
-                                    UiPolicy.isUnpairTarget(state, device.address) -> "Annullamento abbinamento da completare"
-                                    state.connected && device.address.equals(state.deviceAddress, ignoreCase = true) -> "Connesso ora"
-                                    device.address.isSelectedIn(state) && state.connecting -> "Connessione in corso"
-                                    device.address.isSelectedIn(state) -> "Selezionato, tocca per le azioni"
-                                    index == 0 -> "Ultima connessione, tocca per le azioni"
-                                    else -> "Tocca per le azioni"
+                                    UiPolicy.isUnpairTarget(state, device.address) -> Tr.tr("解除配对待完成", "Annullamento abbinamento da completare", "Unpairing to complete", "Desemparejamiento por completar", "Dissociation à terminer", "Desemparelhamento por concluir", "Despareamento a concluir", "Разкачването предстои да завърши", "Tamamlanacak eşleştirme kaldırma", "Entkopplung abzuschließen")
+                                    state.connected && device.address.equals(state.deviceAddress, ignoreCase = true) -> Tr.tr("当前已连接", "Connesso ora", "Connected now", "Conectado ahora", "Connecté maintenant", "Ligado agora", "Conectado agora", "Свързано сега", "Şu anda bağlı", "Jetzt verbunden")
+                                    device.address.isSelectedIn(state) && state.connecting -> Tr.tr("正在连接", "Connessione in corso", "Connecting", "Conectando", "Connexion…", "A ligar", "Conectando", "Свързване", "Bağlanıyor", "Verbinden")
+                                    device.address.isSelectedIn(state) -> Tr.tr("已选择，点击查看操作", "Selezionato, tocca per le azioni", "Selected, tap for actions", "Seleccionado, toca para ver acciones", "Sélectionné, touchez pour les actions", "Selecionado, toque para ver ações", "Selecionado, toque para ver ações", "Избрано, докоснете за действия", "Seçildi, işlemler için dokunun", "Ausgewählt, für Aktionen tippen")
+                                    index == 0 -> Tr.tr("上次连接，点击查看操作", "Ultima connessione, tocca per le azioni", "Last connected, tap for actions", "Última conexión, toca para ver acciones", "Dernière connexion, touchez pour les actions", "Última ligação, toque para ver ações", "Última conexão, toque para ver ações", "Последна връзка, докоснете за действия", "Son bağlantı, işlemler için dokunun", "Zuletzt verbunden, für Aktionen tippen")
+                                    else -> Tr.tr("点击查看操作", "Tocca per le azioni", "Tap for actions", "Toca para ver acciones", "Touchez pour les actions", "Toque para ver ações", "Toque para ver ações", "Докоснете за действия", "İşlemler için dokunun", "Für Aktionen tippen")
                                 },
                                 enabled = canShowHistoryWindow(state) && !UiPolicy.isUnpairTarget(state, device.address),
                                 onClick = { openHistoryWindow(device, state.connectionEpoch) },
@@ -507,8 +509,8 @@ internal fun DeviceScreen(
         item(key = "add_watch") {
             Card(Modifier.fillMaxWidth()) {
                 ArrowPreference(
-                    title = "Aggiungi dispositivo",
-                    summary = "Cerca watch nelle vicinanze",
+                    title = Tr.tr("添加设备", "Aggiungi dispositivo", "Add device", "Añadir dispositivo", "Ajouter un appareil", "Adicionar dispositivo", "Adicionar dispositivo", "Добавяне на устройство", "Cihaz ekle", "Gerät hinzufügen"),
+                    summary = Tr.tr("搜索附近的手表", "Cerca watch nelle vicinanze", "Search nearby watches", "Buscar relojes cercanos", "Rechercher des montres à proximité", "Procurar relógios próximos", "Procurar relógios por perto", "Търсене на часовници наблизо", "Yakındaki saatleri ara", "Uhren in der Nähe suchen"),
                     startAction = { IconTile(WatchIcons.Search) },
                     enabled = canSelect,
                     onClick = ::openDiscovery,
@@ -664,7 +666,7 @@ private fun SelectedWatchCard(
             IconTile(WatchIcons.Watch, size = 32)
             Spacer(Modifier.width(10.dp))
             Text(
-                text = "Connessione al watch",
+                text = Tr.tr("连接手表", "Connessione al watch", "Connecting to the watch", "Conectando con el reloj", "Connexion à la montre", "A ligar ao relógio", "Conectando ao relógio", "Свързване с часовника", "Saate bağlanılıyor", "Verbindung mit der Uhr"),
                 modifier = Modifier.weight(1f),
                 style = MiuixTheme.textStyles.body1,
             )
@@ -678,30 +680,30 @@ private fun SelectedWatchCard(
         }
         MutedText(
             when {
-                selectedAddress == null -> "Cerca i dispositivi vicini, selezionane uno, configura l'ID Huawei e connettiti."
-                UiPolicy.isUnpairTarget(state, selectedAddress) -> "L'annullamento abbinamento non è ancora completato, prosegui dallo stato qui sotto."
-                state.quarantine -> "Operazioni sul dispositivo sospese, disconnettiti e riconnettiti."
-                state.connected -> "Gestisci qui le connessioni; stato e informazioni del dispositivo sono nella Home."
-                state.connecting -> "Connessione in corso; puoi annullare e scegliere un altro dispositivo."
-                !state.accountConfigured || state.huaweiIdInput.isBlank() -> "Configura prima l'ID Huawei per questo dispositivo."
-                state.huaweiIdDirty -> "Ci sono modifiche non salvate all'ID Huawei."
-                else -> "Dopo la connessione potrai gestire i quadranti di questo watch."
+                selectedAddress == null -> Tr.tr("搜索附近设备，选择后配置华为 ID 并连接。", "Cerca i dispositivi vicini, selezionane uno, configura l'ID Huawei e connettiti.", "Search nearby devices, pick one, configure the Huawei ID and connect.", "Busca dispositivos cercanos, elige uno, configura el ID de Huawei y conéctate.", "Recherchez les appareils à proximité, choisissez-en un, configurez l'ID Huawei et connectez-vous.", "Procure dispositivos próximos, escolha um, configure o ID Huawei e ligue-se.", "Procure dispositivos por perto, escolha um, configure o ID Huawei e conecte.", "Потърсете устройства наблизо, изберете едно, настройте Huawei ID и се свържете.", "Yakındaki cihazları arayın, birini seçin, Huawei ID'yi yapılandırıp bağlanın.", "Suche Geräte in der Nähe, wähle eines, richte die Huawei-ID ein und verbinde dich.")
+                UiPolicy.isUnpairTarget(state, selectedAddress) -> Tr.tr("解除配对尚未完成，请在下方状态中继续。", "L'annullamento abbinamento non è ancora completato, prosegui dallo stato qui sotto.", "Unpairing isn't complete yet, continue from the status below.", "El desemparejamiento aún no ha terminado, continúa desde el estado de abajo.", "La dissociation n'est pas encore terminée, continuez depuis l'état ci-dessous.", "O desemparelhamento ainda não terminou, continue a partir do estado abaixo.", "O despareamento ainda não terminou, continue pelo status abaixo.", "Разкачването още не е завършено, продължете от състоянието по-долу.", "Eşleştirme kaldırma henüz tamamlanmadı, aşağıdaki durumdan devam edin.", "Die Entkopplung ist noch nicht abgeschlossen, mach beim Status unten weiter.")
+                state.quarantine -> Tr.tr("设备操作已暂停，请断开后重新连接。", "Operazioni sul dispositivo sospese, disconnettiti e riconnettiti.", "Device operations paused, disconnect and reconnect.", "Operaciones del dispositivo en pausa, desconecta y vuelve a conectar.", "Opérations sur l'appareil en pause, déconnectez-vous et reconnectez-vous.", "Operações do dispositivo em pausa, desligue e volte a ligar.", "Operações do dispositivo pausadas, desconecte e conecte de novo.", "Операциите с устройството са на пауза, прекъснете връзката и се свържете отново.", "Cihaz işlemleri duraklatıldı, bağlantıyı kesip yeniden bağlanın.", "Gerätevorgänge pausiert, trenne und verbinde dich neu.")
+                state.connected -> Tr.tr("在此管理连接，设备状态与信息可在主页查看。", "Gestisci qui le connessioni; stato e informazioni del dispositivo sono nella Home.", "Manage connections here; device status and info are on the Home page.", "Gestiona aquí las conexiones; el estado y la información del dispositivo están en Inicio.", "Gérez les connexions ici ; l'état et les infos de l'appareil sont sur l'Accueil.", "Faça aqui a gestão das ligações; o estado e as informações do dispositivo estão no Início.", "Gerencie as conexões aqui; o status e as informações do dispositivo ficam no Início.", "Управлявайте връзките тук; състоянието и информацията за устройството са в „Начало“.", "Bağlantıları burada yönetin; cihaz durumu ve bilgileri Ana sayfada.", "Verwalte hier die Verbindungen; Status und Infos des Geräts findest du auf Start.")
+                state.connecting -> Tr.tr("正在建立连接，可取消后重新选择设备。", "Connessione in corso; puoi annullare e scegliere un altro dispositivo.", "Connecting; you can cancel and pick another device.", "Conectando; puedes cancelar y elegir otro dispositivo.", "Connexion en cours ; vous pouvez annuler et choisir un autre appareil.", "A ligar; pode cancelar e escolher outro dispositivo.", "Conectando; você pode cancelar e escolher outro dispositivo.", "Свързване; можете да отмените и да изберете друго устройство.", "Bağlanıyor; iptal edip başka bir cihaz seçebilirsiniz.", "Verbindung wird hergestellt; du kannst abbrechen und ein anderes Gerät wählen.")
+                !state.accountConfigured || state.huaweiIdInput.isBlank() -> Tr.tr("请先为这台设备配置华为 ID。", "Configura prima l'ID Huawei per questo dispositivo.", "Configure the Huawei ID for this device first.", "Configura primero el ID de Huawei de este dispositivo.", "Configurez d'abord l'ID Huawei de cet appareil.", "Configure primeiro o ID Huawei deste dispositivo.", "Configure primeiro o ID Huawei deste dispositivo.", "Първо настройте Huawei ID за това устройство.", "Önce bu cihaz için Huawei ID'yi yapılandırın.", "Richte zuerst die Huawei-ID für dieses Gerät ein.")
+                state.huaweiIdDirty -> Tr.tr("华为 ID 有未保存修改。", "Ci sono modifiche non salvate all'ID Huawei.", "There are unsaved changes to the Huawei ID.", "Hay cambios sin guardar en el ID de Huawei.", "L'ID Huawei a des modifications non enregistrées.", "Há alterações não guardadas no ID Huawei.", "Há alterações não salvas no ID Huawei.", "Има незапазени промени в Huawei ID.", "Huawei ID'de kaydedilmemiş değişiklikler var.", "Es gibt nicht gespeicherte Änderungen an der Huawei-ID.")
+                else -> Tr.tr("连接后可管理此手表的表盘。", "Dopo la connessione potrai gestire i quadranti di questo watch.", "Once connected you can manage this watch's watch faces.", "Una vez conectado podrás gestionar las esferas de este reloj.", "Une fois connecté, vous pourrez gérer les cadrans de cette montre.", "Depois de ligado poderá gerir os mostradores deste relógio.", "Depois de conectar você poderá gerenciar os mostradores deste relógio.", "След свързване ще можете да управлявате циферблатите на този часовник.", "Bağlandıktan sonra bu saatin kadranlarını yönetebilirsiniz.", "Nach dem Verbinden kannst du die Zifferblätter dieser Uhr verwalten.")
             },
         )
         Spacer(Modifier.height(18.dp))
         when {
             state.connected -> Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 ActionButton(
-                    "Gestisci quadranti", onOpenFaces, Modifier.weight(1f), primary = true,
+                    Tr.tr("管理表盘", "Gestisci quadranti", "Manage watch faces", "Gestionar esferas", "Gérer les cadrans", "Gerir mostradores", "Gerenciar mostradores", "Управление на циферблати", "Kadranları yönet", "Zifferblätter verwalten"), onOpenFaces, Modifier.weight(1f), primary = true,
                     enabled = !state.quarantine && canShowDeviceWindow(state),
                 )
-                ActionButton("Disconnetti", onDisconnect, Modifier.weight(1f), enabled = canUseConnectionActions(state))
+                ActionButton(Tr.tr("断开连接", "Disconnetti", "Disconnect", "Desconectar", "Déconnecter", "Desligar", "Desconectar", "Прекъсване на връзката", "Bağlantıyı kes", "Trennen"), onDisconnect, Modifier.weight(1f), enabled = canUseConnectionActions(state))
             }
             state.connecting -> ActionButton(
-                "Annulla connessione", onDisconnect, Modifier.fillMaxWidth(), enabled = canUseConnectionActions(state),
+                Tr.tr("取消连接", "Annulla connessione", "Cancel connection", "Cancelar conexión", "Annuler la connexion", "Cancelar ligação", "Cancelar conexão", "Отмяна на свързването", "Bağlanmayı iptal et", "Verbinden abbrechen"), onDisconnect, Modifier.fillMaxWidth(), enabled = canUseConnectionActions(state),
             )
             else -> ActionButton(
-                text = "Connessione al watch",
+                text = Tr.tr("连接手表", "Connessione al watch", "Connecting to the watch", "Conectando con el reloj", "Connexion à la montre", "A ligar ao relógio", "Conectando ao relógio", "Свързване с часовника", "Saate bağlanılıyor", "Verbindung mit der Uhr"),
                 onClick = { invokeControl(DeviceControl.CONNECT, onConnect) },
                 modifier = Modifier.fillMaxWidth(),
                 primary = true,
@@ -711,7 +713,7 @@ private fun SelectedWatchCard(
         }
         Spacer(Modifier.height(10.dp))
         ActionButton(
-            text = "Configura ID Huawei",
+            text = Tr.tr("配置华为 ID", "Configura ID Huawei", "Configure Huawei ID", "Configurar ID de Huawei", "Configurer l'ID Huawei", "Configurar ID Huawei", "Configurar ID Huawei", "Настройка на Huawei ID", "Huawei ID'yi yapılandır", "Huawei-ID einrichten"),
             onClick = { invokeControl(DeviceControl.CONFIGURE_ID, onConfigureId) },
             modifier = Modifier.fillMaxWidth(),
             enabled = DeviceControlsPolicy.enabled(state, DeviceControl.CONFIGURE_ID),
@@ -723,7 +725,7 @@ private fun SelectedWatchCard(
             !state.unpairing && !state.scanning && !state.quarantine && canShowDeviceWindow(state)
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             ActionButton(
-                text = "Riassocia protocollo",
+                text = Tr.tr("重新协议绑定", "Riassocia protocollo", "Re-bind protocol", "Volver a vincular protocolo", "Réassocier le protocole", "Voltar a associar protocolo", "Vincular protocolo de novo", "Ново обвързване на протокола", "Protokolü yeniden bağla", "Protokoll neu binden"),
                 onClick = {
                     if (controlsOwner.get() && DeviceControlsPolicy.frameMatches(state, latestState) &&
                         !latestState.connected && !latestState.connecting && !latestState.unpairing
@@ -735,11 +737,11 @@ private fun SelectedWatchCard(
                 disabledHint = if (state.connected || state.connecting) ({
                     if (controlsOwner.get() && DeviceControlsPolicy.frameMatches(state, latestState) &&
                         canShowDeviceWindow(latestState) && (latestState.connected || latestState.connecting)
-                    ) Toast.makeText(context, "Disconnetti o annulla prima la connessione, poi riassocia il protocollo", Toast.LENGTH_SHORT).show()
+                    ) Toast.makeText(context, Tr.tr("请先断开或取消连接，再重新协议绑定", "Disconnetti o annulla prima la connessione, poi riassocia il protocollo", "Disconnect or cancel the connection first, then re-bind the protocol", "Desconecta o cancela primero la conexión y luego vuelve a vincular el protocolo", "Déconnectez ou annulez d'abord la connexion, puis réassociez le protocole", "Desligue ou cancele primeiro a ligação e depois volte a associar o protocolo", "Desconecte ou cancele primeiro a conexão e depois vincule o protocolo de novo", "Първо прекъснете или отменете връзката, после обвържете протокола наново", "Önce bağlantıyı kesin veya iptal edin, sonra protokolü yeniden bağlayın", "Trenne oder breche zuerst die Verbindung ab und binde dann das Protokoll neu"), Toast.LENGTH_SHORT).show()
                 }) else null,
             )
             ActionButton(
-                text = "Annulla abbinamento",
+                text = Tr.tr("解除配对", "Annulla abbinamento", "Unpair", "Desemparejar", "Dissocier", "Desemparelhar", "Desfazer pareamento", "Разкачване", "Eşleştirmeyi kaldır", "Entkoppeln"),
                 onClick = { invokeControl(DeviceControl.UNPAIR, onUnpair) },
                 modifier = Modifier.weight(1f),
                 destructive = true,
@@ -748,7 +750,7 @@ private fun SelectedWatchCard(
             )
         }
         Spacer(Modifier.height(14.dp))
-        MutedText("Dopo aver cambiato modalità su un WATCH si consiglia di toccare Riassocia protocollo.")
+        MutedText(Tr.tr("WATCH 系列切换模式后建议点击重新协议绑定。", "Dopo aver cambiato modalità su un WATCH si consiglia di toccare Riassocia protocollo.", "After switching mode on a WATCH, tapping Re-bind protocol is recommended.", "Tras cambiar de modo en un WATCH se recomienda tocar Volver a vincular protocolo.", "Après un changement de mode sur une WATCH, il est conseillé de toucher Réassocier le protocole.", "Depois de mudar de modo num WATCH recomenda-se tocar em Voltar a associar protocolo.", "Depois de mudar de modo em um WATCH, recomenda-se tocar em Vincular protocolo de novo.", "След смяна на режима на WATCH се препоръчва да докоснете „Ново обвързване на протокола“.", "Bir WATCH'ta mod değiştirdikten sonra Protokolü yeniden bağla'ya dokunmanız önerilir.", "Nach einem Moduswechsel auf einer WATCH wird empfohlen, auf Protokoll neu binden zu tippen."))
     }
 }
 
@@ -759,7 +761,7 @@ private fun watchDisplayName(state: AppUiState, device: NearbyWatch?, address: S
     val activeName = state.watchName.takeIf {
         (state.connected || state.connecting) && address.isSelectedIn(state) && it.isNotBlank()
     }
-    return (deviceName ?: activeName ?: if (matchingDevice != null) "Watch senza nome" else "Watch selezionato").uiText()
+    return (deviceName ?: activeName ?: if (matchingDevice != null) Tr.tr("未命名手表", "Watch senza nome", "Unnamed watch", "Reloj sin nombre", "Montre sans nom", "Relógio sem nome", "Relógio sem nome", "Часовник без име", "Adsız saat", "Unbenannte Uhr") else Tr.tr("所选手表", "Watch selezionato", "Selected watch", "Reloj seleccionado", "Montre sélectionnée", "Relógio selecionado", "Relógio selecionado", "Избран часовник", "Seçili saat", "Ausgewählte Uhr")).uiText()
 }
 
 @Composable
@@ -806,10 +808,10 @@ private fun HistoryWatchPreference(device: NearbyWatch, summary: String, enabled
         },
         enabled = enabled,
         onClick = onClick,
-        onClickLabel = "Mostra azioni del dispositivo",
+        onClickLabel = Tr.tr("查看设备操作", "Mostra azioni del dispositivo", "Show device actions", "Ver acciones del dispositivo", "Voir les actions de l'appareil", "Ver ações do dispositivo", "Ver ações do dispositivo", "Действия с устройството", "Cihaz işlemlerini göster", "Geräteaktionen anzeigen"),
     ) {
         Text(
-            text = device.name.ifBlank { "Watch senza nome" }.uiText(),
+            text = device.name.ifBlank { Tr.tr("未命名手表", "Watch senza nome", "Unnamed watch", "Reloj sin nombre", "Montre sans nom", "Relógio sem nome", "Relógio sem nome", "Часовник без име", "Adsız saat", "Unbenannte Uhr") }.uiText(),
             // body1 默认 16sp，比 ArrowPreference 的 headline1 默认 17sp 略小。
             style = MiuixTheme.textStyles.body1,
             fontWeight = FontWeight.Medium,
@@ -833,7 +835,7 @@ private fun HistoryWatchPreference(device: NearbyWatch, summary: String, enabled
 @Composable
 private fun WatchPreference(device: NearbyWatch, summary: String, enabled: Boolean, onClick: () -> Unit) {
     ArrowPreference(
-        title = device.name.ifBlank { "Watch senza nome" }.uiText(),
+        title = device.name.ifBlank { Tr.tr("未命名手表", "Watch senza nome", "Unnamed watch", "Reloj sin nombre", "Montre sans nom", "Relógio sem nome", "Relógio sem nome", "Часовник без име", "Adsız saat", "Unbenannte Uhr") }.uiText(),
         summary = summary,
         startAction = { IconTile(WatchIcons.Watch) },
         bottomAction = { DeviceAddress(device.address) },
@@ -871,7 +873,7 @@ private fun DiscoveryDialog(
     val visibleDevices = presentation.devices.filter {
         filter.isBlank() || it.name.contains(filter, ignoreCase = true) || it.address.contains(filter, ignoreCase = true)
     }
-    WindowDialog(show = show, title = "Aggiungi dispositivo", onDismissRequest = onDismiss, onDismissFinished = onDismissFinished) {
+    WindowDialog(show = show, title = Tr.tr("添加设备", "Aggiungi dispositivo", "Add device", "Añadir dispositivo", "Ajouter un appareil", "Adicionar dispositivo", "Adicionar dispositivo", "Добавяне на устройство", "Cihaz ekle", "Gerät hinzufügen"), onDismissRequest = onDismiss, onDismissFinished = onDismissFinished) {
         val dismiss = LocalDismissState.current
         LazyColumn(
             modifier = Modifier.fillMaxWidth().heightIn(max = 520.dp),
@@ -881,38 +883,38 @@ private fun DiscoveryDialog(
                 MiuixField(
                     value = presentation.query,
                     onValueChange = onQueryChange,
-                    label = "Nome del dispositivo o indirizzo Bluetooth",
+                    label = Tr.tr("设备名称或蓝牙地址", "Nome del dispositivo o indirizzo Bluetooth", "Device name or Bluetooth address", "Nombre del dispositivo o dirección Bluetooth", "Nom de l'appareil ou adresse Bluetooth", "Nome do dispositivo ou endereço Bluetooth", "Nome do dispositivo ou endereço Bluetooth", "Име на устройството или Bluetooth адрес", "Cihaz adı veya Bluetooth adresi", "Gerätename oder Bluetooth-Adresse"),
                     leadingIcon = {
                         Icon(WatchIcons.Search, contentDescription = null, tint = MiuixTheme.colorScheme.onSurfaceVariantSummary)
                     },
                 )
                 Spacer(Modifier.height(12.dp))
                 ActionButton(
-                    text = if (presentation.scanning) "Interrompi ricerca" else "Cerca watch nelle vicinanze",
+                    text = if (presentation.scanning) Tr.tr("停止搜索", "Interrompi ricerca", "Stop searching", "Detener búsqueda", "Arrêter la recherche", "Parar pesquisa", "Parar busca", "Спиране на търсенето", "Aramayı durdur", "Suche beenden") else Tr.tr("搜索附近手表", "Cerca watch nelle vicinanze", "Search nearby watches", "Buscar relojes cercanos", "Rechercher des montres à proximité", "Procurar relógios próximos", "Procurar relógios por perto", "Търсене на часовници наблизо", "Yakındaki saatleri ara", "Uhren in der Nähe suchen"),
                     onClick = onScan,
                     modifier = Modifier.fillMaxWidth(),
                     primary = !presentation.scanning,
                     enabled = presentation.scanning || presentation.canSelect,
                 )
                 Spacer(Modifier.height(10.dp))
-                MutedText(if (presentation.scanning) "Ricerca in corso, tocca un dispositivo per configurarlo e connetterti." else "Seleziona un watch e configura il suo ID Huawei.")
+                MutedText(if (presentation.scanning) Tr.tr("正在搜索，点击设备即可配置并连接。", "Ricerca in corso, tocca un dispositivo per configurarlo e connetterti.", "Searching, tap a device to configure it and connect.", "Buscando, toca un dispositivo para configurarlo y conectarte.", "Recherche en cours, touchez un appareil pour le configurer et vous connecter.", "A procurar, toque num dispositivo para o configurar e ligar.", "Procurando, toque em um dispositivo para configurar e conectar.", "Търсене, докоснете устройство, за да го настроите и да се свържете.", "Aranıyor, yapılandırıp bağlanmak için bir cihaza dokunun.", "Suche läuft, tippe auf ein Gerät, um es einzurichten und zu verbinden.") else Tr.tr("选择一个手表，为它配置华为 ID。", "Seleziona un watch e configura il suo ID Huawei.", "Select a watch and configure its Huawei ID.", "Selecciona un reloj y configura su ID de Huawei.", "Sélectionnez une montre et configurez son ID Huawei.", "Selecione um relógio e configure o seu ID Huawei.", "Selecione um relógio e configure o ID Huawei dele.", "Изберете часовник и настройте неговия Huawei ID.", "Bir saat seçin ve Huawei ID'sini yapılandırın.", "Wähle eine Uhr aus und richte ihre Huawei-ID ein."))
             }
             if (visibleDevices.isEmpty()) {
                 item(key = "empty") {
                     SectionCard {
                         Text(
                             when {
-                                filter.isNotBlank() && presentation.devices.isNotEmpty() -> "Nessun dispositivo corrispondente"
-                                presentation.scanning -> "Ricerca del tuo watch in corso"
-                                else -> "Ancora nessun dispositivo trovato"
+                                filter.isNotBlank() && presentation.devices.isNotEmpty() -> Tr.tr("没有匹配设备", "Nessun dispositivo corrispondente", "No matching devices", "Ningún dispositivo coincide", "Aucun appareil correspondant", "Nenhum dispositivo corresponde", "Nenhum dispositivo corresponde", "Няма съвпадащи устройства", "Eşleşen cihaz yok", "Keine passenden Geräte")
+                                presentation.scanning -> Tr.tr("正在寻找你的手表", "Ricerca del tuo watch in corso", "Looking for your watch", "Buscando tu reloj", "Recherche de votre montre", "À procura do seu relógio", "Procurando seu relógio", "Търсене на вашия часовник", "Saatiniz aranıyor", "Deine Uhr wird gesucht")
+                                else -> Tr.tr("还没有发现设备", "Ancora nessun dispositivo trovato", "No devices found yet", "Aún no se ha encontrado ningún dispositivo", "Aucun appareil trouvé pour l'instant", "Ainda não foi encontrado nenhum dispositivo", "Nenhum dispositivo encontrado ainda", "Още не са намерени устройства", "Henüz cihaz bulunamadı", "Noch keine Geräte gefunden")
                             },
                             style = MiuixTheme.textStyles.headline1,
                             fontWeight = FontWeight.Medium,
                         )
                         Spacer(Modifier.height(8.dp))
                         MutedText(
-                            if (filter.isNotBlank() && presentation.devices.isNotEmpty()) "Prova un altro nome o svuota il filtro."
-                            else "Avvicina il watch al telefono, attiva il Bluetooth e rendi il dispositivo rilevabile.",
+                            if (filter.isNotBlank() && presentation.devices.isNotEmpty()) Tr.tr("试试其他名称或清空筛选内容。", "Prova un altro nome o svuota il filtro.", "Try another name or clear the filter.", "Prueba otro nombre o borra el filtro.", "Essayez un autre nom ou effacez le filtre.", "Experimente outro nome ou limpe o filtro.", "Tente outro nome ou limpe o filtro.", "Опитайте друго име или изчистете филтъра.", "Başka bir ad deneyin veya filtreyi temizleyin.", "Versuche einen anderen Namen oder leere den Filter.")
+                            else Tr.tr("让手表靠近手机并开启蓝牙，保持设备可被发现。", "Avvicina il watch al telefono, attiva il Bluetooth e rendi il dispositivo rilevabile.", "Bring the watch close to the phone, turn on Bluetooth and make the device discoverable.", "Acerca el reloj al teléfono, activa el Bluetooth y haz que el dispositivo sea visible.", "Approchez la montre du téléphone, activez le Bluetooth et rendez l'appareil visible.", "Aproxime o relógio do telemóvel, ligue o Bluetooth e torne o dispositivo visível.", "Aproxime o relógio do celular, ligue o Bluetooth e deixe o dispositivo visível.", "Приближете часовника до телефона, включете Bluetooth и направете устройството видимо.", "Saati telefona yaklaştırın, Bluetooth'u açın ve cihazı görünür yapın.", "Halte die Uhr nah ans Handy, schalte Bluetooth ein und mach das Gerät sichtbar."),
                         )
                     }
                 }
@@ -922,9 +924,9 @@ private fun DiscoveryDialog(
                         WatchPreference(
                             device = device,
                             summary = when {
-                                device.address.equals(presentation.selectedAddress, true) -> "Selezionato, tocca per configurare l'ID Huawei"
-                                device.bonded -> "Abbinato, tocca per selezionarlo e configurare l'ID Huawei"
-                                else -> "Tocca per selezionarlo e configurare l'ID Huawei"
+                                device.address.equals(presentation.selectedAddress, true) -> Tr.tr("已选择，点击配置华为 ID", "Selezionato, tocca per configurare l'ID Huawei", "Selected, tap to configure the Huawei ID", "Seleccionado, toca para configurar el ID de Huawei", "Sélectionné, touchez pour configurer l'ID Huawei", "Selecionado, toque para configurar o ID Huawei", "Selecionado, toque para configurar o ID Huawei", "Избрано, докоснете, за да настроите Huawei ID", "Seçildi, Huawei ID'yi yapılandırmak için dokunun", "Ausgewählt, tippe, um die Huawei-ID einzurichten")
+                                device.bonded -> Tr.tr("已配对，点击选择并配置华为 ID", "Abbinato, tocca per selezionarlo e configurare l'ID Huawei", "Paired, tap to select it and configure the Huawei ID", "Emparejado, toca para seleccionarlo y configurar el ID de Huawei", "Associé, touchez pour le sélectionner et configurer l'ID Huawei", "Emparelhado, toque para o selecionar e configurar o ID Huawei", "Pareado, toque para selecionar e configurar o ID Huawei", "Сдвоено, докоснете, за да го изберете и настроите Huawei ID", "Eşleştirildi, seçip Huawei ID'yi yapılandırmak için dokunun", "Gekoppelt, tippe, um es auszuwählen und die Huawei-ID einzurichten")
+                                else -> Tr.tr("点击选择并配置华为 ID", "Tocca per selezionarlo e configurare l'ID Huawei", "Tap to select it and configure the Huawei ID", "Toca para seleccionarlo y configurar el ID de Huawei", "Touchez pour le sélectionner et configurer l'ID Huawei", "Toque para o selecionar e configurar o ID Huawei", "Toque para selecionar e configurar o ID Huawei", "Докоснете, за да го изберете и настроите Huawei ID", "Seçip Huawei ID'yi yapılandırmak için dokunun", "Tippe, um es auszuwählen und die Huawei-ID einzurichten")
                             },
                             enabled = presentation.canSelect,
                             onClick = { onChoose(device) },
@@ -932,7 +934,7 @@ private fun DiscoveryDialog(
                     }
                 }
             }
-            item(key = "close") { ActionButton("Chiudi", onClick = { dismiss?.invoke() }, modifier = Modifier.fillMaxWidth()) }
+            item(key = "close") { ActionButton(Tr.tr("关闭", "Chiudi", "Close", "Cerrar", "Fermer", "Fechar", "Fechar", "Затваряне", "Kapat", "Schließen"), onClick = { dismiss?.invoke() }, modifier = Modifier.fillMaxWidth()) }
         }
     }
 }

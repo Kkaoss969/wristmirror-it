@@ -27,10 +27,10 @@ android {
     buildToolsVersion = "37.0.0"
 
     defaultConfig {
-        applicationId = "io.github.escosis.hwtfaceswap"
+        applicationId = "it.gemini.wristmirror"
         minSdk = 26
         targetSdk = 37
-        versionCode = appVersionCode
+        versionCode = appVersionCode * 100 + (providers.environmentVariable("WM_REVISIONE").orNull?.toIntOrNull() ?: 0)
         versionName = appVersionName
     }
 

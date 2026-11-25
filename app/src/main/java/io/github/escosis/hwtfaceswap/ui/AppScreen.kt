@@ -1,5 +1,7 @@
 package io.github.escosis.hwtfaceswap.ui
 
+
+import io.github.escosis.hwtfaceswap.Tr
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -102,7 +104,7 @@ fun WanJingApp(
         var isOverlayExpanded by remember { mutableStateOf(false) }
         var deviceWindowExpanded by remember { mutableStateOf(false) }
         var shownNotice by remember { mutableLongStateOf(state.noticeSerial) }
-        val tabs = remember { listOf("Home", "Dispositivi", "Quadranti", "Impostazioni") }
+        val tabs = remember { listOf(Tr.tr("主页", "Home", "Home", "Inicio", "Accueil", "Início", "Início", "Начало", "Ana sayfa", "Start"), Tr.tr("设备", "Dispositivi", "Devices", "Dispositivos", "Appareils", "Dispositivos", "Dispositivos", "Устройства", "Cihazlar", "Geräte"), Tr.tr("表盘", "Quadranti", "Watch faces", "Esferas", "Cadrans", "Mostradores", "Mostradores", "Циферблати", "Kadranlar", "Zifferblätter"), Tr.tr("设置", "Impostazioni", "Settings", "Ajustes", "Paramètres", "Definições", "Configurações", "Настройки", "Ayarlar", "Einstellungen")) }
         val homeIcon = ImageVector.vectorResource(R.drawable.ic_home)
         val settingsIcon = ImageVector.vectorResource(R.drawable.ic_settings)
         val icons = listOf(homeIcon, WatchIcons.Watch, WatchIcons.Faces, settingsIcon)
@@ -237,14 +239,14 @@ fun WanJingApp(
                     modifier = Modifier.fillMaxSize().padding(paddingValues).consumeWindowInsets(paddingValues),
                 ) { page ->
                     when(page) {
-                        0 -> CollapsingPage("WristMirror") { insets, scrollModifier ->
+                        0 -> CollapsingPage(Tr.tr("腕镜", "WristMirror", "WristMirror", "WristMirror", "WristMirror", "WristMirror", "WristMirror", "WristMirror", "WristMirror", "WristMirror")) { insets, scrollModifier ->
                             HomeScreen(
                                 normalUiState, insets,
                                 onOpenStatus = { destination, requestCurrent -> navigateToTab(destination, requestCurrent) },
                                 scrollModifier = scrollModifier,
                             )
                         }
-                        1 -> CollapsingPage("Dispositivi") { insets, scrollModifier ->
+                        1 -> CollapsingPage(Tr.tr("设备", "Dispositivi", "Devices", "Dispositivos", "Appareils", "Dispositivos", "Dispositivos", "Устройства", "Cihazlar", "Geräte")) { insets, scrollModifier ->
                             DeviceScreen(
                                 normalUiState, actions, insets, onScan, onConnect,
                                 onOpenFaces = { onTabClick(2) },
@@ -252,10 +254,10 @@ fun WanJingApp(
                                 scrollModifier = scrollModifier,
                             )
                         }
-                        2 -> CollapsingPage("Quadranti") { insets, scrollModifier ->
+                        2 -> CollapsingPage(Tr.tr("表盘", "Quadranti", "Watch faces", "Esferas", "Cadrans", "Mostradores", "Mostradores", "Циферблати", "Kadranlar", "Zifferblätter")) { insets, scrollModifier ->
                             FacesScreen(normalUiState, actions, insets, onPickHwt, scrollModifier)
                         }
-                        3 -> CollapsingPage("Impostazioni") { insets, scrollModifier ->
+                        3 -> CollapsingPage(Tr.tr("设置", "Impostazioni", "Settings", "Ajustes", "Paramètres", "Definições", "Configurações", "Настройки", "Ayarlar", "Einstellungen")) { insets, scrollModifier ->
                             SettingsScreen(
                                 normalUiState, actions, insets,
                                 onNavigateToAbout = { if(navigationOwner.get() && !latestOperationDialogPresent && !latestNormalUiBlocked && !latestState.introductionPending) { detailsPage = DetailsPage.ABOUT; showDetails = true } },
@@ -310,6 +312,6 @@ internal fun openProjectPage(context: Context, url: String) {
     try {
         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     } catch(_: Exception) {
-        Toast.makeText(context, "Impossibile aprire il link", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, Tr.tr("打开链接失败", "Impossibile aprire il link", "Couldn't open the link", "No se pudo abrir el enlace", "Impossible d'ouvrir le lien", "Não foi possível abrir a ligação", "Não foi possível abrir o link", "Връзката не може да се отвори", "Bağlantı açılamadı", "Link konnte nicht geöffnet werden"), Toast.LENGTH_SHORT).show()
     }
 }

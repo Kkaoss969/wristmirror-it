@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WristMirror</string>
+    <string name="connection_channel_name">Ligação ao relógio</string>
+    <string name="connection_channel_description">Ligação Bluetooth e transferência de mostradores</string>
+    <string name="connection_notification_title">WristMirror</string>
+</resources>

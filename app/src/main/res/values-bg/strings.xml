@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WristMirror</string>
+    <string name="connection_channel_name">Връзка с часовника</string>
+    <string name="connection_channel_description">Bluetooth връзка и прехвърляне на циферблати</string>
+    <string name="connection_notification_title">WristMirror</string>
+</resources>

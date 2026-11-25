@@ -1,5 +1,7 @@
 package io.github.escosis.hwtfaceswap.ui
 
+
+import io.github.escosis.hwtfaceswap.Tr
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -58,20 +60,20 @@ internal fun replacementDialogSucceeded(info: ReplacementDialogInfo): Boolean =
     }
 
 internal fun operationDialogTitle(info: ReplacementDialogInfo): String = when(info.operation.kind) {
-    "direct_install" -> "Installa quadrante"
-    "deletion" -> "Elimina quadrante"
-    "activation" -> "Attiva quadrante"
-    else -> "Sostituisci quadrante"
+    "direct_install" -> Tr.tr("安装表盘", "Installa quadrante", "Install watch face", "Instalar esfera", "Installer le cadran", "Instalar mostrador", "Instalar mostrador", "Инсталиране на циферблат", "Kadran yükle", "Zifferblatt installieren")
+    "deletion" -> Tr.tr("删除表盘", "Elimina quadrante", "Delete watch face", "Eliminar esfera", "Supprimer le cadran", "Eliminar mostrador", "Excluir mostrador", "Изтриване на циферблат", "Kadranı sil", "Zifferblatt löschen")
+    "activation" -> Tr.tr("启用表盘", "Attiva quadrante", "Activate watch face", "Activar esfera", "Activer le cadran", "Ativar mostrador", "Ativar mostrador", "Активиране на циферблат", "Kadranı etkinleştir", "Zifferblatt aktivieren")
+    else -> Tr.tr("替换表盘", "Sostituisci quadrante", "Replace watch face", "Sustituir esfera", "Remplacer le cadran", "Substituir mostrador", "Substituir mostrador", "Замяна на циферблат", "Kadranı değiştir", "Zifferblatt ersetzen")
 }
 
 internal fun operationDialogStatusText(info: ReplacementDialogInfo): String = when {
     info.operation.kind == "direct_install" && info.operation.stage == "COMPLETED" && !info.operation.active && !info.operation.failed ->
-        if (info.operation.detail.startsWith("Procedura di installazione diretta lato app terminata")) info.operation.detail
+        if (info.operation.detail.startsWith(Tr.tr("客户端直装流程已结束", "Procedura di installazione diretta lato app terminata", "Client-side direct install finished", "Instalación directa por parte de la app terminada", "Installation directe côté app terminée", "Instalação direta do lado da app terminada", "Instalação direta pelo app terminada", "Директното инсталиране от приложението приключи", "Uygulama tarafındaki doğrudan yükleme bitti", "App-seitige Direktinstallation beendet"))) info.operation.detail
         else io.github.escosis.hwtfaceswap.protocol.DirectInstallState.completionNotice(info.operation.detail)
-    replacementDialogSucceeded(info) -> when(info.operation.kind) { "direct_install" -> "Quadrante installato"; "deletion" -> "Quadrante eliminato"; "activation" -> "Quadrante attivato"; else -> "Quadrante sostituito" }
-    info.operation.stage == "CANCELLED" -> when(info.operation.kind) { "direct_install" -> "Installazione annullata"; "deletion" -> "Eliminazione annullata"; "activation" -> "Attivazione annullata"; else -> "Sostituzione annullata" }
+    replacementDialogSucceeded(info) -> when(info.operation.kind) { "direct_install" -> Tr.tr("表盘已安装", "Quadrante installato", "Watch face installed", "Esfera instalada", "Cadran installé", "Mostrador instalado", "Mostrador instalado", "Циферблатът е инсталиран", "Kadran yüklendi", "Zifferblatt installiert"); "deletion" -> Tr.tr("表盘已删除", "Quadrante eliminato", "Watch face deleted", "Esfera eliminada", "Cadran supprimé", "Mostrador eliminado", "Mostrador excluído", "Циферблатът е изтрит", "Kadran silindi", "Zifferblatt gelöscht"); "activation" -> Tr.tr("表盘已启用", "Quadrante attivato", "Watch face activated", "Esfera activada", "Cadran activé", "Mostrador ativado", "Mostrador ativado", "Циферблатът е активиран", "Kadran etkinleştirildi", "Zifferblatt aktiviert"); else -> Tr.tr("表盘已替换", "Quadrante sostituito", "Watch face replaced", "Esfera sustituida", "Cadran remplacé", "Mostrador substituído", "Mostrador substituído", "Циферблатът е заменен", "Kadran değiştirildi", "Zifferblatt ersetzt") }
+    info.operation.stage == "CANCELLED" -> when(info.operation.kind) { "direct_install" -> Tr.tr("安装已取消", "Installazione annullata", "Installation cancelled", "Instalación cancelada", "Installation annulée", "Instalação cancelada", "Instalação cancelada", "Инсталирането е отменено", "Yükleme iptal edildi", "Installation abgebrochen"); "deletion" -> Tr.tr("删除已取消", "Eliminazione annullata", "Deletion cancelled", "Eliminación cancelada", "Suppression annulée", "Eliminação cancelada", "Exclusão cancelada", "Изтриването е отменено", "Silme iptal edildi", "Löschen abgebrochen"); "activation" -> Tr.tr("启用已取消", "Attivazione annullata", "Activation cancelled", "Activación cancelada", "Activation annulée", "Ativação cancelada", "Ativação cancelada", "Активирането е отменено", "Etkinleştirme iptal edildi", "Aktivierung abgebrochen"); else -> Tr.tr("替换已取消", "Sostituzione annullata", "Replacement cancelled", "Sustitución cancelada", "Remplacement annulé", "Substituição cancelada", "Substituição cancelada", "Замяната е отменена", "Değiştirme iptal edildi", "Ersetzen abgebrochen") }
     else -> info.operation.detail.ifBlank { info.operation.stage.ifBlank {
-        when(info.operation.kind) { "deletion" -> "In attesa dello stato di eliminazione"; "activation" -> "In attesa dello stato di attivazione"; else -> "In attesa dello stato di sostituzione" }
+        when(info.operation.kind) { "deletion" -> Tr.tr("等待删除状态", "In attesa dello stato di eliminazione", "Waiting for deletion status", "Esperando el estado de la eliminación", "En attente de l'état de la suppression", "A aguardar o estado da eliminação", "Aguardando o status da exclusão", "Изчакване на състоянието на изтриването", "Silme durumu bekleniyor", "Warten auf den Löschstatus"); "activation" -> Tr.tr("等待启用状态", "In attesa dello stato di attivazione", "Waiting for activation status", "Esperando el estado de la activación", "En attente de l'état de l'activation", "A aguardar o estado da ativação", "Aguardando o status da ativação", "Изчакване на състоянието на активирането", "Etkinleştirme durumu bekleniyor", "Warten auf den Aktivierungsstatus"); else -> Tr.tr("等待替换状态", "In attesa dello stato di sostituzione", "Waiting for replacement status", "Esperando el estado de la sustitución", "En attente de l'état du remplacement", "A aguardar o estado da substituição", "Aguardando o status da substituição", "Изчакване на състоянието на замяната", "Değiştirme durumu bekleniyor", "Warten auf den Ersetzungsstatus") }
     } }
 }
 
@@ -119,7 +121,7 @@ internal fun ReplacementProgressDialog(state: AppUiState, actions: AppActions) {
                     Text(operationDialogTitle(info), style = MiuixTheme.textStyles.title4, fontWeight = FontWeight.Medium)
                     if (info.title.isNotBlank()) Text(info.title.uiText(), style = MiuixTheme.textStyles.body1, maxLines = 2, overflow = TextOverflow.Ellipsis)
                     if ((info.operation.kind == "replacement" || info.operation.kind == "direct_install") && info.fileName.isNotBlank()) Text(
-                        "File HWT: ${info.fileName.uiText()}", style = MiuixTheme.textStyles.body2,
+                        Tr.tr("HWT 文件：${info.fileName.uiText()}", "File HWT: ${info.fileName.uiText()}", "HWT file: ${info.fileName.uiText()}", "Archivo HWT: ${info.fileName.uiText()}", "Fichier HWT : ${info.fileName.uiText()}", "Ficheiro HWT: ${info.fileName.uiText()}", "Arquivo HWT: ${info.fileName.uiText()}", "HWT файл: ${info.fileName.uiText()}", "HWT dosyası: ${info.fileName.uiText()}", "HWT-Datei: ${info.fileName.uiText()}"), style = MiuixTheme.textStyles.body2,
                         color = MiuixTheme.colorScheme.onSurfaceVariantSummary,
                         maxLines = 2, overflow = TextOverflow.Ellipsis,
                     )
@@ -146,7 +148,7 @@ internal fun ReplacementProgressDialog(state: AppUiState, actions: AppActions) {
                         if (percent != null) MutedText("$percent%")
                     } else {
                         Spacer(Modifier.height(2.dp))
-                        ActionButton("Chiudi", ::dismiss, Modifier.fillMaxWidth(), primary = true)
+                        ActionButton(Tr.tr("关闭", "Chiudi", "Close", "Cerrar", "Fermer", "Fechar", "Fechar", "Затваряне", "Kapat", "Schließen"), ::dismiss, Modifier.fillMaxWidth(), primary = true)
                     }
                 }
             }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="huawei_id_web_title">Huawei ID al</string>
+    <string name="huawei_id_web_close">Kapat</string>
+    <string name="huawei_id_web_instruction">Kendiniz giriş yapın: Huawei ID otomatik olarak alınacak, ardından sayfa kapanacak ve site verileri silinecek.</string>
+    <string name="huawei_id_web_no_download">Bu giriş sayfası dosya indirmez. Giriş yapın ve Huawei ID\'nin doldurulmasını bekleyin.</string>
+    <string name="huawei_id_web_navigation_blocked">Resmî olmayan bir Huawei sayfasına veya harici bir uygulamaya yönlendirme engellendi. Kapatıp tekrar deneyin veya Huawei ID\'yi elle girin.</string>
+    <string name="huawei_id_web_tls_error">Site sertifikası doğrulanamadı, bağlantı engellendi. Daha sonra deneyin.</string>
+    <string name="huawei_id_web_load_error">Giriş sayfası şu anda yüklenemiyor. Kapatıp tekrar deneyin veya Huawei ID\'yi elle girin.</string>
+    <string name="huawei_id_web_clearing">Giriş sayfası kapatılıyor ve bu oturumun site verileri siliniyor…</string>
+</resources>

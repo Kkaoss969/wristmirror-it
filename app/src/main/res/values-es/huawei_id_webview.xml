@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="huawei_id_web_title">Obtener ID de Huawei</string>
+    <string name="huawei_id_web_close">Cerrar</string>
+    <string name="huawei_id_web_instruction">Inicia sesión tú mismo: el ID de Huawei se obtendrá automáticamente, luego la página se cerrará y se borrarán los datos del sitio.</string>
+    <string name="huawei_id_web_no_download">Esta página de inicio de sesión no descarga archivos. Inicia sesión y espera a que se rellene el ID de Huawei.</string>
+    <string name="huawei_id_web_navigation_blocked">Se bloqueó una redirección a una página no oficial de Huawei o a una app externa. Cierra y vuelve a intentarlo, o introduce el ID de Huawei a mano.</string>
+    <string name="huawei_id_web_tls_error">Falló la verificación del certificado del sitio, conexión bloqueada. Inténtalo más tarde.</string>
+    <string name="huawei_id_web_load_error">Ahora no se puede cargar la página de inicio de sesión. Cierra y vuelve a intentarlo, o introduce el ID de Huawei a mano.</string>
+    <string name="huawei_id_web_clearing">Cerrando la página de inicio de sesión y borrando los datos del sitio de esta sesión…</string>
+</resources>

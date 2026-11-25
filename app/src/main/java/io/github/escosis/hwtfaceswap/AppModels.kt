@@ -8,16 +8,16 @@ data class NearbyWatch(
     val name: String,
     val bonded: Boolean,
     val rssi: Int? = null,
-    val transport: String = "Bluetooth classico",
+    val transport: String = Tr.tr("经典蓝牙", "Bluetooth classico", "Classic Bluetooth", "Bluetooth clásico", "Bluetooth classique", "Bluetooth clássico", "Bluetooth clássico", "Класически Bluetooth", "Klasik Bluetooth", "Klassisches Bluetooth"),
     val likelyHuawei: Boolean = true,
 ) {
-    val addressLabel: String get() = address.ifBlank { "Indirizzo non fornito" }
+    val addressLabel: String get() = address.ifBlank { Tr.tr("地址未提供", "Indirizzo non fornito", "Address not provided", "Dirección no proporcionada", "Adresse non fournie", "Endereço não fornecido", "Endereço não fornecido", "Не е посочен адрес", "Adres belirtilmedi", "Adresse nicht angegeben") }
 }
 /** 记录此前已就绪的连接，不代表设备当前的系统配对状态。 */
 data class SavedWatch(
     val address: String,
     val name: String,
-    val transport: String = "Bluetooth classico",
+    val transport: String = Tr.tr("经典蓝牙", "Bluetooth classico", "Classic Bluetooth", "Bluetooth clásico", "Bluetooth classique", "Bluetooth clássico", "Bluetooth clássico", "Класически Bluetooth", "Klasik Bluetooth", "Klassisches Bluetooth"),
     val lastConnectedAt: Long = 0L,
     /** 同一 MAC 首次可靠读到的根层 0A 型号；缺失不覆盖，随原历史删除路径清除。 */
     val model: String? = null,
@@ -34,12 +34,12 @@ data class FaceItem(
     val name: String? = null,
     val current: Boolean = false,
     val selectable: Boolean = false,
-    val kind: String = "Tipo non confermato",
+    val kind: String = Tr.tr("类型未确认", "Tipo non confermato", "Type not confirmed", "Tipo no confirmado", "Type non confirmé", "Tipo não confirmado", "Tipo não confirmado", "Типът не е потвърден", "Tür doğrulanmadı", "Typ nicht bestätigt"),
     val activatable: Boolean = false,
 ) {
     val title: String get() = when (kind) {
-        "Adesivi divertenti", "Quadrante galleria", "Quadrante video" -> kind
-        else -> name?.takeIf { it.isNotBlank() } ?: "Quadrante $id"
+        Tr.tr("趣味贴纸", "Adesivi divertenti", "Fun stickers", "Pegatinas divertidas", "Autocollants amusants", "Autocolantes divertidos", "Adesivos divertidos", "Забавни стикери", "Eğlenceli çıkartmalar", "Lustige Sticker"), Tr.tr("相册表盘", "Quadrante galleria", "Photo watch face", "Esfera de fotos", "Cadran photo", "Mostrador de fotos", "Mostrador de fotos", "Циферблат със снимки", "Fotoğraf kadranı", "Foto-Zifferblatt"), Tr.tr("视频表盘", "Quadrante video", "Video watch face", "Esfera de vídeo", "Cadran vidéo", "Mostrador de vídeo", "Mostrador de vídeo", "Видео циферблат", "Video kadranı", "Video-Zifferblatt") -> kind
+        else -> name?.takeIf { it.isNotBlank() } ?: Tr.tr("表盘 $id", "Quadrante $id", "Watch face $id", "Esfera $id", "Cadran $id", "Mostrador $id", "Mostrador $id", "Циферблат $id", "Kadran $id", "Zifferblatt $id")
     }
 }
 data class SourceInfo(
@@ -57,7 +57,7 @@ data class SourceInfo(
     /** 只列已成功冻结的直装载荷；检测到但未准备好的类型不能被操作。 */
     val payloadKinds: List<String> = listOf("bin"),
     val detectedPayloadKinds: List<String> = payloadKinds,
-    val screen: String = "Non fornito",
+    val screen: String = Tr.tr("未提供", "Non fornito", "Not provided", "No proporcionado", "Non fourni", "Não fornecido", "Não fornecido", "Не е посочено", "Belirtilmedi", "Nicht angegeben"),
     val payloadDiagnostic: String = "",
     /** 同一文件重新导入也更换 UI owner；本地序号不是线上资源或随机数。 */
     val importToken: Long = 0,
@@ -98,7 +98,7 @@ data class ActionPrompt(
     val message: String,
     val destructive: Boolean,
     val positiveLabel: String,
-    val negativeLabel: String = "Annulla",
+    val negativeLabel: String = Tr.tr("取消", "Annulla", "Cancel", "Cancelar", "Annuler", "Cancelar", "Cancelar", "Отказ", "İptal", "Abbrechen"),
 )
 data class AppUiState(
     val theme: ThemeMode = ThemeMode.SYSTEM,
@@ -119,14 +119,14 @@ data class AppUiState(
     val huaweiIdInput: String = "",
     val phaseCode: String = "IDLE",
     val connectionEpoch: Long = 0,
-    val phase: String = "Non ancora connesso",
-    val detail: String = "Cerca il dispositivo, inserisci l'ID Huawei e connettiti",
+    val phase: String = Tr.tr("尚未连接", "Non ancora connesso", "Not connected yet", "Aún no conectado", "Pas encore connecté", "Ainda não ligado", "Ainda não conectado", "Още не е свързано", "Henüz bağlı değil", "Noch nicht verbunden"),
+    val detail: String = Tr.tr("搜索设备，输入华为 ID 后连接", "Cerca il dispositivo, inserisci l'ID Huawei e connettiti", "Search for the device, enter the Huawei ID and connect", "Busca el dispositivo, introduce el ID de Huawei y conéctate", "Recherchez l'appareil, saisissez l'ID Huawei et connectez-vous", "Procure o dispositivo, introduza o ID Huawei e ligue-se", "Procure o dispositivo, insira o ID Huawei e conecte", "Потърсете устройството, въведете Huawei ID и се свържете", "Cihazı arayın, Huawei ID'yi girin ve bağlanın", "Suche das Gerät, gib die Huawei-ID ein und verbinde dich"),
     val connected: Boolean = false,
     val connecting: Boolean = false,
     val watchName: String = "",
     val deviceAddress: String = "",
-    val serialNumber: String = "Sconosciuto",
-    val firmware: String = "Sconosciuto",
+    val serialNumber: String = Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"),
+    val firmware: String = Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"),
     /** 当前已验证连接实际读到的型号；主页优先使用 savedDevices 中不可覆盖的同 MAC 缓存。 */
     val deviceModel: String? = null,
     val batteryPercent: Int? = null,
@@ -146,7 +146,7 @@ data class AppUiState(
     val activationDialog: ReplacementDialogInfo? = null,
     val prompt: ActionPrompt? = null,
     val needsPin: Boolean = false,
-    val pinMessage: String = "Conferma l'abbinamento sul watch e inserisci il codice di abbinamento mostrato sul watch",
+    val pinMessage: String = Tr.tr("请在手表确认配对，输入手表显示的配对码", "Conferma l'abbinamento sul watch e inserisci il codice di abbinamento mostrato sul watch", "Confirm pairing on the watch and enter the pairing code shown on the watch", "Confirma el emparejamiento en el reloj e introduce el código que muestra el reloj", "Confirmez l'association sur la montre et saisissez le code affiché sur la montre", "Confirme o emparelhamento no relógio e introduza o código mostrado no relógio", "Confirme o pareamento no relógio e insira o código mostrado no relógio", "Потвърдете сдвояването на часовника и въведете кода, показан на часовника", "Eşleştirmeyi saatte onaylayın ve saatte görünen kodu girin", "Bestätige die Kopplung auf der Uhr und gib den auf der Uhr angezeigten Code ein"),
     val accountConfigured: Boolean = false,
     val huaweiIdDirty: Boolean = false,
     // 解除配对包含系统设置/重试等待；只有真实 BOND_NONE 与持久清理均成功才结束。

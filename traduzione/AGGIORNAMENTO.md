@@ -21,10 +21,13 @@ Originale: https://github.com/Escosis/WristMirror — versione tradotta attuale 
    python3 traduzione/traduci.py /tmp/up
    ```
    - codice 0: tutto tradotto.
-   - codice 2: guarda `traduzione/mancanti.json` e aggiungi le traduzioni in `traduzione/it.json`
-     (`stringhe` per i letterali, `righe_testo` per le righe delle stringhe multilinea, `risorse` per gli XML).
+   - codice 2: guarda `traduzione/mancanti.json` e aggiungi le traduzioni in `traduzione/lingue.json`, **in tutte
+     le 9 lingue** (`it`, `en`, `es`, `fr`, `pt` = Portogallo, `br` = Brasile, `bg`, `tr`, `de`):
+     `stringhe` per i letterali, `righe_testo` per le righe delle stringhe multilinea, `risorse` per gli XML.
+     Le righe di diagnostica tecnica (es. `campo=07 codice=`) possono restare in inglese nelle lingue diverse dall'italiano.
      Poi riscarica l'originale (passo 2, lo script modifica in place) e rilancia finché esce con 0.
-   - codice 3: un controllo è fallito (segnaposto o prefissi); correggi `it.json` e rilancia.
+   - codice 3: un controllo è fallito (segnaposto, prefissi o un adattamento non più applicabile); correggi
+     `lingue.json` (o `ADATTA` in `traduci.py` se l'originale ha cambiato quei punti) e rilancia.
 
    Regole per le nuove traduzioni:
    - mantieni identici i segnaposto (`$code`, `${...}`, `\n`) e non introdurre `"` o `$` nel testo;
@@ -33,7 +36,7 @@ Originale: https://github.com/Escosis/WristMirror — versione tradotta attuale 
    - `华为` e `荣耀` non si traducono (filtrano i nomi Bluetooth): sono in `invariate`;
    - se una stringa nuova sembra usata come chiave/identificativo (confronti, `when`, salvataggi), controlla il codice prima di tradurla.
 
-   Glossario: 表盘 = quadrante · 手表 = watch · 配对 = abbinamento · 解除配对 = annullamento abbinamento / Annulla abbinamento ·
+   Glossario italiano (per le altre lingue segui le scelte già presenti nel dizionario): 表盘 = quadrante · 手表 = watch · 配对 = abbinamento · 解除配对 = annullamento abbinamento / Annulla abbinamento ·
    协议绑定 = associazione del protocollo · 重新协议绑定 = Riassocia protocollo · 启用 = Attiva · 替换 = Sostituisci ·
    直装/直接安装 = installazione diretta · 全能模式 = modalità completa · 省电模式 = modalità risparmio energetico ·
    载荷 = payload · 资料 = dati · 运动健康 = Huawei Health · 腕镜 = WristMirror · 腕连 = Wanlian · 华为 ID = ID Huawei ·
@@ -45,14 +48,17 @@ Originale: https://github.com/Escosis/WristMirror — versione tradotta attuale 
    rm -rf /tmp/up/.github /tmp/up/traduzione /tmp/up/README-IT.md
    cp -a /tmp/up/. ./
    echo X.Y.Z > traduzione/VERSIONE_ORIGINALE
+   echo 1 > traduzione/REVISIONE
    rm -f traduzione/mancanti.json
    ```
    Se l'originale ha cambiato `res/values` con nuove stringhe o file, verifica che siano tradotti.
 
 5. **Commit e push su `main`** con messaggio `Aggiornato a WristMirror vX.Y.Z`.
+   (Per ripubblicare la stessa versione con traduzioni corrette: alza `traduzione/REVISIONE` di 1.)
 
-6. **Compilazione**: GitHub Actions compila a ogni push su `main` e pubblica l'APK nel branch `apk`
-   (`WristMirror-<versione>-it-<sha>.apk`). Attendi l'esito con `gh run watch`; se fallisce leggi il log
+6. **Compilazione**: GitHub Actions compila a ogni push su `main`, mette l'APK nel branch `apk` e, se i segreti
+   di firma ci sono, pubblica la release `vX.Y.Z` (`WristMirror-it.apk`, `versione.json`, `WristMirror-<versione>-it<rev>-<sha>.apk`),
+   da cui lo Store di Gateway scarica l'app. Attendi l'esito con `gh run watch`; se fallisce leggi il log
    (`gh run view <id> --log-failed`), correggi e ripeti.
 
 7. **Consegna**: scarica l'APK dal branch `apk`

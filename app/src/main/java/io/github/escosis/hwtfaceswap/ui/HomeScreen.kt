@@ -1,5 +1,7 @@
 package io.github.escosis.hwtfaceswap.ui
 
+
+import io.github.escosis.hwtfaceswap.Tr
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -135,7 +137,7 @@ private fun HomeConnectionStatusCard(state: AppUiState, onOpenStatus: (Int, () -
             }
             Box(Modifier.fillMaxSize().padding(16.dp, 10.dp), contentAlignment = Alignment.BottomStart) {
                 Text(
-                    text = "Versione app ${state.appVersion}",
+                    text = Tr.tr("应用版本 ${state.appVersion}", "Versione app ${state.appVersion}", "App version ${state.appVersion}", "Versión de la app ${state.appVersion}", "Version de l'app ${state.appVersion}", "Versão da app ${state.appVersion}", "Versão do app ${state.appVersion}", "Версия на приложението ${state.appVersion}", "Uygulama sürümü ${state.appVersion}", "App-Version ${state.appVersion}"),
                     fontSize = 14.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -145,9 +147,9 @@ private fun HomeConnectionStatusCard(state: AppUiState, onOpenStatus: (Int, () -
                 Column {
                     Text(
                         text = when {
-                            connected -> "Connesso"
-                            state.connecting -> "Connessione…"
-                            else -> "Non connesso"
+                            connected -> Tr.tr("已连接", "Connesso", "Connected", "Conectado", "Connecté", "Ligado", "Conectado", "Свързано", "Bağlı", "Verbunden")
+                            state.connecting -> Tr.tr("连接中", "Connessione…", "Connecting…", "Conectando…", "Connexion…", "A ligar…", "Conectando…", "Свързване…", "Bağlanıyor…", "Verbinden…")
+                            else -> Tr.tr("未连接", "Non connesso", "Not connected", "No conectado", "Non connecté", "Não ligado", "Não conectado", "Не е свързано", "Bağlı değil", "Nicht verbunden")
                         },
                         fontSize = 22.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -169,14 +171,14 @@ private fun HomeConnectionStatusCard(state: AppUiState, onOpenStatus: (Int, () -
 
 private fun homeDeviceName(state: AppUiState): String? {
     // 已连接或正在连接时，只采用连接模型中的真实名称；不从历史推测当前设备。
-    if (state.connected || state.connecting) return state.watchName.ifBlank { "Dispositivo senza nome" }
+    if (state.connected || state.connecting) return state.watchName.ifBlank { Tr.tr("未知名称设备", "Dispositivo senza nome", "Device with unknown name", "Dispositivo de nombre desconocido", "Appareil au nom inconnu", "Dispositivo de nome desconhecido", "Dispositivo de nome desconhecido", "Устройство с неизвестно име", "Adı bilinmeyen cihaz", "Gerät mit unbekanntem Namen") }
     val address = state.selectedDeviceAddress?.takeIf { it.isNotBlank() } ?: return null
     val selectedName = state.devices.firstOrNull { it.address.equals(address, ignoreCase = true) }?.name
         ?: state.savedDevices.firstOrNull { it.address.equals(address, ignoreCase = true) }?.name
-    return selectedName?.takeIf { it.isNotBlank() } ?: "Dispositivo senza nome"
+    return selectedName?.takeIf { it.isNotBlank() } ?: Tr.tr("未知名称设备", "Dispositivo senza nome", "Device with unknown name", "Dispositivo de nombre desconocido", "Appareil au nom inconnu", "Dispositivo de nome desconhecido", "Dispositivo de nome desconhecido", "Устройство с неизвестно име", "Adı bilinmeyen cihaz", "Gerät mit unbekanntem Namen")
 }
 
-private fun homeKnownText(value: String): String? = value.takeIf { it.isNotBlank() && it != "Sconosciuto" }
+private fun homeKnownText(value: String): String? = value.takeIf { it.isNotBlank() && it != Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt") }
 
 /** 只校验显示地址，沿用模型的真实 MAC 格式；不从最近或无关设备推测地址。 */
 private fun homeCanonicalAddress(address: String?): String? =
@@ -228,14 +230,14 @@ private fun homeInfoRows(state: AppUiState): List<Triple<String, String, String?
     val battery = state.batteryPercent?.takeIf { it in 0..100 }?.let { "$it%" }
     val freeMemory = state.freeMemoryBytes?.takeIf { it > 0L }?.let(::homeMemoryText)
     return listOf(
-        Triple("Codice modello", model ?: "Sconosciuto", model),
-        Triple("Indirizzo Bluetooth (MAC)", address ?: "Sconosciuto", address),
-        Triple("Numero di serie", serial ?: "Sconosciuto", serial),
-        Triple("Versione firmware", firmware ?: "Sconosciuto", firmware),
-        Triple("Risoluzione quadrante", resolution ?: "Sconosciuto", resolution),
-        Triple("Batteria", battery ?: "Sconosciuto", battery),
-        Triple("Memoria libera", freeMemory ?: "Sconosciuto", freeMemory),
-    ).map { if (state.connected || it.first == "Indirizzo Bluetooth (MAC)" || it.first == "Codice modello" || it.first == "Numero di serie") it else Triple(it.first, "Sconosciuto", null) }
+        Triple(Tr.tr("型号代码", "Codice modello", "Model code", "Código de modelo", "Code du modèle", "Código do modelo", "Código do modelo", "Код на модела", "Model kodu", "Modellcode"), model ?: Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"), model),
+        Triple(Tr.tr("蓝牙地址（MAC）", "Indirizzo Bluetooth (MAC)", "Bluetooth address (MAC)", "Dirección Bluetooth (MAC)", "Adresse Bluetooth (MAC)", "Endereço Bluetooth (MAC)", "Endereço Bluetooth (MAC)", "Bluetooth адрес (MAC)", "Bluetooth adresi (MAC)", "Bluetooth-Adresse (MAC)"), address ?: Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"), address),
+        Triple(Tr.tr("序列号", "Numero di serie", "Serial number", "Número de serie", "Numéro de série", "Número de série", "Número de série", "Сериен номер", "Seri numarası", "Seriennummer"), serial ?: Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"), serial),
+        Triple(Tr.tr("固件版本", "Versione firmware", "Firmware version", "Versión de firmware", "Version du firmware", "Versão do firmware", "Versão do firmware", "Версия на фърмуера", "Yazılım sürümü", "Firmware-Version"), firmware ?: Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"), firmware),
+        Triple(Tr.tr("表盘分辨率", "Risoluzione quadrante", "Watch face resolution", "Resolución de la esfera", "Résolution du cadran", "Resolução do mostrador", "Resolução do mostrador", "Резолюция на циферблата", "Kadran çözünürlüğü", "Zifferblattauflösung"), resolution ?: Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"), resolution),
+        Triple(Tr.tr("电量", "Batteria", "Battery", "Batería", "Batterie", "Bateria", "Bateria", "Батерия", "Pil", "Akku"), battery ?: Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"), battery),
+        Triple(Tr.tr("剩余内存", "Memoria libera", "Free memory", "Memoria libre", "Mémoire libre", "Memória livre", "Memória livre", "Свободна памет", "Boş bellek", "Freier Speicher"), freeMemory ?: Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"), freeMemory),
+    ).map { if (state.connected || it.first == Tr.tr("蓝牙地址（MAC）", "Indirizzo Bluetooth (MAC)", "Bluetooth address (MAC)", "Dirección Bluetooth (MAC)", "Adresse Bluetooth (MAC)", "Endereço Bluetooth (MAC)", "Endereço Bluetooth (MAC)", "Bluetooth адрес (MAC)", "Bluetooth adresi (MAC)", "Bluetooth-Adresse (MAC)") || it.first == Tr.tr("型号代码", "Codice modello", "Model code", "Código de modelo", "Code du modèle", "Código do modelo", "Código do modelo", "Код на модела", "Model kodu", "Modellcode") || it.first == Tr.tr("序列号", "Numero di serie", "Serial number", "Número de serie", "Numéro de série", "Número de série", "Número de série", "Сериен номер", "Seri numarası", "Seriennummer")) it else Triple(it.first, Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"), null) }
 }
 
 /** 复制必须对应当前显示的同一地址、选择和连接代次；MAC、已知型号与序列号不要求仍处于连接状态。 */
@@ -245,7 +247,7 @@ private fun homeCopyValue(rendered: AppUiState, current: AppUiState, label: Stri
         homeCanonicalAddress(rendered.selectedDeviceAddress) != homeCanonicalAddress(current.selectedDeviceAddress) ||
         homeMacAddress(rendered) != homeMacAddress(current)
     ) return null
-    if (label != "Indirizzo Bluetooth (MAC)" && label != "Codice modello" && label != "Numero di serie" && (!rendered.connected || !current.connected)) return null
+    if (label != Tr.tr("蓝牙地址（MAC）", "Indirizzo Bluetooth (MAC)", "Bluetooth address (MAC)", "Dirección Bluetooth (MAC)", "Adresse Bluetooth (MAC)", "Endereço Bluetooth (MAC)", "Endereço Bluetooth (MAC)", "Bluetooth адрес (MAC)", "Bluetooth adresi (MAC)", "Bluetooth-Adresse (MAC)") && label != Tr.tr("型号代码", "Codice modello", "Model code", "Código de modelo", "Code du modèle", "Código do modelo", "Código do modelo", "Код на модела", "Model kodu", "Modellcode") && label != Tr.tr("序列号", "Numero di serie", "Serial number", "Número de serie", "Numéro de série", "Número de série", "Número de série", "Сериен номер", "Seri numarası", "Seriennummer") && (!rendered.connected || !current.connected)) return null
     val latestValue = homeInfoRows(current).firstOrNull { it.first == label }?.third
     return latestValue?.takeIf { it == renderedValue }
 }
@@ -342,7 +344,7 @@ private fun copyHomeInfo(context: Context, label: String, value: String) {
     try {
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
         if (clipboard == null) {
-            Toast.makeText(context, "Copia non riuscita, riprova", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, Tr.tr("复制失败，请重试", "Copia non riuscita, riprova", "Copy failed, try again", "Error al copiar, inténtalo de nuevo", "Échec de la copie, réessayez", "Falha ao copiar, tente de novo", "Falha ao copiar, tente de novo", "Копирането не бе успешно, опитайте пак", "Kopyalanamadı, tekrar deneyin", "Kopieren fehlgeschlagen, versuche es erneut"), Toast.LENGTH_SHORT).show()
             return
         }
         val clip = ClipData.newPlainText(label, value).apply {
@@ -350,8 +352,8 @@ private fun copyHomeInfo(context: Context, label: String, value: String) {
             description.extras = PersistableBundle().apply { putBoolean("android.content.extra.IS_SENSITIVE", true) }
         }
         clipboard.setPrimaryClip(clip)
-        Toast.makeText(context, "Copiato", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, Tr.tr("已复制", "Copiato", "Copied", "Copiado", "Copié", "Copiado", "Copiado", "Копирано", "Kopyalandı", "Kopiert"), Toast.LENGTH_SHORT).show()
     } catch (_: Exception) {
-        Toast.makeText(context, "Copia non riuscita, riprova", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, Tr.tr("复制失败，请重试", "Copia non riuscita, riprova", "Copy failed, try again", "Error al copiar, inténtalo de nuevo", "Échec de la copie, réessayez", "Falha ao copiar, tente de novo", "Falha ao copiar, tente de novo", "Копирането не бе успешно, опитайте пак", "Kopyalanamadı, tekrar deneyin", "Kopieren fehlgeschlagen, versuche es erneut"), Toast.LENGTH_SHORT).show()
     }
 }

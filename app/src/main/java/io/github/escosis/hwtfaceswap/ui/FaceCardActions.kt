@@ -1,5 +1,7 @@
 package io.github.escosis.hwtfaceswap.ui
 
+
+import io.github.escosis.hwtfaceswap.Tr
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
@@ -137,22 +139,22 @@ internal fun FacePageActions(state: AppUiState, actions: AppActions, host: FaceA
     Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             FacePageActionButton(
-                "Seleziona HWT", FacePageAction.CHOOSE_HWT,
+                Tr.tr("选择 HWT", "Seleziona HWT", "Select HWT", "Seleccionar HWT", "Choisir un HWT", "Selecionar HWT", "Selecionar HWT", "Избор на HWT", "HWT seç", "HWT auswählen"), FacePageAction.CHOOSE_HWT,
                 state, actions, host, onPickHwt, Modifier.weight(1f),
             )
             FacePageActionButton(
-                "Svuota cache di importazione", FacePageAction.CLEAR_IMPORT_CACHE,
+                Tr.tr("清除导入缓存", "Svuota cache di importazione", "Clear import cache", "Borrar caché de importación", "Vider le cache d'importation", "Limpar cache de importação", "Limpar cache de importação", "Изчистване на кеша за импортиране", "İçe aktarma önbelleğini temizle", "Import-Cache leeren"), FacePageAction.CLEAR_IMPORT_CACHE,
                 state, actions, host, onPickHwt, Modifier.weight(1f),
             )
         }
         Spacer(Modifier.height(12.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             FacePageActionButton(
-                if (state.listRefreshing) "Aggiornamento…" else "Aggiorna elenco", FacePageAction.REFRESH,
+                if (state.listRefreshing) Tr.tr("正在刷新", "Aggiornamento…", "Refreshing…", "Actualizando…", "Actualisation…", "A atualizar…", "Atualizando…", "Опресняване…", "Yenileniyor…", "Aktualisieren…") else Tr.tr("刷新列表", "Aggiorna elenco", "Refresh list", "Actualizar lista", "Actualiser la liste", "Atualizar lista", "Atualizar lista", "Опресняване на списъка", "Listeyi yenile", "Liste aktualisieren"), FacePageAction.REFRESH,
                 state, actions, host, onPickHwt, Modifier.weight(1f),
             )
             FacePageActionButton(
-                "Prova installazione diretta", FacePageAction.DIRECT_INSTALL,
+                Tr.tr("尝试直接安装", "Prova installazione diretta", "Try direct install", "Probar instalación directa", "Essayer l'installation directe", "Experimentar instalação direta", "Testar instalação direta", "Опит за директно инсталиране", "Doğrudan yüklemeyi dene", "Direktinstallation versuchen"), FacePageAction.DIRECT_INSTALL,
                 state, actions, host, onPickHwt, Modifier.weight(1f),
             )
         }

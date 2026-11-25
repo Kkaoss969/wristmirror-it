@@ -44,7 +44,7 @@ public final class AppRuntime implements WatchConnection.Listener,WatchfaceManag
     public final WatchConnection connection;public final WatchfaceManager watchfaces;
     public final DeviceRemovalController unpair;
     private final CopyOnWriteArrayList<Observer> observers=new CopyOnWriteArrayList<>();
-    private String code="IDLE",detail="Non ancora connesso",deviceAddress="",serialNumber="Sconosciuto",firmware="Sconosciuto",kind="",stage="",operationDetail="",message="",pinMessage="";
+    private String code="IDLE",detail=Tr.tr("尚未连接", "Non ancora connesso", "Not connected yet", "Aún no conectado", "Pas encore connecté", "Ainda não ligado", "Ainda não conectado", "Още не е свързано", "Henüz bağlı değil", "Noch nicht verbunden"),deviceAddress="",serialNumber=Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"),firmware=Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt"),kind="",stage="",operationDetail="",message="",pinMessage="";
     private String deviceModel;
     private boolean ready,connecting,needsPin,listReady,listRefreshing,active,failed;
     private int rebind;private long epoch,generation,operationRevision,replacementDialogRevision,deletionDialogRevision,activationDialogRevision;private Integer width,height,progress,batteryPercent;private Long capability,freeMemoryBytes;
@@ -102,17 +102,17 @@ public final class AppRuntime implements WatchConnection.Listener,WatchfaceManag
     }
     private void installReplacementDialog(WatchfaceManager.ReplacementRequest request,String title,String fileName){
         retireDialogSessions();replacementRequest=request;WatchfaceManager.ReplacementIdentity identity=request.identity;
-        replacementDialog=new ReplacementDialogInfo(identity.token,identity.epoch,identity.id,identity.version,title,fileName,new OperationInfo(request.directInstall?"direct_install":"replacement","WAIT_OPERATION",request.directInstall?"Avvio dell'installazione":"Avvio della sostituzione",null,true,false),false);
+        replacementDialog=new ReplacementDialogInfo(identity.token,identity.epoch,identity.id,identity.version,title,fileName,new OperationInfo(request.directInstall?"direct_install":"replacement","WAIT_OPERATION",request.directInstall?Tr.tr("正在开始安装", "Avvio dell'installazione", "Starting installation", "Iniciando la instalación", "Démarrage de l'installation", "A iniciar a instalação", "Iniciando a instalação", "Започва инсталирането", "Yükleme başlıyor", "Installation wird gestartet"):Tr.tr("正在开始替换", "Avvio della sostituzione", "Starting replacement", "Iniciando la sustitución", "Démarrage du remplacement", "A iniciar a substituição", "Iniciando a substituição", "Започва замяната", "Değiştirme başlıyor", "Ersetzen wird gestartet"),null,true,false),false);
         replacementDialogRevision++;
     }
     private void installDeletionDialog(WatchfaceManager.DeletionRequest request,String title){
         retireDialogSessions();deletionRequest=request;WatchfaceManager.DeletionIdentity identity=request.identity;
-        deletionDialog=new ReplacementDialogInfo(identity.token,identity.epoch,identity.id,identity.version,title,"",new OperationInfo("deletion","WAIT_OPERATION","Avvio dell'eliminazione",null,true,false),false);
+        deletionDialog=new ReplacementDialogInfo(identity.token,identity.epoch,identity.id,identity.version,title,"",new OperationInfo("deletion","WAIT_OPERATION",Tr.tr("正在开始删除", "Avvio dell'eliminazione", "Starting deletion", "Iniciando la eliminación", "Démarrage de la suppression", "A iniciar a eliminação", "Iniciando a exclusão", "Започва изтриването", "Silme başlıyor", "Löschen wird gestartet"),null,true,false),false);
         deletionDialogRevision++;
     }
     private void installActivationDialog(WatchfaceManager.ActivationRequest request,String title){
         retireDialogSessions();activationRequest=request;WatchfaceManager.ActivationIdentity identity=request.identity;
-        activationDialog=new ReplacementDialogInfo(identity.token,identity.epoch,identity.id,identity.version,title,"",new OperationInfo("activation","WAIT_OPERATION","Attivazione del quadrante",null,true,false),false);
+        activationDialog=new ReplacementDialogInfo(identity.token,identity.epoch,identity.id,identity.version,title,"",new OperationInfo("activation","WAIT_OPERATION",Tr.tr("正在启用表盘", "Attivazione del quadrante", "Activating watch face", "Activando la esfera", "Activation du cadran", "A ativar o mostrador", "Ativando o mostrador", "Активиране на циферблата", "Kadran etkinleştiriliyor", "Zifferblatt wird aktiviert"),null,true,false),false);
         activationDialogRevision++;
     }
     public synchronized boolean openActivationDialog(WatchfaceManager.ActivationRequest request,String title){
@@ -196,7 +196,7 @@ public final class AppRuntime implements WatchConnection.Listener,WatchfaceManag
         if(epoch!=connection.epoch()||((ready||connecting)&&removalBlocksCurrent()))return;
         if(this.epoch!=epoch){
             // 设备连接已变化，上一会话的参数与表盘不能用于新设备。
-            deviceAddress="";serialNumber="Sconosciuto";firmware="Sconosciuto";deviceModel=null;batteryPercent=null;freeMemoryBytes=null;
+            deviceAddress="";serialNumber=Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt");firmware=Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt");deviceModel=null;batteryPercent=null;freeMemoryBytes=null;
             width=height=null;capability=null;visible=Collections.emptyList();
             names=Collections.emptyMap();listReady=listRefreshing=false;message="";
         }
@@ -251,7 +251,7 @@ public final class AppRuntime implements WatchConnection.Listener,WatchfaceManag
         WatchfaceManager.ReplacementRequest current=watchfaces.currentReplacementRequest();
         if(identity==null||current==null||current.identity!=identity||watchfaces.replacementIdentity()!=identity||(active&&identity.epoch!=connection.epoch()))return;
         // 旧回调只能更新仍由 manager 发布的同一摘要；新会话的标题、文件名不从当前选择重建。
-        if(!ownsReplacementDialog(identity)&&active&&!activeOperationDialog()&&!retiredDialogTokens.contains(identity.token))installReplacementDialog(current,identity.id,"HWT locale");
+        if(!ownsReplacementDialog(identity)&&active&&!activeOperationDialog()&&!retiredDialogTokens.contains(identity.token))installReplacementDialog(current,identity.id,Tr.tr("本地 HWT", "HWT locale", "Local HWT", "HWT local", "HWT local", "HWT local", "HWT local", "Локален HWT", "Yerel HWT", "Lokale HWT"));
         if(replacementIdentity!=identity)message="";
         operationRevision++;replacementIdentity=identity;deletionIdentity=null;activationIdentity=null;kind=identity.directInstall?"direct_install":"replacement";this.stage=stage;operationDetail=detail;this.progress=progress;this.active=active;this.failed=failed;
         updateReplacementDialog(identity,stage,detail,progress,active,failed);publish();
@@ -303,7 +303,7 @@ public final class AppRuntime implements WatchConnection.Listener,WatchfaceManag
     public synchronized void onError(String msg){
         // 含缺失条目的列表不再作为错误上报（完整行照常可用）；保留旧码的兜底文案，避免任何历史路径把连接问题写错。
         message="WIRE_FACE_LIST_INCOMPLETE".equals(msg)
-                ? "Nell'elenco del watch alcune voci non hanno campi obbligatori come la versione; queste voci non verranno usate come destinazione, gli altri quadranti restano utilizzabili"
+                ? Tr.tr("手表列表有条目缺少版本等必需字段；该条目不会作为操作目标，其他表盘照常可用", "Nell'elenco del watch alcune voci non hanno campi obbligatori come la versione; queste voci non verranno usate come destinazione, gli altri quadranti restano utilizzabili", "Some entries in the watch list are missing required fields such as the version; they won't be used as targets, the other watch faces remain usable", "Algunas entradas de la lista del reloj no tienen campos obligatorios como la versión; no se usarán como destino, las demás esferas siguen disponibles", "Certaines entrées de la liste de la montre n'ont pas de champs obligatoires comme la version ; elles ne serviront pas de cible, les autres cadrans restent utilisables", "Algumas entradas da lista do relógio não têm campos obrigatórios como a versão; não serão usadas como destino, os outros mostradores continuam disponíveis", "Algumas entradas da lista do relógio não têm campos obrigatórios como a versão; elas não serão usadas como destino, os outros mostradores continuam disponíveis", "Някои записи в списъка на часовника нямат задължителни полета като версията; те няма да се използват като цел, другите циферблати остават достъпни", "Saat listesindeki bazı girişlerde sürüm gibi zorunlu alanlar eksik; bunlar hedef olarak kullanılmayacak, diğer kadranlar kullanılabilir", "Einigen Einträgen in der Liste der Uhr fehlen Pflichtfelder wie die Version; sie werden nicht als Ziel verwendet, die anderen Zifferblätter bleiben nutzbar")
                 : msg;
         publish();
     }

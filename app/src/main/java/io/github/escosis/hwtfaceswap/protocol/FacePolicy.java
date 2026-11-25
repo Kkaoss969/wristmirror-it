@@ -1,5 +1,7 @@
 package io.github.escosis.hwtfaceswap.protocol;
 
+
+import io.github.escosis.hwtfaceswap.Tr;
 import java.util.List;
 
 /**
@@ -63,20 +65,20 @@ public final class FacePolicy {
      * WatchFaceWearService.getWatchType(II)：视频、相册、万花筒、穿戴，然后是贴纸。
      */
     public static String kind(TlvView.Face face) {
-        if(face==null)return "Tipo non confermato";
+        if(face==null)return Tr.tr("类型未确认", "Tipo non confermato", "Type not confirmed", "Tipo no confirmado", "Type non confirmé", "Tipo não confirmado", "Tipo não confirmado", "Типът не е потвърден", "Tür doğrulanmadı", "Typ nicht bestätigt");
         String special=null;
-        if(has(face,VIDEO)||expand(face,EXPAND_VIDEO))special="Quadrante video";
-        if(has(face,PHOTO)||expand(face,EXPAND_PHOTO))special="Quadrante galleria";
-        if(has(face,KALEIDOSCOPE)||expand(face,EXPAND_KALEIDOSCOPE))special="Quadrante caleidoscopio";
-        if(expand(face,EXPAND_WEAR))special="Quadrante indossabile";
-        if(expand(face,EXPAND_STICKER))special="Adesivi divertenti";
+        if(has(face,VIDEO)||expand(face,EXPAND_VIDEO))special=Tr.tr("视频表盘", "Quadrante video", "Video watch face", "Esfera de vídeo", "Cadran vidéo", "Mostrador de vídeo", "Mostrador de vídeo", "Видео циферблат", "Video kadranı", "Video-Zifferblatt");
+        if(has(face,PHOTO)||expand(face,EXPAND_PHOTO))special=Tr.tr("相册表盘", "Quadrante galleria", "Photo watch face", "Esfera de fotos", "Cadran photo", "Mostrador de fotos", "Mostrador de fotos", "Циферблат със снимки", "Fotoğraf kadranı", "Foto-Zifferblatt");
+        if(has(face,KALEIDOSCOPE)||expand(face,EXPAND_KALEIDOSCOPE))special=Tr.tr("万花筒表盘", "Quadrante caleidoscopio", "Kaleidoscope watch face", "Esfera caleidoscopio", "Cadran kaléidoscope", "Mostrador caleidoscópio", "Mostrador caleidoscópio", "Калейдоскопен циферблат", "Kaleydoskop kadranı", "Kaleidoskop-Zifferblatt");
+        if(expand(face,EXPAND_WEAR))special=Tr.tr("穿戴表盘", "Quadrante indossabile", "Wearable watch face", "Esfera ponible", "Cadran portable", "Mostrador vestível", "Mostrador vestível", "Носим циферблат", "Giyilebilir kadran", "Tragbares Zifferblatt");
+        if(expand(face,EXPAND_STICKER))special=Tr.tr("趣味贴纸", "Adesivi divertenti", "Fun stickers", "Pegatinas divertidas", "Autocollants amusants", "Autocolantes divertidos", "Adesivos divertidos", "Забавни стикери", "Eğlenceli çıkartmalar", "Lustige Sticker");
         if(special!=null)return special;
-        if(!typeObserved(face) || (face.type.longValue()&~KNOWN_RAW_BITS)!=0)return "Tipo non confermato";
-        if(effectiveExpandType(face)!=0)return "Tipo di estensione non confermato";
-        if(has(face,TRIAL))return "Quadrante di prova";
-        if(has(face,PRESET))return "Quadrante preinstallato";
-        if(!has(face,SUPPORT_DELETE))return "Quadrante standard non eliminabile";
-        return "Quadrante standard";
+        if(!typeObserved(face) || (face.type.longValue()&~KNOWN_RAW_BITS)!=0)return Tr.tr("类型未确认", "Tipo non confermato", "Type not confirmed", "Tipo no confirmado", "Type non confirmé", "Tipo não confirmado", "Tipo não confirmado", "Типът не е потвърден", "Tür doğrulanmadı", "Typ nicht bestätigt");
+        if(effectiveExpandType(face)!=0)return Tr.tr("扩展类型未确认", "Tipo di estensione non confermato", "Extension type not confirmed", "Tipo de extensión no confirmado", "Type d'extension non confirmé", "Tipo de extensão não confirmado", "Tipo de extensão não confirmado", "Типът на разширението не е потвърден", "Uzantı türü doğrulanmadı", "Erweiterungstyp nicht bestätigt");
+        if(has(face,TRIAL))return Tr.tr("试用表盘", "Quadrante di prova", "Trial watch face", "Esfera de prueba", "Cadran d'essai", "Mostrador de teste", "Mostrador de teste", "Пробен циферблат", "Deneme kadranı", "Test-Zifferblatt");
+        if(has(face,PRESET))return Tr.tr("预置表盘", "Quadrante preinstallato", "Preinstalled watch face", "Esfera preinstalada", "Cadran préinstallé", "Mostrador pré-instalado", "Mostrador pré-instalado", "Предварително инсталиран циферблат", "Önceden yüklü kadran", "Vorinstalliertes Zifferblatt");
+        if(!has(face,SUPPORT_DELETE))return Tr.tr("不可删除普通表盘", "Quadrante standard non eliminabile", "Non-deletable standard watch face", "Esfera estándar no eliminable", "Cadran standard non supprimable", "Mostrador padrão não eliminável", "Mostrador padrão não excluível", "Стандартен циферблат, който не може да се изтрие", "Silinemeyen standart kadran", "Nicht löschbares Standard-Zifferblatt");
+        return Tr.tr("普通表盘", "Quadrante standard", "Standard watch face", "Esfera estándar", "Cadran standard", "Mostrador padrão", "Mostrador padrão", "Стандартен циферблат", "Standart kadran", "Standard-Zifferblatt");
     }
 
     /**

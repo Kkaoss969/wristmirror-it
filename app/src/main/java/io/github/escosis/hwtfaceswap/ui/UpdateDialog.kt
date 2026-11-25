@@ -1,5 +1,7 @@
 package io.github.escosis.hwtfaceswap.ui
 
+
+import io.github.escosis.hwtfaceswap.Tr
 import android.app.Activity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -112,21 +114,21 @@ fun UpdateDialog(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text(
-                "Nuova versione disponibile",
+                Tr.tr("发现新版本", "Nuova versione disponibile", "New version available", "Nueva versión disponible", "Nouvelle version disponible", "Nova versão disponível", "Nova versão disponível", "Налична е нова версия", "Yeni sürüm mevcut", "Neue Version verfügbar"),
                 modifier = Modifier.semantics { heading() },
                 style = MiuixTheme.textStyles.title3,
                 fontWeight = FontWeight.Medium,
                 color = MiuixTheme.colorScheme.onBackground,
             )
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text("Versione attuale: $currentVersion", style = MiuixTheme.textStyles.body2, color = MiuixTheme.colorScheme.onBackground)
-                Text("Ultima versione: ${info.version}", style = MiuixTheme.textStyles.body2, color = MiuixTheme.colorScheme.onBackground)
+                Text(Tr.tr("当前版本：$currentVersion", "Versione attuale: $currentVersion", "Current version: $currentVersion", "Versión actual: $currentVersion", "Version actuelle : $currentVersion", "Versão atual: $currentVersion", "Versão atual: $currentVersion", "Текуща версия: $currentVersion", "Geçerli sürüm: $currentVersion", "Aktuelle Version: $currentVersion"), style = MiuixTheme.textStyles.body2, color = MiuixTheme.colorScheme.onBackground)
+                Text(Tr.tr("最新版本：${info.version}", "Ultima versione: ${info.version}", "Latest version: ${info.version}", "Última versión: ${info.version}", "Dernière version : ${info.version}", "Última versão: ${info.version}", "Última versão: ${info.version}", "Най-нова версия: ${info.version}", "En son sürüm: ${info.version}", "Neueste Version: ${info.version}"), style = MiuixTheme.textStyles.body2, color = MiuixTheme.colorScheme.onBackground)
             }
-            Text("Vai alla pagina della release per vedere le novità e scaricare l'APK.", style = MiuixTheme.textStyles.body2, color = MiuixTheme.colorScheme.onBackground)
+            Text(Tr.tr("前往发布页查看更新并下载 APK。", "Vai alla pagina della release per vedere le novità e scaricare l'APK.", "Go to the release page to see what's new and download the APK.", "Ve a la página de la versión para ver las novedades y descargar el APK.", "Allez sur la page de la version pour voir les nouveautés et télécharger l'APK.", "Vá à página da versão para ver as novidades e transferir o APK.", "Vá à página da versão para ver as novidades e baixar o APK.", "Отидете на страницата на версията, за да видите новото и да изтеглите APK.", "Yenilikleri görmek ve APK'yı indirmek için sürüm sayfasına gidin.", "Geh zur Versionsseite, um die Neuerungen zu sehen und die APK herunterzuladen."), style = MiuixTheme.textStyles.body2, color = MiuixTheme.colorScheme.onBackground)
             // 退出期间保留按钮外观；重复点击由同步 owner/request 守卫拒绝。
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                ActionButton("Più tardi", { requestDismissal(UpdateDialogAction.DISMISS) }, Modifier.weight(1f))
-                ActionButton("Apri pagina della release", { requestDismissal(UpdateDialogAction.OPEN_RELEASE) }, Modifier.weight(1f), primary = true)
+                ActionButton(Tr.tr("稍后", "Più tardi", "Later", "Más tarde", "Plus tard", "Mais tarde", "Mais tarde", "По-късно", "Daha sonra", "Später"), { requestDismissal(UpdateDialogAction.DISMISS) }, Modifier.weight(1f))
+                ActionButton(Tr.tr("打开发布页", "Apri pagina della release", "Open release page", "Abrir página de la versión", "Ouvrir la page de la version", "Abrir página da versão", "Abrir página da versão", "Отваряне на страницата на версията", "Sürüm sayfasını aç", "Versionsseite öffnen"), { requestDismissal(UpdateDialogAction.OPEN_RELEASE) }, Modifier.weight(1f), primary = true)
             }
         }
     }

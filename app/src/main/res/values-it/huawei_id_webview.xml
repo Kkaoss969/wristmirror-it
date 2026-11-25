@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="huawei_id_web_title">Ottieni ID Huawei</string>
+    <string name="huawei_id_web_close">Chiudi</string>
+    <string name="huawei_id_web_instruction">Accedi tu stesso: l\'ID Huawei verrà recuperato automaticamente, poi la pagina verrà chiusa e i dati del sito cancellati.</string>
+    <string name="huawei_id_web_no_download">Questa pagina di accesso non scarica file. Accedi e attendi che l\'ID Huawei venga inserito.</string>
+    <string name="huawei_id_web_navigation_blocked">Bloccato un reindirizzamento verso una pagina non ufficiale Huawei o un\'app esterna. Chiudi e riprova, oppure inserisci manualmente l\'ID Huawei.</string>
+    <string name="huawei_id_web_tls_error">Verifica del certificato del sito non riuscita, connessione bloccata. Riprova più tardi.</string>
+    <string name="huawei_id_web_load_error">Al momento non è possibile caricare la pagina di accesso. Chiudi e riprova, oppure inserisci manualmente l\'ID Huawei.</string>
+    <string name="huawei_id_web_clearing">Chiusura della pagina di accesso e cancellazione dei dati del sito…</string>
+</resources>

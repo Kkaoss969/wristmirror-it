@@ -1,5 +1,7 @@
 package io.github.escosis.hwtfaceswap.ui
 
+
+import io.github.escosis.hwtfaceswap.Tr
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
@@ -148,7 +150,7 @@ internal fun FacesScreen(
     LaunchedEffect(state.connectionEpoch, state.listRefreshing) {
         val current = host.state()
         if (owner.get() && current.connectionEpoch == state.connectionEpoch && UiPolicy.showFaceRefreshNotice(current)) {
-            Toast.makeText(context, "Aggiornamento dell'elenco dei quadranti, attendi", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, Tr.tr("正在刷新表盘列表，请稍候", "Aggiornamento dell'elenco dei quadranti, attendi", "Refreshing the watch face list, please wait", "Actualizando la lista de esferas, espera", "Actualisation de la liste des cadrans, patientez", "A atualizar a lista de mostradores, aguarde", "Atualizando a lista de mostradores, aguarde", "Опресняване на списъка с циферблати, изчакайте", "Kadran listesi yenileniyor, bekleyin", "Zifferblattliste wird aktualisiert, bitte warten"), Toast.LENGTH_SHORT).show()
         }
     }
     LazyColumn(
@@ -190,12 +192,12 @@ internal fun FacesScreen(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Text(if (sourceSnapshot == null) "File HWT: non selezionato" else "File HWT:", fontSize = 16.sp, fontWeight = FontWeight.Medium)
+                            Text(if (sourceSnapshot == null) Tr.tr("HWT 文件：未选择", "File HWT: non selezionato", "HWT file: not selected", "Archivo HWT: no seleccionado", "Fichier HWT : non sélectionné", "Ficheiro HWT: não selecionado", "Arquivo HWT: não selecionado", "HWT файл: не е избран", "HWT dosyası: seçilmedi", "HWT-Datei: nicht ausgewählt") else Tr.tr("HWT 文件：", "File HWT:", "HWT file:", "Archivo HWT:", "Fichier HWT :", "Ficheiro HWT:", "Arquivo HWT:", "HWT файл:", "HWT dosyası:", "HWT-Datei:"), fontSize = 16.sp, fontWeight = FontWeight.Medium)
                             sourceSnapshot?.let { file ->
                                 Text(file.fileName.uiText(), fontSize = 16.sp, maxLines = 2, overflow = TextOverflow.Ellipsis)
                             }
                         }
-                        if (sourceSnapshot != null) ExpandButton(showSource, "Informazioni file", onClick = toggleSource)
+                        if (sourceSnapshot != null) ExpandButton(showSource, Tr.tr("文件信息", "Informazioni file", "File info", "Información del archivo", "Infos du fichier", "Informações do ficheiro", "Informações do arquivo", "Информация за файла", "Dosya bilgisi", "Dateiinfos"), onClick = toggleSource)
                     }
                     AnimatedVisibility(
                         visibleState = sourceTransition,
@@ -218,16 +220,16 @@ internal fun FacesScreen(
         if (pageOperationCardVisible(state.operation)) {
             item(key = "operation") { OperationCard(state.operation) }
         }
-        item(key = "list_heading") { SectionHeading("Tutti i quadranti (${state.faces.size})") }
+        item(key = "list_heading") { SectionHeading(Tr.tr("全部表盘（${state.faces.size}）", "Tutti i quadranti (${state.faces.size})", "All watch faces (${state.faces.size})", "Todas las esferas (${state.faces.size})", "Tous les cadrans (${state.faces.size})", "Todos os mostradores (${state.faces.size})", "Todos os mostradores (${state.faces.size})", "Всички циферблати (${state.faces.size})", "Tüm kadranlar (${state.faces.size})", "Alle Zifferblätter (${state.faces.size})")) }
         if (state.faces.isEmpty()) {
             item(key = "empty") {
                 EmptyCard(
                     title = when {
-                        state.listRefreshing -> "Lettura dei quadranti"
-                        state.listReady -> "Il watch ha restituito un elenco vuoto"
-                        else -> "In attesa della lettura dei quadranti"
+                        state.listRefreshing -> Tr.tr("正在读取表盘", "Lettura dei quadranti", "Reading watch faces", "Leyendo esferas", "Lecture des cadrans", "A ler os mostradores", "Lendo os mostradores", "Четене на циферблатите", "Kadranlar okunuyor", "Zifferblätter werden gelesen")
+                        state.listReady -> Tr.tr("手表返回了空列表", "Il watch ha restituito un elenco vuoto", "The watch returned an empty list", "El reloj devolvió una lista vacía", "La montre a renvoyé une liste vide", "O relógio devolveu uma lista vazia", "O relógio retornou uma lista vazia", "Часовникът върна празен списък", "Saat boş bir liste döndürdü", "Die Uhr hat eine leere Liste geliefert")
+                        else -> Tr.tr("等待读取表盘", "In attesa della lettura dei quadranti", "Waiting to read watch faces", "Esperando para leer las esferas", "En attente de la lecture des cadrans", "A aguardar a leitura dos mostradores", "Aguardando a leitura dos mostradores", "Изчакване за четене на циферблатите", "Kadranların okunması bekleniyor", "Warten auf das Lesen der Zifferblätter")
                     },
-                    message = if (state.connected) "Tocca Aggiorna e attendi che il watch restituisca l'elenco dei quadranti." else "Vai prima alla pagina Dispositivi e connetti il watch.",
+                    message = if (state.connected) Tr.tr("点击刷新，等待手表返回表盘列表。", "Tocca Aggiorna e attendi che il watch restituisca l'elenco dei quadranti.", "Tap Refresh and wait for the watch to return the watch face list.", "Toca Actualizar y espera a que el reloj devuelva la lista de esferas.", "Touchez Actualiser et attendez que la montre renvoie la liste des cadrans.", "Toque em Atualizar e aguarde que o relógio devolva a lista de mostradores.", "Toque em Atualizar e aguarde o relógio retornar a lista de mostradores.", "Докоснете „Опресняване“ и изчакайте часовникът да върне списъка с циферблати.", "Yenile'ye dokunun ve saatin kadran listesini döndürmesini bekleyin.", "Tippe auf Aktualisieren und warte, bis die Uhr die Zifferblattliste liefert.") else Tr.tr("请先前往设备页连接手表。", "Vai prima alla pagina Dispositivi e connetti il watch.", "Go to the Devices page first and connect the watch.", "Ve primero a la página Dispositivos y conecta el reloj.", "Allez d'abord sur la page Appareils et connectez la montre.", "Vá primeiro à página Dispositivos e ligue o relógio.", "Vá primeiro à página Dispositivos e conecte o relógio.", "Първо отидете на страницата „Устройства“ и свържете часовника.", "Önce Cihazlar sayfasına gidip saati bağlayın.", "Geh zuerst zur Seite Geräte und verbinde die Uhr."),
                     icon = WatchIcons.Faces,
                 )
             }
@@ -357,16 +359,16 @@ private fun FaceRow(
                     )
                     if (face.current) {
                         Spacer(Modifier.width(8.dp))
-                        Text("In uso", fontSize = 12.sp, color = colors.onSurfaceVariantSummary)
+                        Text(Tr.tr("正在使用", "In uso", "In use", "En uso", "Utilisé", "Em uso", "Em uso", "Използва се", "Kullanımda", "In Verwendung"), fontSize = 12.sp, color = colors.onSurfaceVariantSummary)
                     }
-                    ExpandButton(expanded, "Informazioni quadrante", onClick = toggle)
+                    ExpandButton(expanded, Tr.tr("表盘信息", "Informazioni quadrante", "Watch face info", "Información de la esfera", "Infos du cadran", "Informações do mostrador", "Informações do mostrador", "Информация за циферблата", "Kadran bilgisi", "Zifferblatt-Infos"), onClick = toggle)
                 }
                 if (expanded) {
                     Column(Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)) {
                         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            ValueRow("Versione", face.version.ifBlank { "Non fornita dal watch" })
+                            ValueRow(Tr.tr("版本", "Versione", "Version", "Versión", "Version", "Versão", "Versão", "Версия", "Sürüm", "Version"), face.version.ifBlank { Tr.tr("手表未提供", "Non fornita dal watch", "Not provided by the watch", "No proporcionado por el reloj", "Non fourni par la montre", "Não fornecido pelo relógio", "Não fornecido pelo relógio", "Не е посочено от часовника", "Saat tarafından belirtilmedi", "Von der Uhr nicht angegeben") })
                             ValueRow("ID", face.id)
-                            ValueRow("Tipo", face.kind)
+                            ValueRow(Tr.tr("类型", "Tipo", "Type", "Tipo", "Type", "Tipo", "Tipo", "Тип", "Tür", "Typ"), face.kind)
                         }
                         HorizontalDivider(
                             modifier = Modifier.padding(vertical = 8.dp), thickness = 0.5.dp,
@@ -385,11 +387,11 @@ private fun FaceRow(
 
 @Composable
 private fun ExpandButton(expanded: Boolean, label: String, onClick: () -> Unit) {
-    val angle by animateFloatAsState(if (expanded) 180f else 0f, tween(160), label = "Freccia di espansione")
+    val angle by animateFloatAsState(if (expanded) 180f else 0f, tween(160), label = Tr.tr("展开箭头", "Freccia di espansione", "Expand arrow", "Flecha de expansión", "Flèche de développement", "Seta de expansão", "Seta de expansão", "Стрелка за разгъване", "Genişletme oku", "Aufklapppfeil"))
     IconButton(onClick = onClick) {
         Icon(
             imageVector = WatchIcons.Expand,
-            contentDescription = (if (expanded) "Comprimi" else "Espandi") + label,
+            contentDescription = (if (expanded) Tr.tr("收起", "Comprimi", "Collapse", "Contraer", "Réduire", "Recolher", "Recolher", "Свиване", "Daralt", "Zuklappen") else Tr.tr("展开", "Espandi", "Expand", "Expandir", "Développer", "Expandir", "Expandir", "Разгъване", "Genişlet", "Aufklappen")) + label,
             modifier = Modifier.size(24.dp).rotate(angle),
             tint = MiuixTheme.colorScheme.onSurfaceVariantSummary,
         )
@@ -406,15 +408,15 @@ private fun SourceDetails(
             verticalAlignment = Alignment.CenterVertically) {
             HwtPreview(source)
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                ValueRow("Nome", source.title, compact = true)
+                ValueRow(Tr.tr("名称", "Nome", "Name", "Nombre", "Nom", "Nome", "Nome", "Име", "Ad", "Name"), source.title, compact = true)
                 // 格式按文件自身结构显示，不按默认直装载荷改写。
-                ValueRow("Formato", PayloadKinds.displayFormat(source.detectedPayloadKinds), compact = true)
-                ValueRow("Dimensione", formatBytes(source.sourceBytes), compact = true)
-                ValueRow("Versione", source.xmlVersion.ifBlank { "Non fornito" }, compact = true)
-                ValueRow("Schermo", source.screen, compact = true)
+                ValueRow(Tr.tr("格式", "Formato", "Format", "Formato", "Format", "Formato", "Formato", "Формат", "Biçim", "Format"), PayloadKinds.displayFormat(source.detectedPayloadKinds), compact = true)
+                ValueRow(Tr.tr("大小", "Dimensione", "Size", "Tamaño", "Taille", "Tamanho", "Tamanho", "Размер", "Boyut", "Größe"), formatBytes(source.sourceBytes), compact = true)
+                ValueRow(Tr.tr("版本", "Versione", "Version", "Versión", "Version", "Versão", "Versão", "Версия", "Sürüm", "Version"), source.xmlVersion.ifBlank { Tr.tr("未提供", "Non fornito", "Not provided", "No proporcionado", "Non fourni", "Não fornecido", "Não fornecido", "Не е посочено", "Belirtilmedi", "Nicht angegeben") }, compact = true)
+                ValueRow(Tr.tr("屏幕", "Schermo", "Screen", "Pantalla", "Écran", "Ecrã", "Tela", "Екран", "Ekran", "Bildschirm"), source.screen, compact = true)
             }
         }
-        if (source.payloadDiagnostic.isNotBlank()) ValueRow("Diagnostica", source.payloadDiagnostic, compact = true)
+        if (source.payloadDiagnostic.isNotBlank()) ValueRow(Tr.tr("诊断", "Diagnostica", "Diagnostics", "Diagnóstico", "Diagnostic", "Diagnóstico", "Diagnóstico", "Диагностика", "Tanılama", "Diagnose"), source.payloadDiagnostic, compact = true)
         MutedText(PayloadKinds.formatNote(source.detectedPayloadKinds), Modifier.fillMaxWidth())
     }
 }

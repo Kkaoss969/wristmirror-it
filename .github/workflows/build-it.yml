@@ -1,4 +1,4 @@
-name: Build APK (italiano)
+name: Build APK (multilingua)
 
 on:
   workflow_dispatch:
@@ -23,19 +23,55 @@ jobs:
           [ -x "$SDKM" ] || SDKM=$(ls -d $ANDROID_HOME/cmdline-tools/*/bin/sdkmanager | tail -1)
           yes | "$SDKM" --licenses > /dev/null || true
           "$SDKM" "platforms;android-37" "build-tools;37.0.0" || true
+      - name: Firma e revisione
+        env:
+          KS: ${{ secrets.WM_KEYSTORE }}
+          PW: ${{ secrets.WM_PASSWORD }}
+        run: |
+          echo "WM_REVISIONE=$(cat traduzione/REVISIONE)" >> "$GITHUB_ENV"
+          if [ -n "$KS" ] && [ -n "$PW" ]; then
+            echo "::add-mask::$PW"
+            echo "$KS" | base64 -d > "$RUNNER_TEMP/wm.jks"
+            {
+              echo "WRISTMIRROR_KEYSTORE=$RUNNER_TEMP/wm.jks"
+              echo "WRISTMIRROR_STORE_PASSWORD=$PW"
+              echo "WRISTMIRROR_KEY_ALIAS=wristmirror"
+              echo "WRISTMIRROR_KEY_PASSWORD=$PW"
+              echo "FIRMATO=1"
+            } >> "$GITHUB_ENV"
+          else
+            echo "::warning::Segreti WM_KEYSTORE/WM_PASSWORD mancanti: compilo la versione di debug e non pubblico la release"
+          fi
       - name: Compila
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon assembleDebug
-      - uses: actions/upload-artifact@v4
-        with:
-          name: WristMirror-it-${{ github.sha }}
-          path: app/build/outputs/apk/debug/*.apk
-      - name: Pubblica APK sul branch apk
+          if [ "$FIRMATO" = "1" ]; then ./gradlew --no-daemon assembleRelease; else ./gradlew --no-daemon assembleDebug; fi
+      - name: Prepara i file
         run: |
           SHA=$(git rev-parse --short HEAD)
           VER=$(sed -n 's/^val appVersionName = "\(.*\)"/\1/p' app/build.gradle.kts)
-          mkdir /tmp/out && cp app/build/outputs/apk/debug/*.apk /tmp/out/WristMirror-$VER-it-$SHA.apk
+          IFS=. read -r MA MI PA <<< "$VER"
+          CODICE=$(( (MA * 10000 + MI * 100 + PA) * 100 + WM_REVISIONE ))
+          APK=$(find app/build/outputs/apk -name '*.apk' | head -1)
+          mkdir -p /tmp/out
+          cp "$APK" /tmp/out/WristMirror-it.apk
+          cp "$APK" "/tmp/out/WristMirror-$VER-it$WM_REVISIONE-$SHA.apk"
+          printf '{"versione":"%s","codice":%s,"pkg":"it.gemini.wristmirror","commit":"%s","firmato":%s}\n' "$VER" "$CODICE" "$SHA" "${FIRMATO:-0}" > /tmp/out/versione.json
+          cat /tmp/out/versione.json
+          echo "VER=$VER" >> "$GITHUB_ENV"
+          echo "SHA=$SHA" >> "$GITHUB_ENV"
+      - name: Pubblica sul branch apk
+        run: |
           cd /tmp/out && git init -q -b apk && git add . \
             && git -c user.name=ci -c user.email=ci@local commit -qm "APK $SHA" \
             && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" apk
+      - name: Release
+        if: env.FIRMATO == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete "v$VER" --cleanup-tag -y || true
+          gh release create "v$VER" --target "$GITHUB_SHA" --latest \
+            --title "WristMirror $VER (multilingua)" \
+            --notes "Traduzione non ufficiale di [WristMirror](https://github.com/Escosis/WristMirror) $VER di Escosis (Apache-2.0) in italiano, inglese, spagnolo, francese, portoghese, bulgaro, turco e tedesco; il cinese originale resta per i telefoni in cinese. Revisione $WM_REVISIONE, commit $SHA." \
+            /tmp/out/WristMirror-it.apk /tmp/out/versione.json "/tmp/out/WristMirror-$VER-it$WM_REVISIONE-$SHA.apk"

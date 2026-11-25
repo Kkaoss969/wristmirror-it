@@ -1,5 +1,7 @@
 package io.github.escosis.hwtfaceswap.ui
 
+
+import io.github.escosis.hwtfaceswap.Tr
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -44,13 +46,13 @@ internal fun LogsScreen(
     DisposableEffect(owner) { onDispose { owner.set(false) } }
     val busy = logsBusy(state)
     CollapsingPage(
-        title = "Log di esecuzione",
+        title = Tr.tr("运行日志", "Log di esecuzione", "Run log", "Registro de ejecución", "Journal d'exécution", "Registo de execução", "Registro de execução", "Дневник на изпълнението", "Çalışma günlüğü", "Laufprotokoll"),
         fullscreen = true,
         navigationIcon = {
             IconButton(onClick = onBack) {
                 Icon(
                     painter = painterResource(R.drawable.ic_keyboard_backspace),
-                    contentDescription = "Indietro",
+                    contentDescription = Tr.tr("返回", "Indietro", "Back", "Atrás", "Retour", "Voltar", "Voltar", "Назад", "Geri", "Zurück"),
                     modifier = Modifier.size(24.dp),
                     tint = MiuixTheme.colorScheme.onSurface,
                 )
@@ -66,15 +68,15 @@ internal fun LogsScreen(
                 Card(Modifier.fillMaxWidth()) {
                     Column {
                         ArrowPreference(
-                            title = "Esporta log",
-                            summary = "Esporta il log diagnostico tramite il salvataggio documenti di sistema",
+                            title = Tr.tr("导出日志", "Esporta log", "Export log", "Exportar registro", "Exporter le journal", "Exportar registo", "Exportar registro", "Експортиране на дневника", "Günlüğü dışa aktar", "Protokoll exportieren"),
+                            summary = Tr.tr("通过系统文档保存器导出诊断记录", "Esporta il log diagnostico tramite il salvataggio documenti di sistema", "Export the diagnostic log through the system document saver", "Exporta el registro de diagnóstico con el guardado de documentos del sistema", "Exporter le journal de diagnostic via l'enregistreur de documents du système", "Exportar o registo de diagnóstico com o gravador de documentos do sistema", "Exportar o registro de diagnóstico pelo salvador de documentos do sistema", "Експортиране на диагностичния дневник чрез системния инструмент за запазване на документи", "Tanılama günlüğünü sistemin belge kaydedicisiyle dışa aktar", "Diagnoseprotokoll über den Dokumentspeicher des Systems exportieren"),
                             startAction = { PreferenceIcon(R.drawable.ic_file_upload) },
                             enabled = state.logs.isNotEmpty(),
                             onClick = { if(owner.get() && latestState.logs.isNotEmpty()) onExportLogs() },
                         )
                         ArrowPreference(
-                            title = "Svuota log",
-                            summary = "Cancella il log diagnostico di questa sessione",
+                            title = Tr.tr("清空日志", "Svuota log", "Clear log", "Vaciar registro", "Vider le journal", "Limpar registo", "Limpar registro", "Изчистване на дневника", "Günlüğü temizle", "Protokoll leeren"),
+                            summary = Tr.tr("清除本次运行的诊断记录", "Cancella il log diagnostico di questa sessione", "Clear this session's diagnostic log", "Borrar el registro de diagnóstico de esta sesión", "Effacer le journal de diagnostic de cette session", "Apagar o registo de diagnóstico desta sessão", "Apagar o registro de diagnóstico desta sessão", "Изтриване на диагностичния дневник за тази сесия", "Bu oturumun tanılama günlüğünü sil", "Diagnoseprotokoll dieser Sitzung löschen"),
                             startAction = { PreferenceIcon(R.drawable.ic_clean) },
                             enabled = !busy && state.logs.isNotEmpty(),
                             onClick = {
@@ -85,7 +87,7 @@ internal fun LogsScreen(
                     }
                 }
             }
-            item(key = "log_count") { SectionHeading("Voci di log (${state.logs.size})") }
+            item(key = "log_count") { SectionHeading(Tr.tr("日志记录（${state.logs.size}）", "Voci di log (${state.logs.size})", "Log entries (${state.logs.size})", "Entradas del registro (${state.logs.size})", "Entrées du journal (${state.logs.size})", "Entradas do registo (${state.logs.size})", "Entradas do registro (${state.logs.size})", "Записи в дневника (${state.logs.size})", "Günlük kayıtları (${state.logs.size})", "Protokolleinträge (${state.logs.size})")) }
             item(key = "log_text") {
                 Card(Modifier.fillMaxWidth(), insideMargin = PaddingValues(16.dp)) {
                     SelectionContainer {
@@ -96,7 +98,7 @@ internal fun LogsScreen(
                             if(state.logs.isEmpty()) {
                                 item(key = "empty_logs") {
                                     Text(
-                                        text = "Ancora nessun log: viene generato dopo aver connesso un dispositivo o eseguito operazioni.",
+                                        text = Tr.tr("暂无运行日志，连接设备或执行操作后生成。", "Ancora nessun log: viene generato dopo aver connesso un dispositivo o eseguito operazioni.", "No log yet: it's created after connecting a device or performing operations.", "Aún no hay registro: se crea tras conectar un dispositivo o hacer operaciones.", "Pas encore de journal : il est créé après la connexion d'un appareil ou des opérations.", "Ainda não há registo: é criado depois de ligar um dispositivo ou fazer operações.", "Ainda não há registro: ele é criado depois de conectar um dispositivo ou fazer operações.", "Още няма дневник: създава се след свързване на устройство или извършване на операции.", "Henüz günlük yok: bir cihaz bağladıktan veya işlem yaptıktan sonra oluşturulur.", "Noch kein Protokoll: es entsteht nach dem Verbinden eines Geräts oder nach Vorgängen."),
                                         fontFamily = FontFamily.Monospace,
                                         fontSize = 12.sp,
                                         lineHeight = 18.sp,
