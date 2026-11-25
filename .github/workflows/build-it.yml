@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   push:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,3 +30,10 @@ jobs:
         with:
           name: WristMirror-it-${{ github.sha }}
           path: app/build/outputs/apk/debug/*.apk
+      - name: Pubblica APK sul branch wristmirror-it-apk
+        run: |
+          SHA=$(git rev-parse --short HEAD)
+          mkdir /tmp/out && cp app/build/outputs/apk/debug/*.apk /tmp/out/WristMirror-1.2.0-it-$SHA.apk
+          cd /tmp/out && git init -q -b wristmirror-it-apk && git add . \
+            && git -c user.name=ci -c user.email=ci@local commit -qm "APK $SHA" \
+            && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" wristmirror-it-apk
