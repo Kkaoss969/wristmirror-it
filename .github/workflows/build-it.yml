@@ -34,7 +34,8 @@ jobs:
       - name: Pubblica APK sul branch apk
         run: |
           SHA=$(git rev-parse --short HEAD)
-          mkdir /tmp/out && cp app/build/outputs/apk/debug/*.apk /tmp/out/WristMirror-1.2.0-it-$SHA.apk
+          VER=$(sed -n 's/^val appVersionName = "\(.*\)"/\1/p' app/build.gradle.kts)
+          mkdir /tmp/out && cp app/build/outputs/apk/debug/*.apk /tmp/out/WristMirror-$VER-it-$SHA.apk
           cd /tmp/out && git init -q -b apk && git add . \
             && git -c user.name=ci -c user.email=ci@local commit -qm "APK $SHA" \
             && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" apk
