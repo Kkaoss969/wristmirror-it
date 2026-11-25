@@ -30,7 +30,7 @@ sealed class UpdateResult {
 }
 
 object UpdateChecker {
-    const val REPOSITORY_URL = "https://github.com/Kkaoss969/wristmirror-it"
+    const val REPOSITORY_URL = "https://github.com/Escosis/WristMirror"
     const val RELEASES_URL = "https://api.github.com/repos/Kkaoss969/wristmirror-it/releases/latest"
     private const val TIMEOUT_MS = 15_000
 

@@ -108,7 +108,7 @@ internal object IntroductionContent {
         - WATCH 系列切换模式后，若无法连接，可先断开连接，再使用“重新协议绑定”。
     """, """
         ### Descrizione del progetto
-        - Strumento per gestire i quadranti degli smartwatch Huawei e installare quadranti HWT di terze parti, pensato per la maggior parte dei dispositivi delle serie WATCH, GT, FIT ecc. che usano il protocollo quadranti compatibile; sulle versioni HarmonyOS più recenti, dove l'installazione diretta non funziona, i quadranti di terze parti si installano col metodo della sostituzione.
+        - Strumento per gestire i quadranti degli smartwatch Huawei e installare quadranti HWT di terze parti, pensato per la maggior parte dei dispositivi delle serie WATCH, GT, FIT ecc. che usano il protocollo quadranti compatibile; sulle versioni HarmonyOS più recenti, dove l'installazione diretta non funziona, i quadranti di terze parti si installano col metodo della sostituzione. Autore: Escosis (github.com/Escosis/WristMirror, licenza Apache-2.0). Questa è una traduzione non ufficiale, distribuita da Kkaoss969 con Gateway Assistant.
         ### Consigli d'uso
         - Prima dell'uso chiudi Huawei Health e rimuovila anche dalle app in background, per evitare che occupi il canale di connessione e faccia fallire le operazioni.
         - Si consiglia di ottenere l'ID Huawei con la funzione integrata. Un ID errato può far chiedere al watch se cancellare i dati: in quel caso non confermare, annulla e controlla la configurazione.
@@ -117,7 +117,7 @@ internal object IntroductionContent {
         - Se dopo aver cambiato modalità un WATCH non si connette, disconnettiti e poi usa «Riassocia protocollo».
     """, """
         ### About the project
-        - A tool to manage Huawei watch faces and install third-party HWT watch faces, for most WATCH, GT, FIT etc. series devices using the compatible watch face protocol; on newer HarmonyOS versions where direct install fails, third-party watch faces are installed by replacement.
+        - A tool to manage Huawei watch faces and install third-party HWT watch faces, for most WATCH, GT, FIT etc. series devices using the compatible watch face protocol; on newer HarmonyOS versions where direct install fails, third-party watch faces are installed by replacement. Author: Escosis (github.com/Escosis/WristMirror, Apache-2.0 license). This is an unofficial translation, distributed by Kkaoss969 with Gateway Assistant.
         ### Usage tips
         - Before use, close Huawei Health and remove it from recent apps, so it doesn't hold the connection channel and make operations fail.
         - Get the Huawei ID with the built-in feature. A wrong ID may make the watch ask whether to erase its data: if that happens don't confirm, cancel and check the configuration.
@@ -126,7 +126,7 @@ internal object IntroductionContent {
         - If a WATCH won't connect after switching mode, disconnect first, then use «Re-bind protocol».
     """, """
         ### Sobre el proyecto
-        - Herramienta para gestionar esferas de relojes Huawei e instalar esferas HWT de terceros, para la mayoría de dispositivos de las series WATCH, GT, FIT, etc. con el protocolo de esferas compatible; en las versiones recientes de HarmonyOS donde la instalación directa falla, las esferas de terceros se instalan por sustitución.
+        - Herramienta para gestionar esferas de relojes Huawei e instalar esferas HWT de terceros, para la mayoría de dispositivos de las series WATCH, GT, FIT, etc. con el protocolo de esferas compatible; en las versiones recientes de HarmonyOS donde la instalación directa falla, las esferas de terceros se instalan por sustitución. Autor: Escosis (github.com/Escosis/WristMirror, licencia Apache-2.0). Esta es una traducción no oficial, distribuida por Kkaoss969 con Gateway Assistant.
         ### Consejos de uso
         - Antes de usarla, cierra Huawei Health y quítala de las apps recientes, para que no ocupe el canal de conexión y haga fallar las operaciones.
         - Obtén el ID de Huawei con la función integrada. Un ID incorrecto puede hacer que el reloj pregunte si borrar sus datos: en ese caso no confirmes, cancela y revisa la configuración.
@@ -135,7 +135,7 @@ internal object IntroductionContent {
         - Si tras cambiar de modo un WATCH no se conecta, desconéctate primero y luego usa «Volver a vincular protocolo».
     """, """
         ### À propos du projet
-        - Outil pour gérer les cadrans des montres Huawei et installer des cadrans HWT tiers, pour la plupart des appareils des séries WATCH, GT, FIT, etc. utilisant le protocole de cadrans compatible ; sur les versions récentes de HarmonyOS où l'installation directe échoue, les cadrans tiers s'installent par remplacement.
+        - Outil pour gérer les cadrans des montres Huawei et installer des cadrans HWT tiers, pour la plupart des appareils des séries WATCH, GT, FIT, etc. utilisant le protocole de cadrans compatible ; sur les versions récentes de HarmonyOS où l'installation directe échoue, les cadrans tiers s'installent par remplacement. Auteur : Escosis (github.com/Escosis/WristMirror, licence Apache-2.0). Ceci est une traduction non officielle, distribuée par Kkaoss969 avec Gateway Assistant.
         ### Conseils d'utilisation
         - Avant l'utilisation, fermez Huawei Health et retirez-la des apps récentes, pour qu'elle n'occupe pas le canal de connexion et ne fasse pas échouer les opérations.
         - Obtenez l'ID Huawei avec la fonction intégrée. Un ID erroné peut amener la montre à demander d'effacer ses données : dans ce cas ne confirmez pas, annulez et vérifiez la configuration.
@@ -144,7 +144,7 @@ internal object IntroductionContent {
         - Si une WATCH ne se connecte plus après un changement de mode, déconnectez-vous d'abord, puis utilisez «Réassocier le protocole».
     """, """
         ### Sobre o projeto
-        - Ferramenta para gerir mostradores de relógios Huawei e instalar mostradores HWT de terceiros, para a maioria dos dispositivos das séries WATCH, GT, FIT, etc. com o protocolo de mostradores compatível; nas versões recentes do HarmonyOS em que a instalação direta falha, os mostradores de terceiros instalam-se por substituição.
+        - Ferramenta para gerir mostradores de relógios Huawei e instalar mostradores HWT de terceiros, para a maioria dos dispositivos das séries WATCH, GT, FIT, etc. com o protocolo de mostradores compatível; nas versões recentes do HarmonyOS em que a instalação direta falha, os mostradores de terceiros instalam-se por substituição. Autor: Escosis (github.com/Escosis/WristMirror, licença Apache-2.0). Esta é uma tradução não oficial, distribuída por Kkaoss969 com o Gateway Assistant.
         ### Conselhos de utilização
         - Antes de usar, feche a Huawei Health e remova-a das apps recentes, para não ocupar o canal de ligação e fazer falhar as operações.
         - Obtenha o ID Huawei com a função integrada. Um ID errado pode fazer o relógio perguntar se quer apagar os dados: nesse caso não confirme, cancele e verifique a configuração.
@@ -153,7 +153,7 @@ internal object IntroductionContent {
         - Se depois de mudar de modo um WATCH não se ligar, desligue primeiro e depois use «Voltar a associar protocolo».
     """, """
         ### Sobre o projeto
-        - Ferramenta para gerenciar mostradores de relógios Huawei e instalar mostradores HWT de terceiros, para a maioria dos dispositivos das séries WATCH, GT, FIT etc. com o protocolo de mostradores compatível; nas versões recentes do HarmonyOS em que a instalação direta falha, os mostradores de terceiros são instalados por substituição.
+        - Ferramenta para gerenciar mostradores de relógios Huawei e instalar mostradores HWT de terceiros, para a maioria dos dispositivos das séries WATCH, GT, FIT etc. com o protocolo de mostradores compatível; nas versões recentes do HarmonyOS em que a instalação direta falha, os mostradores de terceiros são instalados por substituição. Autor: Escosis (github.com/Escosis/WristMirror, licença Apache-2.0). Esta é uma tradução não oficial, distribuída por Kkaoss969 com o Gateway Assistant.
         ### Dicas de uso
         - Antes de usar, feche o Huawei Health e remova-o dos apps recentes, para ele não ocupar o canal de conexão e fazer as operações falharem.
         - Obtenha o ID Huawei com a função integrada. Um ID errado pode fazer o relógio perguntar se quer apagar os dados: nesse caso não confirme, cancele e verifique a configuração.
@@ -162,7 +162,7 @@ internal object IntroductionContent {
         - Se depois de mudar de modo um WATCH não conectar, desconecte primeiro e depois use «Vincular protocolo de novo».
     """, """
         ### За проекта
-        - Инструмент за управление на циферблати на часовници Huawei и инсталиране на HWT циферблати от трети страни, за повечето устройства от сериите WATCH, GT, FIT и др. със съвместимия протокол за циферблати; на по-новите версии на HarmonyOS, където директното инсталиране не работи, циферблатите от трети страни се инсталират чрез замяна.
+        - Инструмент за управление на циферблати на часовници Huawei и инсталиране на HWT циферблати от трети страни, за повечето устройства от сериите WATCH, GT, FIT и др. със съвместимия протокол за циферблати; на по-новите версии на HarmonyOS, където директното инсталиране не работи, циферблатите от трети страни се инсталират чрез замяна. Автор: Escosis (github.com/Escosis/WristMirror, лиценз Apache-2.0). Това е неофициален превод, разпространяван от Kkaoss969 с Gateway Assistant.
         ### Съвети за употреба
         - Преди употреба затворете Huawei Health и я махнете от последните приложения, за да не заема канала за връзка и да не проваля операциите.
         - Вземете Huawei ID с вградената функция. Грешен ID може да накара часовника да попита дали да изтрие данните си: тогава не потвърждавайте, отменете и проверете настройките.
@@ -171,7 +171,7 @@ internal object IntroductionContent {
         - Ако след смяна на режима WATCH не се свързва, първо прекъснете връзката, после използвайте „Ново обвързване на протокола“.
     """, """
         ### Proje hakkında
-        - Huawei saat kadranlarını yönetmek ve üçüncü taraf HWT kadranları yüklemek için bir araç; uyumlu kadran protokolünü kullanan WATCH, GT, FIT vb. serilerin çoğu cihaz için. Doğrudan yüklemenin çalışmadığı yeni HarmonyOS sürümlerinde üçüncü taraf kadranlar değiştirme yoluyla yüklenir.
+        - Huawei saat kadranlarını yönetmek ve üçüncü taraf HWT kadranları yüklemek için bir araç; uyumlu kadran protokolünü kullanan WATCH, GT, FIT vb. serilerin çoğu cihaz için. Doğrudan yüklemenin çalışmadığı yeni HarmonyOS sürümlerinde üçüncü taraf kadranlar değiştirme yoluyla yüklenir. Geliştirici: Escosis (github.com/Escosis/WristMirror, Apache-2.0 lisansı). Bu, Kkaoss969 tarafından Gateway Assistant ile dağıtılan resmî olmayan bir çeviridir.
         ### Kullanım önerileri
         - Kullanmadan önce Huawei Health'i kapatın ve son uygulamalardan kaldırın; böylece bağlantı kanalını meşgul edip işlemlerin başarısız olmasına yol açmaz.
         - Huawei ID'yi yerleşik özellikle alın. Yanlış bir ID, saatin verilerini silmeyi sormasına yol açabilir: bu durumda onaylamayın, iptal edip yapılandırmayı kontrol edin.
@@ -180,7 +180,7 @@ internal object IntroductionContent {
         - Mod değiştirdikten sonra bir WATCH bağlanmıyorsa önce bağlantıyı kesin, sonra «Protokolü yeniden bağla»yı kullanın.
     """, """
         ### Über das Projekt
-        - Ein Werkzeug zum Verwalten von Huawei-Zifferblättern und zum Installieren von HWT-Zifferblättern von Drittanbietern, für die meisten Geräte der Serien WATCH, GT, FIT usw. mit dem kompatiblen Zifferblattprotokoll; auf neueren HarmonyOS-Versionen, auf denen die Direktinstallation nicht funktioniert, werden Zifferblätter von Drittanbietern durch Ersetzen installiert.
+        - Ein Werkzeug zum Verwalten von Huawei-Zifferblättern und zum Installieren von HWT-Zifferblättern von Drittanbietern, für die meisten Geräte der Serien WATCH, GT, FIT usw. mit dem kompatiblen Zifferblattprotokoll; auf neueren HarmonyOS-Versionen, auf denen die Direktinstallation nicht funktioniert, werden Zifferblätter von Drittanbietern durch Ersetzen installiert. Autor: Escosis (github.com/Escosis/WristMirror, Apache-2.0-Lizenz). Dies ist eine inoffizielle Übersetzung, verteilt von Kkaoss969 mit Gateway Assistant.
         ### Nutzungstipps
         - Schließe vor der Nutzung Huawei Health und entferne es aus den letzten Apps, damit es den Verbindungskanal nicht belegt und Vorgänge scheitern lässt.
         - Hole die Huawei-ID mit der integrierten Funktion. Eine falsche ID kann dazu führen, dass die Uhr fragt, ob ihre Daten gelöscht werden sollen: dann nicht bestätigen, sondern abbrechen und die Konfiguration prüfen.

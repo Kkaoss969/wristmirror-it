@@ -1,12 +1,16 @@
 # WristMirror – versione multilingua
 
-Traduzione non ufficiale di [WristMirror](https://github.com/Escosis/WristMirror) di Escosis (licenza Apache-2.0, vedi `LICENSE` e `THIRD_PARTY_NOTICES.md`).
+> **WristMirror è opera di [Escosis](https://github.com/Escosis)**: tutto il merito dell'app (protocollo, funzioni, interfaccia) è suo.
+> Progetto originale: https://github.com/Escosis/WristMirror (licenza Apache-2.0, vedi `LICENSE` e `THIRD_PARTY_NOTICES.md`).
+> Questo repository contiene solo una **traduzione non ufficiale**, distribuita da Kkaoss969 con Gateway Assistant; non è affiliata con l'autore.
+> Problemi della traduzione: segnalateli qui, non all'autore. Se vi piace l'app, mettete una stella al progetto originale.
 
 L'app segue la lingua del telefono: italiano, inglese, spagnolo, francese, portoghese (Portogallo e Brasile), bulgaro, turco e tedesco; sui telefoni in cinese resta il testo originale; nelle altre lingue l'inglese.
 
-Differenze rispetto all'originale:
+Differenze rispetto all'originale (modifiche nostre, come richiesto dalla licenza Apache-2.0):
 - pacchetto `it.gemini.wristmirror`, quindi si installa accanto all'originale;
-- controllo aggiornamenti dell'app su questo repository;
+- controllo aggiornamenti dell'app su questo repository (il link «Repository del progetto» in Informazioni resta quello dell'autore);
+- testi tradotti, con il nome dell'autore nella schermata Informazioni e nell'avviso iniziale;
 - APK firmato con una chiave propria (segreti `WM_KEYSTORE` e `WM_PASSWORD` del repository).
 
 ## Dove si scarica

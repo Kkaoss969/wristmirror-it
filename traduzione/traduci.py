@@ -28,17 +28,16 @@ PKG = 'io.github.escosis.hwtfaceswap'
 CARTELLE = {'zh': 'values-zh', 'it': 'values-it', 'en': 'values', 'es': 'values-es', 'fr': 'values-fr',
             'pt': 'values-pt-rPT', 'br': 'values-pt', 'bg': 'values-bg', 'tr': 'values-tr', 'de': 'values-de'}
 
-# adattamenti per la versione distribuita da Kkaoss969 (pacchetto proprio, aggiornamenti dal nostro repository)
+# adattamenti per la versione distribuita da Kkaoss969 (pacchetto proprio, aggiornamenti dal nostro repository).
+# Il link «Repository del progetto» in Informazioni resta quello dell'autore (Escosis): l'app è sua.
 ADATTA = [
     ('app/build.gradle.kts', 'applicationId = "io.github.escosis.hwtfaceswap"', 'applicationId = "it.gemini.wristmirror"'),
     ('app/build.gradle.kts', 'versionCode = appVersionCode',
      'versionCode = appVersionCode * 100 + (providers.environmentVariable("WM_REVISIONE").orNull?.toIntOrNull() ?: 0)'),
-    ('app/src/main/java/io/github/escosis/hwtfaceswap/UpdateChecker.kt', '"https://github.com/Escosis/WristMirror"', '"https://github.com/Kkaoss969/wristmirror-it"'),
     ('app/src/main/java/io/github/escosis/hwtfaceswap/UpdateChecker.kt', '"https://api.github.com/repos/Escosis/WristMirror/releases/latest"',
      '"https://api.github.com/repos/Kkaoss969/wristmirror-it/releases/latest"'),
     ('app/src/main/java/io/github/escosis/hwtfaceswap/UpdateReleaseParser.kt', '"/Escosis/WristMirror/releases/tag/$tagName"', '"/Kkaoss969/wristmirror-it/releases/tag/$tagName"'),
     ('app/src/main/java/io/github/escosis/hwtfaceswap/UpdateReleaseParser.kt', '"/Escosis/WristMirror/releases/download/$tagName/"', '"/Kkaoss969/wristmirror-it/releases/download/$tagName/"'),
-    ('app/src/main/java/io/github/escosis/hwtfaceswap/ui/AboutScreen.kt', 'summary = "Escosis/WristMirror"', 'summary = "Kkaoss969/wristmirror-it · Escosis/WristMirror"'),
 ]
 
 TR_KT = '''package io.github.escosis.hwtfaceswap
