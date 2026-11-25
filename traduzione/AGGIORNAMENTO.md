@@ -41,7 +41,9 @@ Originale: https://github.com/Escosis/WristMirror — versione tradotta attuale 
 
 4. **Sostituisci il sorgente nel repo** (tieni `.git`, `.github`, `traduzione/`, `README-IT.md`)
    ```sh
-   rsync -a --delete --exclude .git --exclude .github --exclude traduzione --exclude README-IT.md /tmp/up/ ./
+   find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .github ! -name traduzione ! -name README-IT.md -exec rm -rf {} +
+   rm -rf /tmp/up/.github /tmp/up/traduzione /tmp/up/README-IT.md
+   cp -a /tmp/up/. ./
    echo X.Y.Z > traduzione/VERSIONE_ORIGINALE
    rm -f traduzione/mancanti.json
    ```
