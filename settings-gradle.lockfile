@@ -1,0 +1,4 @@
+# Gradle 自动生成的依赖锁定文件。
+# 手动修改可能导致构建失败，应由 Gradle 更新依赖锁。
+# 此文件应纳入版本控制。
+empty=incomingCatalogForLibs0

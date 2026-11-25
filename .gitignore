@@ -1,0 +1,39 @@
+# Android Studio 与本机构建配置
+.gradle/
+.idea/
+.kotlin/
+build/
+local.properties
+*.iml
+.cxx/
+.externalNativeBuild/
+app/release/
+build/gradle-daemon-jvm.properties
+app/src/test/
+
+# 构建产物
+*.apk
+*.aab
+*.apks
+*.dex
+*.class
+
+# 私人日志与环境变量
+*.log
+.env
+.env.*
+
+# 签名与安全文件
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+keystore.properties
+signing.properties
+
+# 系统生成文件
+.DS_Store
+Thumbs.db
+
+.gitattributes

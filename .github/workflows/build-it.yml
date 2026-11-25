@@ -1,0 +1,26 @@
+name: Build APK (italiano)
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: android-actions/setup-android@v3
+      - name: Installa SDK 37
+        run: yes | sdkmanager "platforms;android-37" "build-tools;37.0.0" || true
+      - name: Compila
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WristMirror-it-${{ github.sha }}
+          path: app/build/outputs/apk/debug/*.apk
