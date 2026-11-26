@@ -27,7 +27,7 @@ object HuaweiIdWebPolicy {
     fun allowsNavigation(url: String?): Boolean = host(url)?.let { within(it, "vmall.com") || within(it, "huawei.com") } == true
     fun allowsEmbeddedNavigation(url: String?): Boolean = host(url) != null
     fun isMallPage(url: String?): Boolean = host(url)?.let { within(it, "vmall.com") } == true
-    fun displayHost(url: String?): String = host(url)?.takeIf { allowsNavigation(url) } ?: Tr.tr("华为商城", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store")
+    fun displayHost(url: String?): String = host(url)?.takeIf { allowsNavigation(url) } ?: Tr.tr("华为商城", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store", "Huawei Store")
 
     /** Read only the exact uid cookie from fixed mall origins. Conflicting, oversized or ambiguous values fail closed. */
     fun idFromCookies(headers: List<String?>): String? {

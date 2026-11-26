@@ -133,7 +133,7 @@ private fun IntroductionWindowOwner(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text(
-                Tr.tr("重要提示", "Avviso importante", "Important notice", "Aviso importante", "Avis important", "Aviso importante", "Aviso importante", "Важно известие", "Önemli bildirim", "Wichtiger Hinweis"),
+                Tr.tr("重要提示", "Avviso importante", "Important notice", "Aviso importante", "Avis important", "Aviso importante", "Aviso importante", "Важно известие", "Önemli bildirim", "Wichtiger Hinweis", "Важное уведомление"),
                 modifier = Modifier.semantics { heading() },
                 style = MiuixTheme.textStyles.title3,
                 fontWeight = FontWeight.Medium,
@@ -152,7 +152,7 @@ private fun IntroductionWindowOwner(
                 }
             }
             // 退出时保留按钮视觉状态；实际重复/旧点击由同步 owner/latest/Runtime 守卫拒绝。
-            ActionButton(Tr.tr("我已了解", "Ho capito", "Got it", "Entendido", "J'ai compris", "Compreendi", "Entendi", "Разбрах", "Anladım", "Verstanden"), ::acknowledge, Modifier.fillMaxWidth(), primary = true)
+            ActionButton(Tr.tr("我已了解", "Ho capito", "Got it", "Entendido", "J'ai compris", "Compreendi", "Entendi", "Разбрах", "Anladım", "Verstanden", "Понятно"), ::acknowledge, Modifier.fillMaxWidth(), primary = true)
         }
     }
     return true
@@ -181,7 +181,7 @@ private fun IntroductionBullet(item: IntroductionListItem, onCopyMall: () -> Uni
 
 /** 公开网址无需敏感标记；只有实际写入未抛异常才返回复制成功。 */
 internal fun tryCopyIntroductionMallLink(writePlainText: (String, String) -> Unit): Boolean = try {
-    writePlainText(Tr.tr("华为商城链接", "Link Huawei Store", "Huawei Store link", "Enlace de Huawei Store", "Lien Huawei Store", "Ligação da Huawei Store", "Link da Huawei Store", "Връзка към Huawei Store", "Huawei Store bağlantısı", "Huawei-Store-Link"), IntroductionContent.VMALL_URL)
+    writePlainText(Tr.tr("华为商城链接", "Link Huawei Store", "Huawei Store link", "Enlace de Huawei Store", "Lien Huawei Store", "Ligação da Huawei Store", "Link da Huawei Store", "Връзка към Huawei Store", "Huawei Store bağlantısı", "Huawei-Store-Link", "Ссылка на Huawei Store"), IntroductionContent.VMALL_URL)
     true
 } catch (_: Exception) {
     false
@@ -195,10 +195,10 @@ private fun copyIntroductionMall(context: Context) {
             clipboard.setPrimaryClip(ClipData.newPlainText(label, url))
         }
         Toast.makeText(context,
-            if (copied) Tr.tr("链接已复制，请在电脑浏览器中打开", "Link copiato, aprilo nel browser di un computer", "Link copied, open it in a computer browser", "Enlace copiado, ábrelo en el navegador de un ordenador", "Lien copié, ouvrez-le dans le navigateur d'un ordinateur", "Ligação copiada, abra-a no navegador de um computador", "Link copiado, abra no navegador de um computador", "Връзката е копирана, отворете я в браузър на компютър", "Bağlantı kopyalandı, bir bilgisayar tarayıcısında açın", "Link kopiert, öffne ihn im Browser eines Computers") else Tr.tr("复制链接失败，请重试", "Copia del link non riuscita, riprova", "Copying the link failed, try again", "Error al copiar el enlace, inténtalo de nuevo", "Échec de la copie du lien, réessayez", "Falha ao copiar a ligação, tente de novo", "Falha ao copiar o link, tente de novo", "Копирането на връзката не бе успешно, опитайте пак", "Bağlantı kopyalanamadı, tekrar deneyin", "Link konnte nicht kopiert werden, versuche es erneut"),
+            if (copied) Tr.tr("链接已复制，请在电脑浏览器中打开", "Link copiato, aprilo nel browser di un computer", "Link copied, open it in a computer browser", "Enlace copiado, ábrelo en el navegador de un ordenador", "Lien copié, ouvrez-le dans le navigateur d'un ordinateur", "Ligação copiada, abra-a no navegador de um computador", "Link copiado, abra no navegador de um computador", "Връзката е копирана, отворете я в браузър на компютър", "Bağlantı kopyalandı, bir bilgisayar tarayıcısında açın", "Link kopiert, öffne ihn im Browser eines Computers", "Ссылка скопирована, откройте её в браузере на компьютере") else Tr.tr("复制链接失败，请重试", "Copia del link non riuscita, riprova", "Copying the link failed, try again", "Error al copiar el enlace, inténtalo de nuevo", "Échec de la copie du lien, réessayez", "Falha ao copiar a ligação, tente de novo", "Falha ao copiar o link, tente de novo", "Копирането на връзката не бе успешно, опитайте пак", "Bağlantı kopyalanamadı, tekrar deneyin", "Link konnte nicht kopiert werden, versuche es erneut", "Не удалось скопировать ссылку, повторите"),
             Toast.LENGTH_SHORT,
         ).show()
     } catch (_: Exception) {
-        Toast.makeText(context, Tr.tr("复制链接失败，请重试", "Copia del link non riuscita, riprova", "Copying the link failed, try again", "Error al copiar el enlace, inténtalo de nuevo", "Échec de la copie du lien, réessayez", "Falha ao copiar a ligação, tente de novo", "Falha ao copiar o link, tente de novo", "Копирането на връзката не бе успешно, опитайте пак", "Bağlantı kopyalanamadı, tekrar deneyin", "Link konnte nicht kopiert werden, versuche es erneut"), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, Tr.tr("复制链接失败，请重试", "Copia del link non riuscita, riprova", "Copying the link failed, try again", "Error al copiar el enlace, inténtalo de nuevo", "Échec de la copie du lien, réessayez", "Falha ao copiar a ligação, tente de novo", "Falha ao copiar o link, tente de novo", "Копирането на връзката не бе успешно, опитайте пак", "Bağlantı kopyalanamadı, tekrar deneyin", "Link konnte nicht kopiert werden, versuche es erneut", "Не удалось скопировать ссылку, повторите"), Toast.LENGTH_SHORT).show()
     }
 }

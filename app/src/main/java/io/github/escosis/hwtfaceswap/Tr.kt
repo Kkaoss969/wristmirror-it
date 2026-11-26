@@ -3,7 +3,7 @@ package io.github.escosis.hwtfaceswap
 import java.util.Locale
 
 /** Testi tradotti (generato da traduzione/traduci.py del repository wristmirror-it): sceglie la lingua del telefono.
- * Ordine degli argomenti: zh, it, en, es, fr, pt, br, bg, tr, de. Lingue non previste: inglese. */
+ * Ordine degli argomenti: zh, it, en, es, fr, pt, br, bg, tr, de, ru. Lingue non previste: inglese. */
 object Tr {
     @JvmStatic
     fun indice(): Int {
@@ -17,6 +17,7 @@ object Tr {
             "bg" -> 7
             "tr" -> 8
             "de" -> 9
+            "ru" -> 10
             "pt" -> if (l.country.equals("PT", ignoreCase = true)) 5 else 6
             else -> 2
         }

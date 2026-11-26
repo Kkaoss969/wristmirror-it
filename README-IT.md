@@ -5,7 +5,7 @@
 > Questo repository contiene solo una **traduzione non ufficiale**, distribuita da Kkaoss969 con Gateway Assistant; non è affiliata con l'autore.
 > Problemi della traduzione: segnalateli qui, non all'autore. Se vi piace l'app, mettete una stella al progetto originale.
 
-L'app segue la lingua del telefono: italiano, inglese, spagnolo, francese, portoghese (Portogallo e Brasile), bulgaro, turco e tedesco; sui telefoni in cinese resta il testo originale; nelle altre lingue l'inglese.
+L'app segue la lingua del telefono: italiano, inglese, spagnolo, francese, portoghese (Portogallo e Brasile), bulgaro, turco, tedesco e russo; sui telefoni in cinese resta il testo originale; nelle altre lingue l'inglese.
 
 Differenze rispetto all'originale (modifiche nostre, come richiesto dalla licenza Apache-2.0):
 - pacchetto `it.gemini.wristmirror`, quindi si installa accanto all'originale;
@@ -30,7 +30,7 @@ Gli stessi passi sono nell'avviso che l'app mostra al primo avvio, in tutte le l
 
 ## Come funziona la traduzione
 
-- `traduzione/lingue.json`: dizionario (cinese → 9 lingue).
+- `traduzione/lingue.json`: dizionario (cinese → 10 lingue).
 - `traduzione/traduci.py`: applica il dizionario al sorgente originale (`Tr.tr(...)` nel codice, `values-xx` per le risorse) e gli adattamenti.
 - `traduzione/REVISIONE`: numero che si alza quando si ripubblica la stessa versione con traduzioni corrette.
 

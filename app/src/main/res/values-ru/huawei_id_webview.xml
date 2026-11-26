@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="huawei_id_web_title">Получить Huawei ID</string>
+    <string name="huawei_id_web_close">Закрыть</string>
+    <string name="huawei_id_web_instruction">Войдите сами: Huawei ID будет получен автоматически, затем страница закроется, а данные сайта будут удалены.</string>
+    <string name="huawei_id_web_no_download">Эта страница входа не скачивает файлы. Войдите и дождитесь, пока Huawei ID будет подставлен.</string>
+    <string name="huawei_id_web_navigation_blocked">Заблокирован переход на неофициальную страницу Huawei или во внешнее приложение. Закройте и повторите или введите Huawei ID вручную.</string>
+    <string name="huawei_id_web_tls_error">Проверка сертификата сайта не пройдена, подключение заблокировано. Повторите позже.</string>
+    <string name="huawei_id_web_load_error">Сейчас не удаётся загрузить страницу входа. Закройте и повторите или введите Huawei ID вручную.</string>
+    <string name="huawei_id_web_clearing">Закрытие страницы входа и удаление данных сайта этого сеанса…</string>
+</resources>

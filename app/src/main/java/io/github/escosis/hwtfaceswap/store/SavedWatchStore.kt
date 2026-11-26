@@ -35,7 +35,7 @@ class SavedWatchStore(context: Context) {
                 val parts = line.split('\t')
                 if (parts.size != 4) continue
                 val address = canonicalAddress(parts[0]) ?: continue
-                val transport = when (parts[1]) { "BLE" -> Tr.tr("低功耗蓝牙", "Bluetooth Low Energy", "Bluetooth Low Energy", "Bluetooth de bajo consumo", "Bluetooth basse consommation", "Bluetooth de baixo consumo", "Bluetooth de baixa energia", "Bluetooth с ниска консумация", "Bluetooth Düşük Enerji", "Bluetooth Low Energy"); "RFCOMM" -> Tr.tr("经典蓝牙", "Bluetooth classico", "Classic Bluetooth", "Bluetooth clásico", "Bluetooth classique", "Bluetooth clássico", "Bluetooth clássico", "Класически Bluetooth", "Klasik Bluetooth", "Klassisches Bluetooth"); else -> continue }
+                val transport = when (parts[1]) { "BLE" -> Tr.tr("低功耗蓝牙", "Bluetooth Low Energy", "Bluetooth Low Energy", "Bluetooth de bajo consumo", "Bluetooth basse consommation", "Bluetooth de baixo consumo", "Bluetooth de baixa energia", "Bluetooth с ниска консумация", "Bluetooth Düşük Enerji", "Bluetooth Low Energy", "Bluetooth Low Energy"); "RFCOMM" -> Tr.tr("经典蓝牙", "Bluetooth classico", "Classic Bluetooth", "Bluetooth clásico", "Bluetooth classique", "Bluetooth clássico", "Bluetooth clássico", "Класически Bluetooth", "Klasik Bluetooth", "Klassisches Bluetooth", "Классический Bluetooth"); else -> continue }
                 val connectedAt = parts[2].toLongOrNull()?.takeIf { it > 0L } ?: continue
                 val name = runCatching { String(Base64.getDecoder().decode(parts[3]), Charsets.UTF_8) }.getOrNull()?.takeIf { it.isNotBlank() && it.length <= MAX_NAME_CHARS } ?: continue
                 if (seen.add(address)) add(SavedWatch(address, name, transport, connectedAt, cachedModel(address), cachedSerial(address)))
@@ -55,8 +55,8 @@ class SavedWatchStore(context: Context) {
         val address = canonicalAddress(device.address) ?: throw Core.Fault("DEVICE_ADDRESS_INVALID")
         // 与所有实例及凭据存储共用锁；旧 READY 回调不能越过待处理标记重写历史。
         removals.requireUsable(address)
-        val transport = when (device.transport) { Tr.tr("低功耗蓝牙", "Bluetooth Low Energy", "Bluetooth Low Energy", "Bluetooth de bajo consumo", "Bluetooth basse consommation", "Bluetooth de baixo consumo", "Bluetooth de baixa energia", "Bluetooth с ниска консумация", "Bluetooth Düşük Enerji", "Bluetooth Low Energy") -> device.transport; Tr.tr("经典蓝牙", "Bluetooth classico", "Classic Bluetooth", "Bluetooth clásico", "Bluetooth classique", "Bluetooth clássico", "Bluetooth clássico", "Класически Bluetooth", "Klasik Bluetooth", "Klassisches Bluetooth") -> device.transport; else -> throw Core.Fault("DEVICE_TRANSPORT_INVALID") }
-        val name = device.name.take(MAX_NAME_CHARS).ifBlank { Tr.tr("华为手表", "Watch Huawei", "Huawei watch", "Reloj Huawei", "Montre Huawei", "Relógio Huawei", "Relógio Huawei", "Часовник Huawei", "Huawei saat", "Huawei-Uhr") }
+        val transport = when (device.transport) { Tr.tr("低功耗蓝牙", "Bluetooth Low Energy", "Bluetooth Low Energy", "Bluetooth de bajo consumo", "Bluetooth basse consommation", "Bluetooth de baixo consumo", "Bluetooth de baixa energia", "Bluetooth с ниска консумация", "Bluetooth Düşük Enerji", "Bluetooth Low Energy", "Bluetooth Low Energy") -> device.transport; Tr.tr("经典蓝牙", "Bluetooth classico", "Classic Bluetooth", "Bluetooth clásico", "Bluetooth classique", "Bluetooth clássico", "Bluetooth clássico", "Класически Bluetooth", "Klasik Bluetooth", "Klassisches Bluetooth", "Классический Bluetooth") -> device.transport; else -> throw Core.Fault("DEVICE_TRANSPORT_INVALID") }
+        val name = device.name.take(MAX_NAME_CHARS).ifBlank { Tr.tr("华为手表", "Watch Huawei", "Huawei watch", "Reloj Huawei", "Montre Huawei", "Relógio Huawei", "Relógio Huawei", "Часовник Huawei", "Huawei saat", "Huawei-Uhr", "Часы Huawei") }
         val previous = devices()
         val saved = SavedWatch(address, name, transport, connectedAt.coerceAtLeast(1L), previous.firstOrNull { it.address == address }?.model,
             previous.firstOrNull { it.address == address }?.serialNumber)
@@ -122,7 +122,7 @@ class SavedWatchStore(context: Context) {
             append(FORMAT)
             for (watch in devices) {
                 append('\n').append(watch.address).append('\t')
-                append(if (watch.transport == Tr.tr("低功耗蓝牙", "Bluetooth Low Energy", "Bluetooth Low Energy", "Bluetooth de bajo consumo", "Bluetooth basse consommation", "Bluetooth de baixo consumo", "Bluetooth de baixa energia", "Bluetooth с ниска консумация", "Bluetooth Düşük Enerji", "Bluetooth Low Energy")) "BLE" else "RFCOMM").append('\t')
+                append(if (watch.transport == Tr.tr("低功耗蓝牙", "Bluetooth Low Energy", "Bluetooth Low Energy", "Bluetooth de bajo consumo", "Bluetooth basse consommation", "Bluetooth de baixo consumo", "Bluetooth de baixa energia", "Bluetooth с ниска консумация", "Bluetooth Düşük Enerji", "Bluetooth Low Energy", "Bluetooth Low Energy")) "BLE" else "RFCOMM").append('\t')
                 append(watch.lastConnectedAt).append('\t')
                 append(Base64.getEncoder().encodeToString(watch.name.toByteArray(Charsets.UTF_8)))
             }

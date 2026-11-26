@@ -52,7 +52,7 @@ public final class HwtSource {
     public static HwtSource inspect(File outer,File dir) throws IOException {
         if(outer.length()<=0 || outer.length()>Core.MAX_SOURCE) throw new Core.Fault("SOURCE_SIZE_LIMIT");
         File resource=new File(dir,"resource.data"), bin=null, preview=null;
-        String[] xml={"unknown","unknown",Tr.tr("本地 HWT", "HWT locale", "Local HWT", "HWT local", "HWT local", "HWT local", "HWT local", "Локален HWT", "Yerel HWT", "Lokale HWT")};
+        String[] xml={"unknown","unknown",Tr.tr("本地 HWT", "HWT locale", "Local HWT", "HWT local", "HWT local", "HWT local", "HWT local", "Локален HWT", "Yerel HWT", "Lokale HWT", "Локальный HWT")};
         try(ZipFile zip=new ZipFile(outer)) {
             Map<String,ZipEntry> entries=index(zip);
             boolean root=entries.containsKey("com.huawei.watchface"), snapshot=entries.containsKey("watchFace/com.huawei.watchface");
@@ -218,7 +218,7 @@ public final class HwtSource {
             b.setErrorHandler(new DefaultHandler(){public void warning(SAXParseException e)throws SAXException{throw e;}public void error(SAXParseException e)throws SAXException{throw e;}public void fatalError(SAXParseException e)throws SAXException{throw e;}});
             Element root=b.parse(new ByteArrayInputStream(bytes)).getDocumentElement();
             if(root==null || !"HwTheme".equals(root.getTagName()))throw new Core.Fault("DESCRIPTION_ROOT_UNSUPPORTED");
-            return new String[]{field(root,"version","unknown"),field(root,"screen","unknown"),field(root,"title",Tr.tr("本地 HWT", "HWT locale", "Local HWT", "HWT local", "HWT local", "HWT local", "HWT local", "Локален HWT", "Yerel HWT", "Lokale HWT"))};
+            return new String[]{field(root,"version","unknown"),field(root,"screen","unknown"),field(root,"title",Tr.tr("本地 HWT", "HWT locale", "Local HWT", "HWT local", "HWT local", "HWT local", "HWT local", "Локален HWT", "Yerel HWT", "Lokale HWT", "Локальный HWT"))};
         } catch(Core.Fault e){throw e;}catch(Exception e){throw new Core.Fault("DESCRIPTION_XML_INVALID");}
     }
     private static String field(Element root,String name,String fallback) throws IOException {

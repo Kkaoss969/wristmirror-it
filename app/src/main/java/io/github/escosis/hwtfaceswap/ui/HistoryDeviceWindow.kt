@@ -199,7 +199,7 @@ internal fun HistoryDeviceWindow(
         Box(Modifier.fillMaxSize()
             .drawBehind { drawRect(dimColor.copy(alpha = dimColor.alpha * dimProgress.value)) }
             .pointerInput(Unit) { detectTapGestures { requestDismiss() } }
-            .semantics { onClick(label = Tr.tr("关闭", "Chiudi", "Close", "Cerrar", "Fermer", "Fechar", "Fechar", "Затваряне", "Kapat", "Schließen")) { requestDismiss(); true } },
+            .semantics { onClick(label = Tr.tr("关闭", "Chiudi", "Close", "Cerrar", "Fermer", "Fechar", "Fechar", "Затваряне", "Kapat", "Schließen", "Закрыть")) { requestDismiss(); true } },
         ) {
             Box(
                 Modifier.imePadding().navigationBarsPadding().captionBarPadding().fillMaxSize()
@@ -239,7 +239,7 @@ internal fun HistoryDeviceWindow(
                             onDispose { disposedPanelEpoch.value = presentedPanel.epoch }
                         }
                         Text(
-                            text = if (presentedPanel.window == DeviceWindow.HISTORY) Tr.tr("设备操作", "Azioni dispositivo", "Device actions", "Acciones del dispositivo", "Actions de l'appareil", "Ações do dispositivo", "Ações do dispositivo", "Действия с устройството", "Cihaz işlemleri", "Geräteaktionen") else Tr.tr("配置华为 ID", "Configura ID Huawei", "Configure Huawei ID", "Configurar ID de Huawei", "Configurer l'ID Huawei", "Configurar ID Huawei", "Configurar ID Huawei", "Настройка на Huawei ID", "Huawei ID'yi yapılandır", "Huawei-ID einrichten"),
+                            text = if (presentedPanel.window == DeviceWindow.HISTORY) Tr.tr("设备操作", "Azioni dispositivo", "Device actions", "Acciones del dispositivo", "Actions de l'appareil", "Ações do dispositivo", "Ações do dispositivo", "Действия с устройството", "Cihaz işlemleri", "Geräteaktionen", "Действия устройства") else Tr.tr("配置华为 ID", "Configura ID Huawei", "Configure Huawei ID", "Configurar ID de Huawei", "Configurer l'ID Huawei", "Configurar ID Huawei", "Configurar ID Huawei", "Настройка на Huawei ID", "Huawei ID'yi yapılandır", "Huawei-ID einrichten", "Настроить Huawei ID"),
                             modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
                             fontSize = MiuixTheme.textStyles.title4.fontSize,
                             fontWeight = FontWeight.Medium,

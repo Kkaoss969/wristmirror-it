@@ -91,7 +91,7 @@ internal fun HwtPreview(source: SourceInfo) {
         val path = source.previewPath
         val hash = source.previewSha256
         if (path == null || hash == null) {
-            MutedText(Tr.tr("HWT 未提供可用预览图", "L'HWT non contiene un'anteprima utilizzabile", "The HWT has no usable preview", "El HWT no tiene una vista previa utilizable", "Le HWT n'a pas d'aperçu utilisable", "O HWT não tem uma pré-visualização utilizável", "O HWT não tem uma prévia utilizável", "HWT няма използваем визуализационен образ", "HWT'de kullanılabilir önizleme yok", "Die HWT hat keine nutzbare Vorschau"))
+            MutedText(Tr.tr("HWT 未提供可用预览图", "L'HWT non contiene un'anteprima utilizzabile", "The HWT has no usable preview", "El HWT no tiene una vista previa utilizable", "Le HWT n'a pas d'aperçu utilisable", "O HWT não tem uma pré-visualização utilizável", "O HWT não tem uma prévia utilizável", "HWT няма използваем визуализационен образ", "HWT'de kullanılabilir önizleme yok", "Die HWT hat keine nutzbare Vorschau", "В HWT нет пригодного предпросмотра"))
         } else {
             val files = LocalContext.current.applicationContext.filesDir
             val state by produceState<PreviewState>(PreviewState.Loading, files, path, hash) {
@@ -107,11 +107,11 @@ internal fun HwtPreview(source: SourceInfo) {
                 contentAlignment = Alignment.Center,
             ) {
                 when (val current = state) {
-                    PreviewState.Loading -> MutedText(Tr.tr("正在读取预览", "Lettura anteprima…", "Reading preview…", "Leyendo vista previa…", "Lecture de l'aperçu…", "A ler a pré-visualização…", "Lendo a prévia…", "Четене на визуализацията…", "Önizleme okunuyor…", "Vorschau wird gelesen…"))
-                    PreviewState.Unavailable -> MutedText(Tr.tr("预览不可用", "Anteprima non disponibile", "Preview unavailable", "Vista previa no disponible", "Aperçu indisponible", "Pré-visualização indisponível", "Prévia indisponível", "Няма визуализация", "Önizleme yok", "Vorschau nicht verfügbar"))
+                    PreviewState.Loading -> MutedText(Tr.tr("正在读取预览", "Lettura anteprima…", "Reading preview…", "Leyendo vista previa…", "Lecture de l'aperçu…", "A ler a pré-visualização…", "Lendo a prévia…", "Четене на визуализацията…", "Önizleme okunuyor…", "Vorschau wird gelesen…", "Чтение предпросмотра…"))
+                    PreviewState.Unavailable -> MutedText(Tr.tr("预览不可用", "Anteprima non disponibile", "Preview unavailable", "Vista previa no disponible", "Aperçu indisponible", "Pré-visualização indisponível", "Prévia indisponível", "Няма визуализация", "Önizleme yok", "Vorschau nicht verfügbar", "Предпросмотр недоступен"))
                     is PreviewState.Ready -> Image(
                         bitmap = current.image,
-                        contentDescription = Tr.tr("所选 HWT 预览", "Anteprima dell'HWT selezionato", "Preview of the selected HWT", "Vista previa del HWT seleccionado", "Aperçu du HWT sélectionné", "Pré-visualização do HWT selecionado", "Prévia do HWT selecionado", "Визуализация на избрания HWT", "Seçili HWT'nin önizlemesi", "Vorschau der ausgewählten HWT"),
+                        contentDescription = Tr.tr("所选 HWT 预览", "Anteprima dell'HWT selezionato", "Preview of the selected HWT", "Vista previa del HWT seleccionado", "Aperçu du HWT sélectionné", "Pré-visualização do HWT selecionado", "Prévia do HWT selecionado", "Визуализация на избрания HWT", "Seçili HWT'nin önizlemesi", "Vorschau der ausgewählten HWT", "Предпросмотр выбранного HWT"),
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Fit,
                     )

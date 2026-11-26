@@ -87,8 +87,8 @@ public final class DeviceTelemetry {
             throw new Core.Fault("PRODUCT_SERIAL_SIZE");
         }
         String serial = text.trim();
-        return serial.isEmpty() || serial.equalsIgnoreCase("unknown") || serial.equals(Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt")) ||
-                serial.equals(Tr.tr("未知序列号", "Numero di serie sconosciuto", "Unknown serial number", "Número de serie desconocido", "Numéro de série inconnu", "Número de série desconhecido", "Número de série desconhecido", "Неизвестен сериен номер", "Bilinmeyen seri numarası", "Unbekannte Seriennummer")) || serial.equalsIgnoreCase("null") || serial.equalsIgnoreCase("n/a")
+        return serial.isEmpty() || serial.equalsIgnoreCase("unknown") || serial.equals(Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt", "Неизвестно")) ||
+                serial.equals(Tr.tr("未知序列号", "Numero di serie sconosciuto", "Unknown serial number", "Número de serie desconocido", "Numéro de série inconnu", "Número de série desconhecido", "Número de série desconhecido", "Неизвестен сериен номер", "Bilinmeyen seri numarası", "Unbekannte Seriennummer", "Неизвестный серийный номер")) || serial.equalsIgnoreCase("null") || serial.equalsIgnoreCase("n/a")
                 ? null : serial;
     }
 

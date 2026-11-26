@@ -71,7 +71,7 @@ internal fun HistoryOperationDialog(
     inHistoryWindow: Boolean = false,
 ) {
     val currentPresentation = HistoryOperationPresentation(
-        name = device.name.ifBlank { Tr.tr("未命名手表", "Watch senza nome", "Unnamed watch", "Reloj sin nombre", "Montre sans nom", "Relógio sem nome", "Relógio sem nome", "Часовник без име", "Adsız saat", "Unbenannte Uhr") }.uiText(),
+        name = device.name.ifBlank { Tr.tr("未命名手表", "Watch senza nome", "Unnamed watch", "Reloj sin nombre", "Montre sans nom", "Relógio sem nome", "Relógio sem nome", "Часовник без име", "Adsız saat", "Unbenannte Uhr", "Часы без имени") }.uiText(),
         address = device.address,
         connected = state.connected,
         targetConnected = device.address.equals(state.deviceAddress, true),
@@ -93,14 +93,14 @@ internal fun HistoryOperationDialog(
         ) {
             HuaweiIdDeviceCard(presentation.name, presentation.address)
             ActionButton(
-                text = Tr.tr("连接手表", "Connessione al watch", "Connecting to the watch", "Conectando con el reloj", "Connexion à la montre", "A ligar ao relógio", "Conectando ao relógio", "Свързване с часовника", "Saate bağlanılıyor", "Verbindung mit der Uhr"),
+                text = Tr.tr("连接手表", "Connessione al watch", "Connecting to the watch", "Conectando con el reloj", "Connexion à la montre", "A ligar ao relógio", "Conectando ao relógio", "Свързване с часовника", "Saate bağlanılıyor", "Verbindung mit der Uhr", "Подключение к часам"),
                 onClick = {
                     if (isCurrent() && canConnect) {
                         when (onConnect()) {
                             HistoryConnectResult.STARTED -> Unit
                             HistoryConnectResult.CONFIGURE_ID -> onConfigureHuaweiId()
                             HistoryConnectResult.UNAVAILABLE -> if (isCurrent()) {
-                                feedback = Tr.tr("当前无法连接这台设备，请核对配置或稍后重试。", "Al momento non è possibile connettere questo dispositivo; controlla la configurazione o riprova più tardi.", "This device can't be connected right now; check the configuration or try again later.", "Ahora no se puede conectar este dispositivo; revisa la configuración o inténtalo más tarde.", "Impossible de connecter cet appareil pour le moment ; vérifiez la configuration ou réessayez plus tard.", "De momento não é possível ligar este dispositivo; verifique a configuração ou tente mais tarde.", "No momento não é possível conectar este dispositivo; verifique a configuração ou tente mais tarde.", "В момента това устройство не може да се свърже; проверете настройките или опитайте по-късно.", "Bu cihaz şu anda bağlanamıyor; yapılandırmayı kontrol edin veya daha sonra deneyin.", "Dieses Gerät kann gerade nicht verbunden werden; prüfe die Konfiguration oder versuche es später.")
+                                feedback = Tr.tr("当前无法连接这台设备，请核对配置或稍后重试。", "Al momento non è possibile connettere questo dispositivo; controlla la configurazione o riprova più tardi.", "This device can't be connected right now; check the configuration or try again later.", "Ahora no se puede conectar este dispositivo; revisa la configuración o inténtalo más tarde.", "Impossible de connecter cet appareil pour le moment ; vérifiez la configuration ou réessayez plus tard.", "De momento não é possível ligar este dispositivo; verifique a configuração ou tente mais tarde.", "No momento não é possível conectar este dispositivo; verifique a configuração ou tente mais tarde.", "В момента това устройство не може да се свърже; проверете настройките или опитайте по-късно.", "Bu cihaz şu anda bağlanamıyor; yapılandırmayı kontrol edin veya daha sonra deneyin.", "Dieses Gerät kann gerade nicht verbunden werden; prüfe die Konfiguration oder versuche es später.", "Сейчас нельзя подключить это устройство; проверьте настройки или повторите позже.")
                             }
                         }
                     }
@@ -111,31 +111,31 @@ internal fun HistoryOperationDialog(
             )
             if (presentation.connected) {
                 MutedText(
-                    if (presentation.targetConnected) Tr.tr("这台设备当前已连接。", "Questo dispositivo è già connesso.", "This device is already connected.", "Este dispositivo ya está conectado.", "Cet appareil est déjà connecté.", "Este dispositivo já está ligado.", "Este dispositivo já está conectado.", "Това устройство вече е свързано.", "Bu cihaz zaten bağlı.", "Dieses Gerät ist bereits verbunden.")
-                    else Tr.tr("请先断开当前连接，再连接这台设备。", "Disconnetti prima la connessione attuale, poi connetti questo dispositivo.", "Disconnect the current connection first, then connect this device.", "Desconecta primero la conexión actual y luego conecta este dispositivo.", "Déconnectez d'abord la connexion actuelle, puis connectez cet appareil.", "Desligue primeiro a ligação atual e depois ligue este dispositivo.", "Desconecte primeiro a conexão atual e depois conecte este dispositivo.", "Първо прекъснете текущата връзка, после свържете това устройство.", "Önce geçerli bağlantıyı kesin, sonra bu cihazı bağlayın.", "Trenne zuerst die aktuelle Verbindung und verbinde dann dieses Gerät."),
+                    if (presentation.targetConnected) Tr.tr("这台设备当前已连接。", "Questo dispositivo è già connesso.", "This device is already connected.", "Este dispositivo ya está conectado.", "Cet appareil est déjà connecté.", "Este dispositivo já está ligado.", "Este dispositivo já está conectado.", "Това устройство вече е свързано.", "Bu cihaz zaten bağlı.", "Dieses Gerät ist bereits verbunden.", "Это устройство уже подключено.")
+                    else Tr.tr("请先断开当前连接，再连接这台设备。", "Disconnetti prima la connessione attuale, poi connetti questo dispositivo.", "Disconnect the current connection first, then connect this device.", "Desconecta primero la conexión actual y luego conecta este dispositivo.", "Déconnectez d'abord la connexion actuelle, puis connectez cet appareil.", "Desligue primeiro a ligação atual e depois ligue este dispositivo.", "Desconecte primeiro a conexão atual e depois conecte este dispositivo.", "Първо прекъснете текущата връзка, после свържете това устройство.", "Önce geçerli bağlantıyı kesin, sonra bu cihazı bağlayın.", "Trenne zuerst die aktuelle Verbindung und verbinde dann dieses Gerät.", "Сначала отключите текущее подключение, затем подключите это устройство."),
                 )
             }
             ActionButton(
-                text = Tr.tr("配置华为 ID", "Configura ID Huawei", "Configure Huawei ID", "Configurar ID de Huawei", "Configurer l'ID Huawei", "Configurar ID Huawei", "Configurar ID Huawei", "Настройка на Huawei ID", "Huawei ID'yi yapılandır", "Huawei-ID einrichten"),
+                text = Tr.tr("配置华为 ID", "Configura ID Huawei", "Configure Huawei ID", "Configurar ID de Huawei", "Configurer l'ID Huawei", "Configurar ID Huawei", "Configurar ID Huawei", "Настройка на Huawei ID", "Huawei ID'yi yapılandır", "Huawei-ID einrichten", "Настроить Huawei ID"),
                 onClick = { if (isCurrent() && canEditHuaweiId) onConfigureHuaweiId() },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = presentation.canEditHuaweiId,
             )
             ActionButton(
-                text = Tr.tr("解除配对", "Annulla abbinamento", "Unpair", "Desemparejar", "Dissocier", "Desemparelhar", "Desfazer pareamento", "Разкачване", "Eşleştirmeyi kaldır", "Entkoppeln"),
+                text = Tr.tr("解除配对", "Annulla abbinamento", "Unpair", "Desemparejar", "Dissocier", "Desemparelhar", "Desfazer pareamento", "Разкачване", "Eşleştirmeyi kaldır", "Entkoppeln", "Снять сопряжение"),
                 onClick = { if (isCurrent() && canUnpair) onUnpair() },
                 modifier = Modifier.fillMaxWidth(),
                 destructive = true,
                 enabled = presentation.canUnpair,
             )
-            if (presentation.unpairing) MutedText(Tr.tr("已有设备等待解除配对核实，请先完成下方状态中的检查。", "Un dispositivo attende la verifica dell'annullamento abbinamento; completa prima il controllo nello stato qui sotto.", "A device is awaiting unpair verification; finish the check in the status below first.", "Un dispositivo espera la verificación del desemparejamiento; termina primero la comprobación en el estado de abajo.", "Un appareil attend la vérification de la dissociation ; terminez d'abord la vérification dans l'état ci-dessous.", "Um dispositivo aguarda a verificação do desemparelhamento; termine primeiro a verificação no estado abaixo.", "Um dispositivo aguarda a verificação do despareamento; conclua primeiro a verificação no status abaixo.", "Устройство чака проверка на разкачването; първо завършете проверката в състоянието по-долу.", "Bir cihaz eşleştirme kaldırma doğrulaması bekliyor; önce aşağıdaki durumdaki kontrolü tamamlayın.", "Ein Gerät wartet auf die Prüfung der Entkopplung; schließe zuerst die Prüfung im Status unten ab."))
+            if (presentation.unpairing) MutedText(Tr.tr("已有设备等待解除配对核实，请先完成下方状态中的检查。", "Un dispositivo attende la verifica dell'annullamento abbinamento; completa prima il controllo nello stato qui sotto.", "A device is awaiting unpair verification; finish the check in the status below first.", "Un dispositivo espera la verificación del desemparejamiento; termina primero la comprobación en el estado de abajo.", "Un appareil attend la vérification de la dissociation ; terminez d'abord la vérification dans l'état ci-dessous.", "Um dispositivo aguarda a verificação do desemparelhamento; termine primeiro a verificação no estado abaixo.", "Um dispositivo aguarda a verificação do despareamento; conclua primeiro a verificação no status abaixo.", "Устройство чака проверка на разкачването; първо завършете проверката в състоянието по-долу.", "Bir cihaz eşleştirme kaldırma doğrulaması bekliyor; önce aşağıdaki durumdaki kontrolü tamamlayın.", "Ein Gerät wartet auf die Prüfung der Entkopplung; schließe zuerst die Prüfung im Status unten ab.", "Устройство ожидает проверки снятия сопряжения; сначала завершите проверку в состоянии ниже."))
             if (feedback.isNotBlank()) MutedText(feedback)
             // LocalDismissState 是 0.9.3 提供的可空、无参 dismiss 请求；不是动画完成通知。
-            ActionButton(Tr.tr("关闭", "Chiudi", "Close", "Cerrar", "Fermer", "Fechar", "Fechar", "Затваряне", "Kapat", "Schließen"), onClick = { if (isCurrent()) dismiss?.invoke() }, modifier = Modifier.fillMaxWidth())
+            ActionButton(Tr.tr("关闭", "Chiudi", "Close", "Cerrar", "Fermer", "Fechar", "Fechar", "Затваряне", "Kapat", "Schließen", "Закрыть"), onClick = { if (isCurrent()) dismiss?.invoke() }, modifier = Modifier.fillMaxWidth())
         }
     }
     if (inHistoryWindow) panelContent()
-    else WindowDialog(show = show, title = Tr.tr("设备操作", "Azioni dispositivo", "Device actions", "Acciones del dispositivo", "Actions de l'appareil", "Ações do dispositivo", "Ações do dispositivo", "Действия с устройството", "Cihaz işlemleri", "Geräteaktionen"), onDismissRequest = onDismiss,
+    else WindowDialog(show = show, title = Tr.tr("设备操作", "Azioni dispositivo", "Device actions", "Acciones del dispositivo", "Actions de l'appareil", "Ações do dispositivo", "Ações do dispositivo", "Действия с устройството", "Cihaz işlemleri", "Geräteaktionen", "Действия устройства"), onDismissRequest = onDismiss,
         onDismissFinished = onDismissFinished, content = panelContent)
 }
 
@@ -221,7 +221,7 @@ internal fun HuaweiIdDialog(
             HuaweiIdDeviceCard(presentation.name, presentation.address)
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    Tr.tr("这台设备的华为 ID", "ID Huawei di questo dispositivo", "Huawei ID for this device", "ID de Huawei de este dispositivo", "ID Huawei de cet appareil", "ID Huawei deste dispositivo", "ID Huawei deste dispositivo", "Huawei ID на това устройство", "Bu cihazın Huawei ID'si", "Huawei-ID dieses Geräts"),
+                    Tr.tr("这台设备的华为 ID", "ID Huawei di questo dispositivo", "Huawei ID for this device", "ID de Huawei de este dispositivo", "ID Huawei de cet appareil", "ID Huawei deste dispositivo", "ID Huawei deste dispositivo", "Huawei ID на това устройство", "Bu cihazın Huawei ID'si", "Huawei-ID dieses Geräts", "Huawei ID этого устройства"),
                     modifier = Modifier.weight(1f),
                     style = MiuixTheme.textStyles.body1,
                     fontWeight = FontWeight.Medium,
@@ -229,9 +229,9 @@ internal fun HuaweiIdDialog(
                 Spacer(Modifier.width(8.dp))
                 Badge(
                     text = when {
-                        presentation.dirty -> Tr.tr("待保存", "Da salvare", "Unsaved", "Sin guardar", "Non enregistré", "Por guardar", "Não salvo", "Незапазено", "Kaydedilmedi", "Nicht gespeichert")
-                        presentation.configured -> Tr.tr("已保存", "Salvato", "Saved", "Guardado", "Enregistré", "Guardado", "Salvo", "Запазено", "Kaydedildi", "Gespeichert")
-                        else -> Tr.tr("待配置", "Da configurare", "To configure", "Por configurar", "À configurer", "Por configurar", "A configurar", "За настройка", "Yapılandırılacak", "Einzurichten")
+                        presentation.dirty -> Tr.tr("待保存", "Da salvare", "Unsaved", "Sin guardar", "Non enregistré", "Por guardar", "Não salvo", "Незапазено", "Kaydedilmedi", "Nicht gespeichert", "Не сохранено")
+                        presentation.configured -> Tr.tr("已保存", "Salvato", "Saved", "Guardado", "Enregistré", "Guardado", "Salvo", "Запазено", "Kaydedildi", "Gespeichert", "Сохранено")
+                        else -> Tr.tr("待配置", "Da configurare", "To configure", "Por configurar", "À configurer", "Por configurar", "A configurar", "За настройка", "Yapılandırılacak", "Einzurichten", "Нужно настроить")
                     },
                     highlighted = presentation.configured && !presentation.dirty,
                 )
@@ -239,7 +239,7 @@ internal fun HuaweiIdDialog(
             MiuixField(
                 value = presentedValue,
                 onValueChange = { if (isCurrent() && canEdit && !acquisition.busy) onValueChange(it) },
-                label = Tr.tr("输入华为 ID", "Inserisci ID Huawei", "Enter Huawei ID", "Introduce el ID de Huawei", "Saisissez l'ID Huawei", "Introduza o ID Huawei", "Insira o ID Huawei", "Въведете Huawei ID", "Huawei ID'yi girin", "Huawei-ID eingeben"),
+                label = Tr.tr("输入华为 ID", "Inserisci ID Huawei", "Enter Huawei ID", "Introduce el ID de Huawei", "Saisissez l'ID Huawei", "Introduza o ID Huawei", "Insira o ID Huawei", "Въведете Huawei ID", "Huawei ID'yi girin", "Huawei-ID eingeben", "Введите Huawei ID"),
                 enabled = presentation.canEdit && !acquisition.busy,
                 retainOutlineWhenDisabled = true,
                 keyboardType = KeyboardType.Text,
@@ -251,7 +251,7 @@ internal fun HuaweiIdDialog(
                         enabled = !acquisition.busy,
                     ) {
                         Text(
-                            if (visiblyRevealed) Tr.tr("隐藏", "Nascondi", "Hide", "Ocultar", "Masquer", "Ocultar", "Ocultar", "Скриване", "Gizle", "Verbergen") else Tr.tr("显示", "Mostra", "Show", "Mostrar", "Afficher", "Mostrar", "Mostrar", "Показване", "Göster", "Anzeigen"),
+                            if (visiblyRevealed) Tr.tr("隐藏", "Nascondi", "Hide", "Ocultar", "Masquer", "Ocultar", "Ocultar", "Скриване", "Gizle", "Verbergen", "Скрыть") else Tr.tr("显示", "Mostra", "Show", "Mostrar", "Afficher", "Mostrar", "Mostrar", "Показване", "Göster", "Anzeigen", "Показать"),
                             style = MiuixTheme.textStyles.body2,
                             color = MiuixTheme.colorScheme.primary,
                         )
@@ -259,11 +259,11 @@ internal fun HuaweiIdDialog(
                 },
             )
             MutedText(
-                if (presentation.connected) Tr.tr("修改后保存，下次连接时生效。", "Salva le modifiche; avranno effetto alla prossima connessione.", "Save your changes; they take effect on the next connection.", "Guarda los cambios; se aplicarán en la próxima conexión.", "Enregistrez les modifications ; elles s'appliqueront à la prochaine connexion.", "Guarde as alterações; aplicam-se na próxima ligação.", "Salve as alterações; elas valem a partir da próxima conexão.", "Запазете промените; те ще важат от следващото свързване.", "Değişiklikleri kaydedin; sonraki bağlantıda geçerli olur.", "Speichere die Änderungen; sie gelten ab der nächsten Verbindung.")
-                else Tr.tr("为这台设备填写与运动健康一致的华为 ID。", "Inserisci per questo dispositivo lo stesso ID Huawei usato in Huawei Health.", "Enter the same Huawei ID used in Huawei Health for this device.", "Introduce para este dispositivo el mismo ID de Huawei que usas en Huawei Health.", "Saisissez pour cet appareil le même ID Huawei que dans Huawei Health.", "Introduza para este dispositivo o mesmo ID Huawei usado na Huawei Health.", "Insira para este dispositivo o mesmo ID Huawei usado no Huawei Health.", "Въведете за това устройство същия Huawei ID, който използвате в Huawei Health.", "Bu cihaz için Huawei Health'te kullandığınız Huawei ID'yi girin.", "Gib für dieses Gerät dieselbe Huawei-ID ein, die du in Huawei Health verwendest."),
+                if (presentation.connected) Tr.tr("修改后保存，下次连接时生效。", "Salva le modifiche; avranno effetto alla prossima connessione.", "Save your changes; they take effect on the next connection.", "Guarda los cambios; se aplicarán en la próxima conexión.", "Enregistrez les modifications ; elles s'appliqueront à la prochaine connexion.", "Guarde as alterações; aplicam-se na próxima ligação.", "Salve as alterações; elas valem a partir da próxima conexão.", "Запазете промените; те ще важат от следващото свързване.", "Değişiklikleri kaydedin; sonraki bağlantıda geçerli olur.", "Speichere die Änderungen; sie gelten ab der nächsten Verbindung.", "Сохраните изменения; они вступят в силу при следующем подключении.")
+                else Tr.tr("为这台设备填写与运动健康一致的华为 ID。", "Inserisci per questo dispositivo lo stesso ID Huawei usato in Huawei Health.", "Enter the same Huawei ID used in Huawei Health for this device.", "Introduce para este dispositivo el mismo ID de Huawei que usas en Huawei Health.", "Saisissez pour cet appareil le même ID Huawei que dans Huawei Health.", "Introduza para este dispositivo o mesmo ID Huawei usado na Huawei Health.", "Insira para este dispositivo o mesmo ID Huawei usado no Huawei Health.", "Въведете за това устройство същия Huawei ID, който използвате в Huawei Health.", "Bu cihaz için Huawei Health'te kullandığınız Huawei ID'yi girin.", "Gib für dieses Gerät dieselbe Huawei-ID ein, die du in Huawei Health verwendest.", "Введите для этого устройства тот же Huawei ID, что в Huawei Health."),
             )
             ActionButton(
-                text = Tr.tr("一键获取华为 ID", "Ottieni ID Huawei con un tocco", "Get Huawei ID with one tap", "Obtener ID de Huawei con un toque", "Obtenir l'ID Huawei en un geste", "Obter ID Huawei com um toque", "Obter ID Huawei com um toque", "Вземане на Huawei ID с едно докосване", "Huawei ID'yi tek dokunuşla al", "Huawei-ID mit einem Tipp holen"),
+                text = Tr.tr("一键获取华为 ID", "Ottieni ID Huawei con un tocco", "Get Huawei ID with one tap", "Obtener ID de Huawei con un toque", "Obtenir l'ID Huawei en un geste", "Obter ID Huawei com um toque", "Obter ID Huawei com um toque", "Вземане на Huawei ID с едно докосване", "Huawei ID'yi tek dokunuşla al", "Huawei-ID mit einem Tipp holen", "Получить Huawei ID в одно касание"),
                 onClick = acquisition.start,
                 modifier = Modifier.fillMaxWidth(),
                 primary = true,
@@ -271,7 +271,7 @@ internal fun HuaweiIdDialog(
             )
             if (!presentation.connected) {
                 ActionButton(
-                    text = Tr.tr("连接手表", "Connessione al watch", "Connecting to the watch", "Conectando con el reloj", "Connexion à la montre", "A ligar ao relógio", "Conectando ao relógio", "Свързване с часовника", "Saate bağlanılıyor", "Verbindung mit der Uhr"),
+                    text = Tr.tr("连接手表", "Connessione al watch", "Connecting to the watch", "Conectando con el reloj", "Connexion à la montre", "A ligar ao relógio", "Conectando ao relógio", "Свързване с часовника", "Saate bağlanılıyor", "Verbindung mit der Uhr", "Подключение к часам"),
                     onClick = { if (isCurrent() && canConnect && !acquisition.busy) onConnect() },
                     modifier = Modifier.fillMaxWidth(),
                     primary = true,
@@ -279,9 +279,9 @@ internal fun HuaweiIdDialog(
                 )
             }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                ActionButton(Tr.tr("关闭", "Chiudi", "Close", "Cerrar", "Fermer", "Fechar", "Fechar", "Затваряне", "Kapat", "Schließen"), onClick = { if (isCurrent()) dismiss?.invoke() }, modifier = Modifier.weight(1f))
+                ActionButton(Tr.tr("关闭", "Chiudi", "Close", "Cerrar", "Fermer", "Fechar", "Fechar", "Затваряне", "Kapat", "Schließen", "Закрыть"), onClick = { if (isCurrent()) dismiss?.invoke() }, modifier = Modifier.weight(1f))
                 ActionButton(
-                    text = Tr.tr("保存 ID", "Salva ID", "Save ID", "Guardar ID", "Enregistrer l'ID", "Guardar ID", "Salvar ID", "Запазване на ID", "ID'yi kaydet", "ID speichern"),
+                    text = Tr.tr("保存 ID", "Salva ID", "Save ID", "Guardar ID", "Enregistrer l'ID", "Guardar ID", "Salvar ID", "Запазване на ID", "ID'yi kaydet", "ID speichern", "Сохранить ID"),
                     onClick = { if (isCurrent() && canEdit && !acquisition.busy) onSave() },
                     modifier = Modifier.weight(1f),
                     primary = presentation.connected,
@@ -293,7 +293,7 @@ internal fun HuaweiIdDialog(
     if (inHistoryWindow) panelContent()
     else WindowDialog(
         show = show,
-        title = Tr.tr("配置华为 ID", "Configura ID Huawei", "Configure Huawei ID", "Configurar ID de Huawei", "Configurer l'ID Huawei", "Configurar ID Huawei", "Configurar ID Huawei", "Настройка на Huawei ID", "Huawei ID'yi yapılandır", "Huawei-ID einrichten"),
+        title = Tr.tr("配置华为 ID", "Configura ID Huawei", "Configure Huawei ID", "Configurar ID de Huawei", "Configurer l'ID Huawei", "Configurar ID Huawei", "Configurar ID Huawei", "Настройка на Huawei ID", "Huawei ID'yi yapılandır", "Huawei-ID einrichten", "Настроить Huawei ID"),
         onDismissRequest = onDismiss,
         onDismissFinished = {
             lastValue = ""
@@ -331,7 +331,7 @@ internal fun HistoryHuaweiIdDialog(
         if (!show || !isOwnerCurrent()) return@LaunchedEffect
         val id = onReadHuaweiId()
         if (!show || !isOwnerCurrent()) return@LaunchedEffect
-        if (id == null) feedback = Tr.tr("无法读取这台设备的华为 ID，请稍后重试。", "Impossibile leggere l'ID Huawei di questo dispositivo, riprova più tardi.", "Couldn't read this device's Huawei ID, try again later.", "No se pudo leer el ID de Huawei de este dispositivo, inténtalo más tarde.", "Impossible de lire l'ID Huawei de cet appareil, réessayez plus tard.", "Não foi possível ler o ID Huawei deste dispositivo, tente mais tarde.", "Não foi possível ler o ID Huawei deste dispositivo, tente mais tarde.", "Huawei ID на това устройство не може да се прочете, опитайте по-късно.", "Bu cihazın Huawei ID'si okunamadı, daha sonra deneyin.", "Die Huawei-ID dieses Geräts konnte nicht gelesen werden, versuche es später.")
+        if (id == null) feedback = Tr.tr("无法读取这台设备的华为 ID，请稍后重试。", "Impossibile leggere l'ID Huawei di questo dispositivo, riprova più tardi.", "Couldn't read this device's Huawei ID, try again later.", "No se pudo leer el ID de Huawei de este dispositivo, inténtalo más tarde.", "Impossible de lire l'ID Huawei de cet appareil, réessayez plus tard.", "Não foi possível ler o ID Huawei deste dispositivo, tente mais tarde.", "Não foi possível ler o ID Huawei deste dispositivo, tente mais tarde.", "Huawei ID на това устройство не може да се прочете, опитайте по-късно.", "Bu cihazın Huawei ID'si okunamadı, daha sonra deneyin.", "Die Huawei-ID dieses Geräts konnte nicht gelesen werden, versuche es später.", "Не удалось прочитать Huawei ID этого устройства, повторите позже.")
         else {
             draft = id
             savedId = id
@@ -344,7 +344,7 @@ internal fun HistoryHuaweiIdDialog(
     HuaweiIdDialog(
         show = show,
         incarnation = incarnation,
-        name = device.name.ifBlank { Tr.tr("未命名手表", "Watch senza nome", "Unnamed watch", "Reloj sin nombre", "Montre sans nom", "Relógio sem nome", "Relógio sem nome", "Часовник без име", "Adsız saat", "Unbenannte Uhr") }.uiText(),
+        name = device.name.ifBlank { Tr.tr("未命名手表", "Watch senza nome", "Unnamed watch", "Reloj sin nombre", "Montre sans nom", "Relógio sem nome", "Relógio sem nome", "Часовник без име", "Adsız saat", "Unbenannte Uhr", "Часы без имени") }.uiText(),
         address = device.address,
         value = draft,
         dirty = draft.trim() != savedId,
@@ -361,12 +361,12 @@ internal fun HistoryHuaweiIdDialog(
                     draft = value
                     savedId = value
                     feedback = ""
-                } else if (isCurrent()) feedback = Tr.tr("华为 ID 未保存，请核对输入或稍后重试。", "ID Huawei non salvato; controlla i dati inseriti o riprova più tardi.", "Huawei ID not saved; check what you entered or try again later.", "ID de Huawei no guardado; revisa lo que escribiste o inténtalo más tarde.", "ID Huawei non enregistré ; vérifiez la saisie ou réessayez plus tard.", "ID Huawei não guardado; verifique o que escreveu ou tente mais tarde.", "ID Huawei não salvo; verifique o que você digitou ou tente mais tarde.", "Huawei ID не е запазен; проверете въведеното или опитайте по-късно.", "Huawei ID kaydedilmedi; girdiğinizi kontrol edin veya daha sonra deneyin.", "Huawei-ID nicht gespeichert; prüfe die Eingabe oder versuche es später.")
+                } else if (isCurrent()) feedback = Tr.tr("华为 ID 未保存，请核对输入或稍后重试。", "ID Huawei non salvato; controlla i dati inseriti o riprova più tardi.", "Huawei ID not saved; check what you entered or try again later.", "ID de Huawei no guardado; revisa lo que escribiste o inténtalo más tarde.", "ID Huawei non enregistré ; vérifiez la saisie ou réessayez plus tard.", "ID Huawei não guardado; verifique o que escreveu ou tente mais tarde.", "ID Huawei não salvo; verifique o que você digitou ou tente mais tarde.", "Huawei ID не е запазен; проверете въведеното или опитайте по-късно.", "Huawei ID kaydedilmedi; girdiğinizi kontrol edin veya daha sonra deneyin.", "Huawei-ID nicht gespeichert; prüfe die Eingabe oder versuche es später.", "Huawei ID не сохранён; проверьте введённое или повторите позже.")
             }
         },
         onConnect = {
             if (isCurrent() && canConnect && loaded && !onSaveAndConnect(draft.trim()) && isCurrent()) {
-                feedback = Tr.tr("当前无法连接这台设备，请核对配置或稍后重试。", "Al momento non è possibile connettere questo dispositivo; controlla la configurazione o riprova più tardi.", "This device can't be connected right now; check the configuration or try again later.", "Ahora no se puede conectar este dispositivo; revisa la configuración o inténtalo más tarde.", "Impossible de connecter cet appareil pour le moment ; vérifiez la configuration ou réessayez plus tard.", "De momento não é possível ligar este dispositivo; verifique a configuração ou tente mais tarde.", "No momento não é possível conectar este dispositivo; verifique a configuração ou tente mais tarde.", "В момента това устройство не може да се свърже; проверете настройките или опитайте по-късно.", "Bu cihaz şu anda bağlanamıyor; yapılandırmayı kontrol edin veya daha sonra deneyin.", "Dieses Gerät kann gerade nicht verbunden werden; prüfe die Konfiguration oder versuche es später.")
+                feedback = Tr.tr("当前无法连接这台设备，请核对配置或稍后重试。", "Al momento non è possibile connettere questo dispositivo; controlla la configurazione o riprova più tardi.", "This device can't be connected right now; check the configuration or try again later.", "Ahora no se puede conectar este dispositivo; revisa la configuración o inténtalo más tarde.", "Impossible de connecter cet appareil pour le moment ; vérifiez la configuration ou réessayez plus tard.", "De momento não é possível ligar este dispositivo; verifique a configuração ou tente mais tarde.", "No momento não é possível conectar este dispositivo; verifique a configuração ou tente mais tarde.", "В момента това устройство не може да се свърже; проверете настройките или опитайте по-късно.", "Bu cihaz şu anda bağlanamıyor; yapılandırmayı kontrol edin veya daha sonra deneyin.", "Dieses Gerät kann gerade nicht verbunden werden; prüfe die Konfiguration oder versuche es später.", "Сейчас нельзя подключить это устройство; проверьте настройки или повторите позже.")
             }
         },
         onDismiss = onDismiss,

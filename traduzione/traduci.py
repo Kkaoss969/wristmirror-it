@@ -7,7 +7,7 @@ Uso:
 Cosa fa:
   - ogni letterale "..." con caratteri cinesi nei file .kt/.java (commenti esclusi) diventa
     Tr.tr("<cinese>", "<it>", "<en>", ...): la lingua si sceglie a runtime da quella del telefono
-    (cinese, italiano, inglese, spagnolo, francese, portoghese PT/BR, bulgaro, turco, tedesco; altrimenti inglese);
+    (cinese, italiano, inglese, spagnolo, francese, portoghese PT/BR, bulgaro, turco, tedesco, russo; altrimenti inglese);
   - le stringhe multilinea \"\"\"...\"\"\" con cinese (es. Introduction.kt) diventano Tr.tr(\"\"\"...\"\"\", ...);
   - crea Tr.kt e aggiunge l'import dove serve;
   - res/values: inglese come predefinito, cinese in values-zh, le altre lingue in values-<lingua>;
@@ -26,7 +26,8 @@ CMP = re.compile(r'(?:startsWith|contains)\s*\(\s*"((?:[^"\\\n]|\\.)*)"')
 PKG = 'io.github.escosis.hwtfaceswap'
 # cartelle Android per ogni lingua del dizionario ('en' = predefinita)
 CARTELLE = {'zh': 'values-zh', 'it': 'values-it', 'en': 'values', 'es': 'values-es', 'fr': 'values-fr',
-            'pt': 'values-pt-rPT', 'br': 'values-pt', 'bg': 'values-bg', 'tr': 'values-tr', 'de': 'values-de'}
+            'pt': 'values-pt-rPT', 'br': 'values-pt', 'bg': 'values-bg', 'tr': 'values-tr', 'de': 'values-de',
+            'ru': 'values-ru'}
 
 # adattamenti per la versione distribuita da Kkaoss969 (pacchetto proprio, aggiornamenti dal nostro repository).
 # Il link «Repository del progetto» in Informazioni resta quello dell'autore (Escosis): l'app è sua.

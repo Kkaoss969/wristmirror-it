@@ -31,7 +31,7 @@ public final class RfcommChannel implements LinkChannel {
             phase="GET_OUTPUT_STREAM";output=created.getOutputStream();
             phase="GET_INPUT_STREAM";InputStream input=created.getInputStream();
             phase="GET_DEVICE_NAME";String name=device.getName();
-            phase="OPEN_CALLBACK";listener.onOpen(epoch,name==null?Tr.tr("华为手表", "Watch Huawei", "Huawei watch", "Reloj Huawei", "Montre Huawei", "Relógio Huawei", "Relógio Huawei", "Часовник Huawei", "Huawei saat", "Huawei-Uhr"):name);
+            phase="OPEN_CALLBACK";listener.onOpen(epoch,name==null?Tr.tr("华为手表", "Watch Huawei", "Huawei watch", "Reloj Huawei", "Montre Huawei", "Relógio Huawei", "Relógio Huawei", "Часовник Huawei", "Huawei saat", "Huawei-Uhr", "Часы Huawei"):name);
             phase="READ";byte[] b=new byte[4096];while(!closed.get()){
                 int n=input.read(b);if(n<0){fail(eofDetail(secure));return;}
                 if(n>0)try{listener.onBytes(epoch,Arrays.copyOf(b,n));}catch(RuntimeException e){fail(failureDetail("READ_CALLBACK",secure,e));return;}

@@ -62,8 +62,8 @@ public final class DeviceInfo {
             throw new Core.Fault("PRODUCT_MODEL_SIZE");
         }
         String model = text.trim();
-        return model.isEmpty() || model.equalsIgnoreCase("unknown") || model.equals(Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt")) ||
-                model.equals(Tr.tr("未知型号", "Modello sconosciuto", "Unknown model", "Modelo desconocido", "Modèle inconnu", "Modelo desconhecido", "Modelo desconhecido", "Неизвестен модел", "Bilinmeyen model", "Unbekanntes Modell")) || model.equalsIgnoreCase("null") || model.equalsIgnoreCase("n/a")
+        return model.isEmpty() || model.equalsIgnoreCase("unknown") || model.equals(Tr.tr("未知", "Sconosciuto", "Unknown", "Desconocido", "Inconnu", "Desconhecido", "Desconhecido", "Неизвестно", "Bilinmiyor", "Unbekannt", "Неизвестно")) ||
+                model.equals(Tr.tr("未知型号", "Modello sconosciuto", "Unknown model", "Modelo desconocido", "Modèle inconnu", "Modelo desconhecido", "Modelo desconhecido", "Неизвестен модел", "Bilinmeyen model", "Unbekanntes Modell", "Неизвестная модель")) || model.equalsIgnoreCase("null") || model.equalsIgnoreCase("n/a")
                 ? null : model;
     }
 

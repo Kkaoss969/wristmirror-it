@@ -22,7 +22,7 @@ Originale: https://github.com/Escosis/WristMirror — versione tradotta attuale 
    ```
    - codice 0: tutto tradotto.
    - codice 2: guarda `traduzione/mancanti.json` e aggiungi le traduzioni in `traduzione/lingue.json`, **in tutte
-     le 9 lingue** (`it`, `en`, `es`, `fr`, `pt` = Portogallo, `br` = Brasile, `bg`, `tr`, `de`):
+     le 10 lingue** (`it`, `en`, `es`, `fr`, `pt` = Portogallo, `br` = Brasile, `bg`, `tr`, `de`, `ru`):
      `stringhe` per i letterali, `righe_testo` per le righe delle stringhe multilinea, `risorse` per gli XML.
      Le righe di diagnostica tecnica (es. `campo=07 codice=`) possono restare in inglese nelle lingue diverse dall'italiano.
      Poi riscarica l'originale (passo 2, lo script modifica in place) e rilancia finché esce con 0.

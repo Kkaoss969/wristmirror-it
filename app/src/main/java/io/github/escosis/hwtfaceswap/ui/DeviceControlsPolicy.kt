@@ -9,8 +9,8 @@ import io.github.escosis.hwtfaceswap.UiPolicy
 internal enum class DeviceControl { CONNECT, CONFIGURE_ID, UNPAIR }
 
 internal enum class DeviceControlHint(val text: String) {
-    SELECT_DEVICE(Tr.tr("请先选择设备", "Seleziona prima un dispositivo", "Select a device first", "Selecciona primero un dispositivo", "Sélectionnez d'abord un appareil", "Selecione primeiro um dispositivo", "Selecione primeiro um dispositivo", "Първо изберете устройство", "Önce bir cihaz seçin", "Wähle zuerst ein Gerät aus")),
-    CONFIGURE_ID(Tr.tr("请先配置华为 ID", "Configura prima l'ID Huawei", "Configure the Huawei ID first", "Configura primero el ID de Huawei", "Configurez d'abord l'ID Huawei", "Configure primeiro o ID Huawei", "Configure primeiro o ID Huawei", "Първо настройте Huawei ID", "Önce Huawei ID'yi yapılandırın", "Richte zuerst die Huawei-ID ein")),
+    SELECT_DEVICE(Tr.tr("请先选择设备", "Seleziona prima un dispositivo", "Select a device first", "Selecciona primero un dispositivo", "Sélectionnez d'abord un appareil", "Selecione primeiro um dispositivo", "Selecione primeiro um dispositivo", "Първо изберете устройство", "Önce bir cihaz seçin", "Wähle zuerst ein Gerät aus", "Сначала выберите устройство")),
+    CONFIGURE_ID(Tr.tr("请先配置华为 ID", "Configura prima l'ID Huawei", "Configure the Huawei ID first", "Configura primero el ID de Huawei", "Configurez d'abord l'ID Huawei", "Configure primeiro o ID Huawei", "Configure primeiro o ID Huawei", "Първо настройте Huawei ID", "Önce Huawei ID'yi yapılandırın", "Richte zuerst die Huawei-ID ein", "Сначала настройте Huawei ID")),
 }
 
 /** 纯判断，不读取/保存 ID，不创建设备，不扫描、连接或打开窗口。 */

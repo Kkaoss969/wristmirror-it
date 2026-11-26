@@ -205,6 +205,17 @@ internal object IntroductionContent {
         - Das Ersetzen überschreibt das ursprüngliche Zifferblatt: lade zuerst ein kostenloses Zifferblatt aus Huawei Health herunter (besser aus den offiziellen kostenlosen Zifferblättern als aus dem Zifferblatt-Shop) oder wähle als Ziel eines, das du nicht mehr verwendest. Wird das Original noch im Shop angeboten, kannst du es erneut herunterladen.
         - WATCH im Vollmodus verwenden die Direktinstallation mit XML- oder kompatiblem Format und unterstützen kein Ersetzen; WATCH im Energiesparmodus und GT-, FIT- usw. Serien verwenden BIN-Ressourcen: die Direktinstallation funktioniert mit Firmware älter als 6.0.0.32, bei neuerer Firmware versuche das Ersetzen.
         - Verbindet sich eine WATCH nach einem Moduswechsel nicht, trenne zuerst die Verbindung und verwende dann „Protokoll neu binden“.
+    """, """
+        ### О проекте
+        - Инструмент для управления циферблатами часов Huawei и установки сторонних циферблатов HWT, для большинства устройств серий WATCH, GT, FIT и др. с совместимым протоколом циферблатов; на новых версиях HarmonyOS, где прямая установка не работает, сторонние циферблаты устанавливаются заменой. Автор: Escosis (github.com/Escosis/WristMirror, лицензия Apache-2.0). Это неофициальный перевод, распространяемый Kkaoss969 вместе с Gateway Assistant.
+        ### Советы по использованию
+        - Первое подключение: 1) снимите сопряжение часов в меню Bluetooth телефона; 2) найдите свой Huawei ID с помощью функции приложения; 3) выполните сопряжение часов из приложения, введя свой Huawei ID.
+        - ⚠️ Важно: без Huawei ID (или с неверным) часы сбрасываются к заводским настройкам. Если часы предлагают удалить данные, не подтверждайте.
+        - Перед использованием закройте Huawei Health и уберите его из недавних приложений, чтобы он не занимал канал связи и операции не завершались ошибкой.
+        - Получайте Huawei ID встроенной функцией. Неверный ID может привести к тому, что часы спросят, удалить ли данные: в этом случае не подтверждайте, отмените и проверьте настройки.
+        - Замена перезаписывает исходный циферблат: сначала скачайте бесплатный циферблат в Huawei Health (лучше из официальных бесплатных циферблатов, а не из магазина циферблатов) или выберите целью тот, которым больше не пользуетесь. Если исходный циферблат ещё есть в магазине, его можно скачать снова.
+        - WATCH в полном режиме используют прямую установку в формате XML или совместимом формате и не поддерживают замену; WATCH в режиме энергосбережения и серии GT, FIT и др. используют ресурсы BIN: прямая установка работает с прошивкой старше 6.0.0.32, на более новой попробуйте замену.
+        - Если после смены режима WATCH не подключается, сначала отключитесь, затем используйте «Заново привязать протокол».
     """).trimIndent()
 
     val sections: List<IntroductionSection> = parse(markdown)

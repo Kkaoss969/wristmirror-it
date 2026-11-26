@@ -80,7 +80,7 @@ private fun WatchRequestedPinDialog(state: AppUiState, actions: AppActions) {
     }
     WindowDialog(
         show = !cancelled,
-        title = Tr.tr("手表请求配对码", "Il watch richiede il codice di abbinamento", "The watch requests a pairing code", "El reloj pide un código de emparejamiento", "La montre demande un code d'association", "O relógio pede um código de emparelhamento", "O relógio pede um código de pareamento", "Часовникът иска код за сдвояване", "Saat eşleştirme kodu istiyor", "Die Uhr fordert einen Kopplungscode an"),
+        title = Tr.tr("手表请求配对码", "Il watch richiede il codice di abbinamento", "The watch requests a pairing code", "El reloj pide un código de emparejamiento", "La montre demande un code d'association", "O relógio pede um código de emparelhamento", "O relógio pede um código de pareamento", "Часовникът иска код за сдвояване", "Saat eşleştirme kodu istiyor", "Die Uhr fordert einen Kopplungscode an", "Часы запрашивают код сопряжения"),
         summary = state.pinMessage.uiText(),
         onDismissRequest = ::cancel,
     ) {
@@ -90,7 +90,7 @@ private fun WatchRequestedPinDialog(state: AppUiState, actions: AppActions) {
                 onValueChange = { value ->
                     if (value.length <= 16 && value.all { it in '0'..'9' }) pin = value
                 },
-                label = Tr.tr("输入手表显示的 PIN", "Inserisci il PIN mostrato sul watch", "Enter the PIN shown on the watch", "Introduce el PIN que muestra el reloj", "Saisissez le PIN affiché sur la montre", "Introduza o PIN mostrado no relógio", "Insira o PIN mostrado no relógio", "Въведете ПИН кода, показан на часовника", "Saatte görünen PIN'i girin", "Gib die auf der Uhr angezeigte PIN ein"),
+                label = Tr.tr("输入手表显示的 PIN", "Inserisci il PIN mostrato sul watch", "Enter the PIN shown on the watch", "Introduce el PIN que muestra el reloj", "Saisissez le PIN affiché sur la montre", "Introduza o PIN mostrado no relógio", "Insira o PIN mostrado no relógio", "Въведете ПИН кода, показан на часовника", "Saatte görünen PIN'i girin", "Gib die auf der Uhr angezeigte PIN ein", "Введите PIN-код, показанный на часах"),
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 enabled = !submitted,
@@ -99,11 +99,11 @@ private fun WatchRequestedPinDialog(state: AppUiState, actions: AppActions) {
                 keyboardActions = KeyboardActions(onDone = { submit() }),
             )
             Spacer(Modifier.height(12.dp))
-            MutedText(if (submitted) Tr.tr("配对码已提交，等待手表响应。", "Codice di abbinamento inviato, in attesa di risposta dal watch.", "Pairing code sent, waiting for the watch to respond.", "Código enviado, esperando la respuesta del reloj.", "Code envoyé, en attente de la réponse de la montre.", "Código enviado, a aguardar a resposta do relógio.", "Código enviado, aguardando a resposta do relógio.", "Кодът е изпратен, изчакване на отговор от часовника.", "Kod gönderildi, saatin yanıtı bekleniyor.", "Code gesendet, warten auf die Antwort der Uhr.") else Tr.tr("请输入手表上显示的配对码。", "Inserisci il codice di abbinamento mostrato sul watch.", "Enter the pairing code shown on the watch.", "Introduce el código de emparejamiento que muestra el reloj.", "Saisissez le code d'association affiché sur la montre.", "Introduza o código de emparelhamento mostrado no relógio.", "Insira o código de pareamento mostrado no relógio.", "Въведете кода за сдвояване, показан на часовника.", "Saatte görünen eşleştirme kodunu girin.", "Gib den auf der Uhr angezeigten Kopplungscode ein."))
+            MutedText(if (submitted) Tr.tr("配对码已提交，等待手表响应。", "Codice di abbinamento inviato, in attesa di risposta dal watch.", "Pairing code sent, waiting for the watch to respond.", "Código enviado, esperando la respuesta del reloj.", "Code envoyé, en attente de la réponse de la montre.", "Código enviado, a aguardar a resposta do relógio.", "Código enviado, aguardando a resposta do relógio.", "Кодът е изпратен, изчакване на отговор от часовника.", "Kod gönderildi, saatin yanıtı bekleniyor.", "Code gesendet, warten auf die Antwort der Uhr.", "Код отправлен, ожидание ответа часов.") else Tr.tr("请输入手表上显示的配对码。", "Inserisci il codice di abbinamento mostrato sul watch.", "Enter the pairing code shown on the watch.", "Introduce el código de emparejamiento que muestra el reloj.", "Saisissez le code d'association affiché sur la montre.", "Introduza o código de emparelhamento mostrado no relógio.", "Insira o código de pareamento mostrado no relógio.", "Въведете кода за сдвояване, показан на часовника.", "Saatte görünen eşleştirme kodunu girin.", "Gib den auf der Uhr angezeigten Kopplungscode ein.", "Введите код сопряжения, показанный на часах."))
             Spacer(Modifier.height(18.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                ActionButton(Tr.tr("取消连接", "Annulla connessione", "Cancel connection", "Cancelar conexión", "Annuler la connexion", "Cancelar ligação", "Cancelar conexão", "Отмяна на свързването", "Bağlanmayı iptal et", "Verbinden abbrechen"), ::cancel, Modifier.weight(1f))
-                ActionButton(Tr.tr("提交配对码", "Invia codice", "Send code", "Enviar código", "Envoyer le code", "Enviar código", "Enviar código", "Изпращане на кода", "Kodu gönder", "Code senden"), ::submit, Modifier.weight(1f), primary = true, enabled = pin.isNotBlank() && !submitted)
+                ActionButton(Tr.tr("取消连接", "Annulla connessione", "Cancel connection", "Cancelar conexión", "Annuler la connexion", "Cancelar ligação", "Cancelar conexão", "Отмяна на свързването", "Bağlanmayı iptal et", "Verbinden abbrechen", "Отменить подключение"), ::cancel, Modifier.weight(1f))
+                ActionButton(Tr.tr("提交配对码", "Invia codice", "Send code", "Enviar código", "Envoyer le code", "Enviar código", "Enviar código", "Изпращане на кода", "Kodu gönder", "Code senden", "Отправить код"), ::submit, Modifier.weight(1f), primary = true, enabled = pin.isNotBlank() && !submitted)
             }
         }
     }

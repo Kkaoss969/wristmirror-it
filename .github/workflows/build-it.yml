@@ -73,5 +73,5 @@ jobs:
           gh release delete "v$VER" --cleanup-tag -y || true
           gh release create "v$VER" --target "$GITHUB_SHA" --latest \
             --title "WristMirror $VER (multilingua)" \
-            --notes "**WristMirror è opera di [Escosis](https://github.com/Escosis)**: progetto originale https://github.com/Escosis/WristMirror (Apache-2.0), tutto il merito è suo. Questa è una traduzione non ufficiale della versione $VER in italiano, inglese, spagnolo, francese, portoghese, bulgaro, turco e tedesco (il cinese originale resta per i telefoni in cinese), non affiliata con l'autore. Revisione $WM_REVISIONE, commit $SHA." \
+            --notes "**WristMirror è opera di [Escosis](https://github.com/Escosis)**: progetto originale https://github.com/Escosis/WristMirror (Apache-2.0), tutto il merito è suo. Questa è una traduzione non ufficiale della versione $VER in italiano, inglese, spagnolo, francese, portoghese, bulgaro, turco, tedesco e russo (il cinese originale resta per i telefoni in cinese), non affiliata con l'autore. Revisione $WM_REVISIONE, commit $SHA." \
             /tmp/out/WristMirror-it.apk /tmp/out/versione.json "/tmp/out/WristMirror-$VER-it$WM_REVISIONE-$SHA.apk"

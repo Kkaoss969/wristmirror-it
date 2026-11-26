@@ -317,7 +317,7 @@ internal fun NoticeCard(
         Text(text.uiText(), fontSize = 13.sp, lineHeight = 20.sp)
         if (onDismiss != null) {
             Spacer(Modifier.height(10.dp))
-            ActionButton(Tr.tr("关闭提示", "Chiudi avviso", "Close notice", "Cerrar aviso", "Fermer l'avis", "Fechar aviso", "Fechar aviso", "Затваряне на известието", "Bildirimi kapat", "Hinweis schließen"), onDismiss)
+            ActionButton(Tr.tr("关闭提示", "Chiudi avviso", "Close notice", "Cerrar aviso", "Fermer l'avis", "Fechar aviso", "Fechar aviso", "Затваряне на известието", "Bildirimi kapat", "Hinweis schließen", "Закрыть уведомление"), onDismiss)
         }
     }
 }
@@ -360,10 +360,10 @@ internal fun OperationCard(operation: OperationInfo) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(
                 text = when (operation.kind) {
-                    "source" -> Tr.tr("准备 HWT 文件", "Prepara il file HWT", "Prepare HWT file", "Preparar archivo HWT", "Préparer le fichier HWT", "Preparar ficheiro HWT", "Preparar arquivo HWT", "Подготовка на HWT файл", "HWT dosyasını hazırla", "HWT-Datei vorbereiten")
-                    "replacement" -> Tr.tr("替换表盘", "Sostituisci quadrante", "Replace watch face", "Sustituir esfera", "Remplacer le cadran", "Substituir mostrador", "Substituir mostrador", "Замяна на циферблат", "Kadranı değiştir", "Zifferblatt ersetzen")
-                    "deletion" -> Tr.tr("删除表盘", "Elimina quadrante", "Delete watch face", "Eliminar esfera", "Supprimer le cadran", "Eliminar mostrador", "Excluir mostrador", "Изтриване на циферблат", "Kadranı sil", "Zifferblatt löschen")
-                    else -> Tr.tr("操作状态", "Stato operazione", "Operation status", "Estado de la operación", "État de l'opération", "Estado da operação", "Status da operação", "Състояние на операцията", "İşlem durumu", "Vorgangsstatus")
+                    "source" -> Tr.tr("准备 HWT 文件", "Prepara il file HWT", "Prepare HWT file", "Preparar archivo HWT", "Préparer le fichier HWT", "Preparar ficheiro HWT", "Preparar arquivo HWT", "Подготовка на HWT файл", "HWT dosyasını hazırla", "HWT-Datei vorbereiten", "Подготовить файл HWT")
+                    "replacement" -> Tr.tr("替换表盘", "Sostituisci quadrante", "Replace watch face", "Sustituir esfera", "Remplacer le cadran", "Substituir mostrador", "Substituir mostrador", "Замяна на циферблат", "Kadranı değiştir", "Zifferblatt ersetzen", "Заменить циферблат")
+                    "deletion" -> Tr.tr("删除表盘", "Elimina quadrante", "Delete watch face", "Eliminar esfera", "Supprimer le cadran", "Eliminar mostrador", "Excluir mostrador", "Изтриване на циферблат", "Kadranı sil", "Zifferblatt löschen", "Удалить циферблат")
+                    else -> Tr.tr("操作状态", "Stato operazione", "Operation status", "Estado de la operación", "État de l'opération", "Estado da operação", "Status da operação", "Състояние на операцията", "İşlem durumu", "Vorgangsstatus", "Состояние операции")
                 },
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -382,7 +382,7 @@ internal fun OperationCard(operation: OperationInfo) {
         }
         if (operation.active) {
             Spacer(Modifier.height(5.dp))
-            MutedText(Tr.tr("操作进行中，请保持连接并等待。", "Operazione in corso, mantieni la connessione e attendi.", "Operation in progress, keep the connection and wait.", "Operación en curso, mantén la conexión y espera.", "Opération en cours, gardez la connexion et patientez.", "Operação em curso, mantenha a ligação e aguarde.", "Operação em andamento, mantenha a conexão e aguarde.", "Операцията е в ход, запазете връзката и изчакайте.", "İşlem sürüyor, bağlantıyı koruyup bekleyin.", "Vorgang läuft, halte die Verbindung und warte."))
+            MutedText(Tr.tr("操作进行中，请保持连接并等待。", "Operazione in corso, mantieni la connessione e attendi.", "Operation in progress, keep the connection and wait.", "Operación en curso, mantén la conexión y espera.", "Opération en cours, gardez la connexion et patientez.", "Operação em curso, mantenha a ligação e aguarde.", "Operação em andamento, mantenha a conexão e aguarde.", "Операцията е в ход, запазете връзката и изчакайте.", "İşlem sürüyor, bağlantıyı koruyup bekleyin.", "Vorgang läuft, halte die Verbindung und warte.", "Операция выполняется, не разрывайте подключение и подождите."))
         }
         if (operation.active) {
             Spacer(Modifier.height(14.dp))
