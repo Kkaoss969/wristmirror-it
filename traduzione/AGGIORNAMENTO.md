@@ -4,6 +4,8 @@ Originale: https://github.com/Escosis/WristMirror — versione tradotta attuale 
 
 ## Procedura
 
+Decisione di Antonio (27/11/2026): la pubblicazione è automatica, **non serve aspettare il suo OK**. Il riepilogo in chat (passo 7) serve solo come avviso.
+
 1. **Controlla se c'è una versione nuova**
    ```sh
    git ls-remote --tags https://github.com/Escosis/WristMirror
